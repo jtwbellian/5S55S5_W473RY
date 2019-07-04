@@ -56,7 +56,7 @@ ModelImporter:
       takeName: ROpen
       internalID: 6729814251245952609
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -85,7 +85,7 @@ ModelImporter:
       takeName: RThumbUp
       internalID: 1480968207446651455
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -114,7 +114,7 @@ ModelImporter:
       takeName: RClosed
       internalID: -3230327064000808184
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -143,7 +143,7 @@ ModelImporter:
       takeName: RIndex
       internalID: -4415594205443993048
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -172,7 +172,7 @@ ModelImporter:
       takeName: RThumb
       internalID: 536177938086568900
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
