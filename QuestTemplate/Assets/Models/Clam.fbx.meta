@@ -1,29 +1,20 @@
 fileFormatVersion: 2
-guid: 0f0d128ab454d094f9f308b47b5b37c2
+guid: 252c2431d4b86d6428a19a64062fca01
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
-      74: 4267798644133807438
-    second: LOpen
+      74: 5984496454500463648
+    second: Open
   - first:
-      74: 6980329100590915953
-    second: LClosed
-  - first:
-      74: -3577505757803486162
-    second: LThumb
-  - first:
-      74: -2808403141233353649
-    second: LIndex
-  - first:
-      74: 5597993173602281633
-    second: LThumbUp
+      74: 6583553702691892501
+    second: Closed
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 826858d9594c51e4483356714e9e2922, type: 2}
+      name: Material_Clam
+    second: {fileID: 2100000, guid: 82f43758c0f2c56439002426cdc94798, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -52,9 +43,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: LOpen
-      takeName: LOpen
-      internalID: 4267798644133807438
+      name: Open
+      takeName: Open
+      internalID: 5984496454500463648
       firstFrame: 0
       lastFrame: 10
       wrapMode: 0
@@ -81,96 +72,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LClosed
-      takeName: LClosed
-      internalID: 6980329100590915953
-      firstFrame: 0
-      lastFrame: 10
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: LThumb
-      takeName: LThumb
-      internalID: -3577505757803486162
-      firstFrame: 0
-      lastFrame: 10
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: LIndex
-      takeName: LIndex
-      internalID: -2808403141233353649
-      firstFrame: 0
-      lastFrame: 10
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: LThumbUp
-      takeName: LThumbUp
-      internalID: 5597993173602281633
+      name: Closed
+      takeName: Closed
+      internalID: 6583553702691892501
       firstFrame: 0
       lastFrame: 10
       wrapMode: 0
@@ -198,7 +102,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0

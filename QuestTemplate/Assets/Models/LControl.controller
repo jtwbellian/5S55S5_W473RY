@@ -69,7 +69,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RIndex
+  m_Name: LIndex
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -83,7 +83,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -4415594205443993048, guid: 6435d77079c603b47b23f2644645f576,
+  m_Motion: {fileID: -2808403141233353649, guid: 0f0d128ab454d094f9f308b47b5b37c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -123,7 +123,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RClosed
+  m_Name: LClosed
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -137,7 +137,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -3230327064000808184, guid: 6435d77079c603b47b23f2644645f576,
+  m_Motion: {fileID: 6980329100590915953, guid: 0f0d128ab454d094f9f308b47b5b37c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -185,7 +185,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RClosed
+  m_Name: LClosed
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -199,7 +199,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -3230327064000808184, guid: 6435d77079c603b47b23f2644645f576,
+  m_Motion: {fileID: 6980329100590915953, guid: 0f0d128ab454d094f9f308b47b5b37c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -213,7 +213,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RThumb
+  m_Name: LThumb
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -227,7 +227,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 536177938086568900, guid: 6435d77079c603b47b23f2644645f576, type: 3}
+  m_Motion: {fileID: -3577505757803486162, guid: 0f0d128ab454d094f9f308b47b5b37c2,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -323,7 +324,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ROpen
+  m_Name: LOpen
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -336,7 +337,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6729814251245952609, guid: 6435d77079c603b47b23f2644645f576,
+  m_Motion: {fileID: 4267798644133807438, guid: 0f0d128ab454d094f9f308b47b5b37c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -405,20 +406,20 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RControl
+  m_Name: LControl
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: ThumbDown
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: IndexDown
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: GripDown
     m_Type: 4
@@ -442,7 +443,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Index
     m_StateMachine: {fileID: -3341715341376947607}
-    m_Mask: {fileID: 31900000, guid: b5cc1fffbc4d96140acffbd4f3f1c3e2, type: 2}
+    m_Mask: {fileID: 31900000, guid: 49151d25d98f4f7429aca93fb922a7c9, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -454,7 +455,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Thumb
     m_StateMachine: {fileID: -6524719850628318332}
-    m_Mask: {fileID: 31900000, guid: 8b65a1c374d972a458ca7eed29e2ee03, type: 2}
+    m_Mask: {fileID: 31900000, guid: ed566df656a1c7348a7302cdef020069, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -529,7 +530,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RThumbUp
+  m_Name: LThumbUp
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -543,7 +544,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1480968207446651455, guid: 6435d77079c603b47b23f2644645f576,
+  m_Motion: {fileID: 5597993173602281633, guid: 0f0d128ab454d094f9f308b47b5b37c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -663,7 +664,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ROpen
+  m_Name: LOpen
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -676,7 +677,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6729814251245952609, guid: 6435d77079c603b47b23f2644645f576,
+  m_Motion: {fileID: 4267798644133807438, guid: 0f0d128ab454d094f9f308b47b5b37c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -690,7 +691,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ROpen
+  m_Name: LOpen
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -703,7 +704,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6729814251245952609, guid: 6435d77079c603b47b23f2644645f576,
+  m_Motion: {fileID: 4267798644133807438, guid: 0f0d128ab454d094f9f308b47b5b37c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
