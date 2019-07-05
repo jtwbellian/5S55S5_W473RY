@@ -11,6 +11,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     // Room info
     public static PhotonRoom room;
+
+    public GameObject [] spawnPoints; 
     private PhotonView PV;
 
     public int multiplayerScene;
@@ -63,7 +65,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         atMaxPlayer = 6;
         timeToStart = startingTime;
         */
-        PhotonNetwork.LoadLevel(multiplayerScene);
+        //PhotonNetwork.LoadLevel(multiplayerScene);
     }
 
     public override void OnJoinedRoom()
@@ -183,6 +185,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         if (currentScene == multiplayerScene)
         {
             CreatePlayer();
+            playerInGame++;
             /*isGameLoaded = true;
             if (MultiplayerSetting.multiplayerSetting.delayStart)
             {
@@ -195,6 +198,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
     }
 
+/* 
     [PunRPC]
     void RPC_LoadedGameScene()
     {
@@ -204,10 +208,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             PV.RPC("RPC_CreatePlayer", RpcTarget.All);
         }
     }
+*/
 
     //[PunRPC]
     void CreatePlayer()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), Vector3.zero, Quaternion.identity, 0);
+        var currentSpawn = spawnPoints[playerInGame].transform.position;
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), currentSpawn, Quaternion.identity, 0);
     }
 }

@@ -75,7 +75,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _flowdirection: 92
-    - _flowspeed: 0.0138
+    - _flowspeed: 0.0005
     - _rdensity: 306.57
     - _rslim: 3.14
     - _rspeed: 8.6

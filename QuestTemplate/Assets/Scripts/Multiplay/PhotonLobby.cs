@@ -13,6 +13,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public GameObject CancelButton;
 
+    private int maxPlayers = 2;
+
 private void Awake() {
     {
         lobby = this; // quick singleton implementation
@@ -56,7 +58,7 @@ private void Awake() {
     void CreateRoom()
     {
         int ranRoom = Random.Range(0, 1000);
-        RoomOptions roomOps = new RoomOptions(){IsVisible = true, IsOpen = true, MaxPlayers = (byte)MultiplayerSetting.multiplayerSetting.maxPlayers};
+        RoomOptions roomOps = new RoomOptions(){IsVisible = true, IsOpen = true, MaxPlayers = (byte)maxPlayers};
 
         PhotonNetwork.CreateRoom("Room" + ranRoom, roomOps);
         Debug.Log("Trying to create new Room " + ranRoom);
