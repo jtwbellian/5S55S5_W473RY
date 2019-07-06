@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_strip_dither
-  m_Shader: {fileID: -6465566751694194690, guid: 159688cc4e9a6ff4688da161daf2774f,
+  m_Name: mat_strip_flag
+  m_Shader: {fileID: -6465566751694194690, guid: c98fc551361cc5947b1154fbeaddcec7,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

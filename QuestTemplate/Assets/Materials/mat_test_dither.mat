@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_strip_dither
+  m_Name: mat_test_dither
   m_Shader: {fileID: -6465566751694194690, guid: 159688cc4e9a6ff4688da161daf2774f,
     type: 3}
   m_ShaderKeywords: 
