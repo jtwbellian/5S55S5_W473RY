@@ -9,9 +9,7 @@ public class VRButton : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        
-    }
+    {}
 
     private void OnTriggerEnter(Collider other) {
         OnClick.Invoke();
