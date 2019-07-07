@@ -331,11 +331,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandL
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 0f0d128ab454d094f9f308b47b5b37c2,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 17cc85983dec7534ab8d35297a9f9f05, type: 2}
     - target: {fileID: -4216859302048453862, guid: 0f0d128ab454d094f9f308b47b5b37c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -406,6 +401,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 0f0d128ab454d094f9f308b47b5b37c2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 078ce93fc66f55549ab231deed57ad86, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0d128ab454d094f9f308b47b5b37c2, type: 3}
 --- !u!4 &8307541807362591915 stripped
@@ -485,7 +485,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f2f9ddb32c6ba5e4dbe0f3ff6cf497aa, type: 2}
+      objectReference: {fileID: 9100000, guid: d786d96888683dd48a16b4940d7f7e64, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6435d77079c603b47b23f2644645f576, type: 3}
 --- !u!4 &3631897839011742785 stripped

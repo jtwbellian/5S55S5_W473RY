@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
     private List<GameObject> RiverPool = new List<GameObject>();
-    private Vector3 playerStartPos;
-    private Quaternion playerStartRot;
 
     [HideInInspector]
     public float levelSpeed = 0f;
@@ -16,9 +16,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int lives = 3;
 
-    public PlayerController player;
-
-    public int numRivers = 5;
+    public int numSegments = 5;
     public bool gameOver = false;
     public GameObject [] RiverTypes;
     public RiverSegment lastRiverSegment;
@@ -41,9 +39,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         CreateRiverPool();
-
-        playerStartPos = player.transform.position;
-        playerStartRot = player.transform.rotation;
     }
     
     // Initializes Our Object Pool of River segments, disabling all at first
@@ -54,14 +49,19 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < 15; j++)
             {
-                GameObject block = Instantiate(RiverTypes[i]);
+                //GameObject block = Instantiate(RiverTypes[i]);
+
+                GameObject block = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/RiverSegments", "r_" + i.ToString()),
+                                        Vector3.zero, 
+                                        Quaternion.identity, 0);
+
                 RiverPool.Add(block);
                 block.SetActive(false);
             }
         }
 
         // Build first n River segments
-        for (int i = 0; i < numRivers; i++)
+        for (int i = 0; i < numSegments; i++)
         {
             AddRiver();
         }
