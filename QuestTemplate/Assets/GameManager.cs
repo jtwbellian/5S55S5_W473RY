@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             {
                 //GameObject block = Instantiate(RiverTypes[i]);
 
-                GameObject block = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs/RiverSegments", "r_" + i.ToString()),
+                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", "r_" + i.ToString()),
                                         Vector3.zero, 
                                         Quaternion.identity, 0);
 
