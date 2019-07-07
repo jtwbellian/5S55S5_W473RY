@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 82f43758c0f2c56439002426cdc94798, type: 2}
+  - {fileID: 2100000, guid: d4642c9b3d3bfd94fbef78ef779ed76f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3125334659208216497}
   - component: {fileID: 2534670922033949045}
   m_Layer: 0
-  m_Name: river_gorge
+  m_Name: r_gorge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 82f43758c0f2c56439002426cdc94798, type: 2}
+  - {fileID: 2100000, guid: d4642c9b3d3bfd94fbef78ef779ed76f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -303,7 +303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 82f43758c0f2c56439002426cdc94798, type: 2}
+  - {fileID: 2100000, guid: d4642c9b3d3bfd94fbef78ef779ed76f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
