@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -12,6 +13,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public GameObject PlayButton;
 
     public GameObject CancelButton;
+    public TextMeshProUGUI messageField;
 
     private int maxPlayers = 2;
 
@@ -31,16 +33,10 @@ private void Awake() {
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to the Photon Master Server.");
+        messageField.text = "Connected.";
         PhotonNetwork.AutomaticallySyncScene = true;
         PlayButton.SetActive(true);
     }
-/* 
-    public override void OnJoinedRoom()
-    {
-        Debug.Log("You have joined the room.");
-    }
-    
-*/
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -58,10 +54,9 @@ private void Awake() {
     void CreateRoom()
     {
         int ranRoom = Random.Range(0, 1000);
-        RoomOptions roomOps = new RoomOptions(){IsVisible = true, IsOpen = true, MaxPlayers = (byte)maxPlayers};
-
-        PhotonNetwork.CreateRoom("Room" + ranRoom, roomOps);
         Debug.Log("Trying to create new Room " + ranRoom);
+        RoomOptions roomOps = new RoomOptions(){IsVisible = true, IsOpen = true, MaxPlayers = (byte)maxPlayers};
+        PhotonNetwork.CreateRoom("Room" + ranRoom, roomOps);
     }
 
 #endregion
