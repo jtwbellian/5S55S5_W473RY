@@ -11,6 +11,7 @@ public class PhotonPlayer : MonoBehaviour
     PhotonView PV;
     public GameObject myAvatar;
     public AvatarController avController;
+    private AvatarParts parts;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +28,17 @@ public class PhotonPlayer : MonoBehaviour
             var player = Instantiate(obj);
             player.transform.position = myAvatar.transform.position;
 
+            parts = myAvatar.GetComponent<AvatarParts>();
             avController = player.GetComponent<AvatarController>();
-            myAvatar.transform.SetParent(avController.head.transform);
-            myAvatar.transform.localRotation = Quaternion.identity;
+            
+            parts.Head.SetParent(avController.headTarget.transform);
+            parts.Head.localRotation = Quaternion.identity;
+
+            parts.RHand.SetParent(avController.rhandTarget.transform);
+            parts.RHand.localRotation = Quaternion.identity;
+
+            parts.LHand.SetParent(avController.lhandTarget.transform);
+            parts.LHand.localRotation = Quaternion.identity;
         }
     }
 

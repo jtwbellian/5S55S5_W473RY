@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvatarController : MonoBehaviour
+public class AvatarParts : MonoBehaviour
 {
-    public Transform headTarget = null;
-    public Transform lhandTarget = null;
-    public Transform rhandTarget = null;
+    public Transform Head, RHand, LHand;
 
     // Start is called before the first frame update
     void Start()
