@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour
     public string [] RiverTypes;
     public RiverSegment lastRiverSegment;
 
-
     #region singleton implementation
     public static GameManager instance;   
+    public Transform oarSpawnA, oarSpawnB;
 
     void Awake()
     {
@@ -37,7 +37,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateRiverPool();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            CreateRiverPool();
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
+                                        oarSpawnA.position, 
+                                        Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
+                                        oarSpawnB.position, 
+                                        Quaternion.identity, 0);
+        }
     }
     
     // Initializes Our Object Pool of River segments, disabling all at first

@@ -37,8 +37,6 @@ public class AvatarController : MonoBehaviour
         lFinger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
         lThumb = OVRInput.Get(OVRInput.NearTouch.PrimaryThumbButtons);
 
-        print("lthumb = " + lThumb + ", rthumb = " + rThumb);
-
         rhandPose.SetFloat("Grip", rGrab);
         rhandPose.SetFloat("Index", rFinger);
         rhandPose.SetBool("ThumbDown", rThumb);
