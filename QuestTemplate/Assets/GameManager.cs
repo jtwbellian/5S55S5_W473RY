@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public int numSegments = 5;
     public bool gameOver = false;
-    public GameObject [] RiverTypes;
+    public string [] RiverTypes;
     public RiverSegment lastRiverSegment;
 
 
@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         {
             GameManager.instance = this;
         }
-
     }
 #endregion
 
@@ -45,13 +44,13 @@ public class GameManager : MonoBehaviour
     public void CreateRiverPool()
     {
         // create the River prefabs
-        for (int i = 0; i < RiverTypes.Length - 1; i++)
+        for (int i = 0; i < RiverTypes.Length; i++)
         {
             for (int j = 0; j < 15; j++)
             {
                 //GameObject block = Instantiate(RiverTypes[i]);
 
-                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", "r_" + i.ToString()),
+                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", RiverTypes[i]),
                                         Vector3.zero, 
                                         Quaternion.identity, 0);
 
@@ -76,7 +75,7 @@ public class GameManager : MonoBehaviour
         {
             if (!RiverPool[i].activeInHierarchy)
             {
-                RiverPool[i].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, Quaternion.identity);
+                RiverPool[i].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
                 RiverPool[i].SetActive(true);
                 lastRiverSegment = RiverPool[i].GetComponent<RiverSegment>();
                 return;

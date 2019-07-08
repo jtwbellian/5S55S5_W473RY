@@ -13,34 +13,38 @@ public class AvatarController : MonoBehaviour
 
     private float lGrab = 0f;
     private float lFinger = 0f;
-    private float lThumb = 0f;
+    private bool lThumb = false;
     private float rGrab = 0f;
     private float rFinger = 0f;
-    private float rThumb = 0f;
+    private bool rThumb = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        rhandPose = rhandTarget.GetComponent<Animator>();
-        lhandPose = lhandTarget.GetComponent<Animator>();
+        rhandPose = rhandTarget.GetComponentInChildren<Animator>();
+        lhandPose = lhandTarget.GetComponentInChildren<Animator>();
+        rhandPose.speed = 1f;
+        lhandPose.speed = 1f;
     }
 
     void Update()
     {
         rGrab = OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger);
         rFinger = OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger);
-        rThumb = (OVRInput.Get(OVRInput.NearTouch.SecondaryThumbButtons) ? 0f : 1f);
+        rThumb = OVRInput.Get(OVRInput.NearTouch.SecondaryThumbButtons);
 
         lGrab = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger);
         lFinger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
-        lThumb = (OVRInput.Get(OVRInput.NearTouch.PrimaryThumbButtons) ? 1f : 0f);
+        lThumb = OVRInput.Get(OVRInput.NearTouch.PrimaryThumbButtons);
 
-        rhandPose.SetFloat("RGrab", rGrab);
-        rhandPose.SetFloat("RFinger", rFinger);
-        rhandPose.SetFloat("RThumb", rThumb);
+        print("lthumb = " + lThumb + ", rthumb = " + rThumb);
 
-        lhandPose.SetFloat("LGrab", lGrab);
-        lhandPose.SetFloat("LFinger", lFinger);
-        lhandPose.SetFloat("LThumb", lThumb);
+        rhandPose.SetFloat("Grip", rGrab);
+        rhandPose.SetFloat("Index", rFinger);
+        rhandPose.SetBool("ThumbDown", rThumb);
+
+        lhandPose.SetFloat("Grip", lGrab);
+        lhandPose.SetFloat("Index", lFinger);
+        lhandPose.SetBool("ThumbDown", lThumb);
     }
 }

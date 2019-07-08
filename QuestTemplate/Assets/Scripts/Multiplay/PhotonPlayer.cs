@@ -27,7 +27,7 @@ public class PhotonPlayer : MonoBehaviour
             
             GameObject obj = Resources.Load<GameObject>("PhotonPrefabs/OVRPlayerController");
             var player = Instantiate(obj);
-            player.transform.position = Vector3.zero;
+            player.transform.position =  GameSetup.GS.spawnPoints[GameSetup.GS.currentSpawn].position;
 
             parts = myAvatar.GetComponent<AvatarParts>();
             avController = player.GetComponent<AvatarController>();
