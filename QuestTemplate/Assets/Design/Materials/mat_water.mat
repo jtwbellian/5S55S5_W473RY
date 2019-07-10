@@ -76,7 +76,7 @@ Material:
     - _ZWrite: 1
     - _flowdirection: 229
     - _flowspeed: 0.03
-    - _rdensity: 57.82
+    - _rdensity: 158.35
     - _rslim: 4.8
     - _rspeed: 12.3
     - _shine: 15.9
