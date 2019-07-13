@@ -84,7 +84,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         //isGameLoaded = true;
 
-        if (! PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient)
         {
             return;
         }

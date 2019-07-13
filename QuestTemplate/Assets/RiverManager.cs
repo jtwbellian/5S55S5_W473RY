@@ -6,7 +6,7 @@ using TMPro;
 using Photon.Pun;
 using System.IO;
 
-public class GameManager : MonoBehaviour
+public class RiverManager : MonoBehaviour
 {
     private List<GameObject> RiverPool = new List<GameObject>();
 
@@ -21,15 +21,15 @@ public class GameManager : MonoBehaviour
     public string [] RiverTypes;
     public RiverSegment lastRiverSegment;
 
-
     #region singleton implementation
-    public static GameManager instance;   
+    public static RiverManager instance;   
+    public Transform oarSpawnA, oarSpawnB;
 
     void Awake()
     {
-        if (GameManager.instance != this)
+        if (RiverManager.instance != this)
         {
-            GameManager.instance = this;
+            RiverManager.instance = this;
         }
     }
 #endregion
@@ -37,7 +37,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateRiverPool();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("Am master, building level..");
+            CreateRiverPool();
+            PhotonNetwork.InstantiateSceneObject(Path.Combine("PhotonPrefabs", "Paddle"),
+                                        oarSpawnA.position, 
+                                        oarSpawnB.rotation, 0, null);
+            PhotonNetwork.InstantiateSceneObject(Path.Combine("PhotonPrefabs", "Paddle"),
+                                        oarSpawnB.position, 
+                                        oarSpawnB.rotation, 0, null);
+        }
     }
     
     // Initializes Our Object Pool of River segments, disabling all at first
@@ -50,9 +60,9 @@ public class GameManager : MonoBehaviour
             {
                 //GameObject block = Instantiate(RiverTypes[i]);
 
-                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", RiverTypes[i]),
+                GameObject block = PhotonNetwork.InstantiateSceneObject(Path.Combine("RiverSegments", RiverTypes[i]),
                                         Vector3.zero, 
-                                        Quaternion.identity, 0);
+                                        Quaternion.identity, 0, null);
 
                 RiverPool.Add(block);
                 block.SetActive(false);
@@ -65,6 +75,7 @@ public class GameManager : MonoBehaviour
             AddRiver();
         }
     }
+
     public void AddRiver()
     {
         // Shuffle the pool to mix it up
