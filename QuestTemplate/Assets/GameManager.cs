@@ -6,7 +6,7 @@ using TMPro;
 using Photon.Pun;
 using System.IO;
 
-public class RiverManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     private List<GameObject> RiverPool = new List<GameObject>();
 
@@ -22,14 +22,14 @@ public class RiverManager : MonoBehaviour
     public RiverSegment lastRiverSegment;
 
     #region singleton implementation
-    public static RiverManager instance;   
+    public static GameManager instance;   
     public Transform oarSpawnA, oarSpawnB;
 
     void Awake()
     {
-        if (RiverManager.instance != this)
+        if (GameManager.instance != this)
         {
-            RiverManager.instance = this;
+            GameManager.instance = this;
         }
     }
 #endregion
@@ -39,14 +39,13 @@ public class RiverManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Am master, building level..");
             CreateRiverPool();
-            PhotonNetwork.InstantiateSceneObject(Path.Combine("PhotonPrefabs", "Paddle"),
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
                                         oarSpawnA.position, 
-                                        oarSpawnB.rotation, 0, null);
-            PhotonNetwork.InstantiateSceneObject(Path.Combine("PhotonPrefabs", "Paddle"),
+                                        Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
                                         oarSpawnB.position, 
-                                        oarSpawnB.rotation, 0, null);
+                                        Quaternion.identity, 0);
         }
     }
     
@@ -60,9 +59,9 @@ public class RiverManager : MonoBehaviour
             {
                 //GameObject block = Instantiate(RiverTypes[i]);
 
-                GameObject block = PhotonNetwork.InstantiateSceneObject(Path.Combine("RiverSegments", RiverTypes[i]),
+                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", RiverTypes[i]),
                                         Vector3.zero, 
-                                        Quaternion.identity, 0, null);
+                                        Quaternion.identity, 0);
 
                 RiverPool.Add(block);
                 block.SetActive(false);
@@ -75,7 +74,6 @@ public class RiverManager : MonoBehaviour
             AddRiver();
         }
     }
-
     public void AddRiver()
     {
         // Shuffle the pool to mix it up

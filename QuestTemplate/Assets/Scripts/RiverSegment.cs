@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RiverSegment : MonoBehaviour
 {
-    private RiverManager gm;
+    private GameManager gm;
     private Coin [] coins;
     public Transform endPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        gm = RiverManager.instance;
+        gm = GameManager.instance;
         coins = GetComponentsInChildren<Coin>();
     }
 
