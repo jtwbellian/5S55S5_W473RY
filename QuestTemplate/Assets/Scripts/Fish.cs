@@ -18,6 +18,9 @@ public class Fish : MonoBehaviour
     {
         if (other.transform.root.gameObject.layer==4)
             {
+                FXManager.GetInstance().Burst(FXManager.FX.Splash, transform.position, 5);
+                FXManager.GetInstance().Burst(FXManager.FX.Ripple, transform.position, 1);
+                FXManager.GetInstance().Burst(FXManager.FX.Spray, transform.position, 2);
             if (animator.GetBool("Flop")==true)
                 {
                 animator.SetBool("Flop", false);
@@ -33,7 +36,7 @@ public class Fish : MonoBehaviour
                 {
                 rigidbod.velocity = new Vector3(0f, 0f, 0f);
                 rigidbod.angularVelocity = new Vector3(0f, 0f, 0f);
-                gameObject.transform.rotation=Quaternion.identity;
+                transform.rotation=Quaternion.identity;
                 rigidbod.useGravity = false;
                 }
         }

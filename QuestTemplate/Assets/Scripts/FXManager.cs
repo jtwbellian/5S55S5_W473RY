@@ -7,13 +7,13 @@ public class FXManager : MonoBehaviour
 
     public enum FX
     {
-        WaterSplash, WaterSpray, WaterRipples
+        Splash, Spray, Ripple
     }
 
     static FXManager instance = null;
     public ParticleSystem[] part_systems;
 
-    public int index = 2;
+    public int index = 0;
 
     // Start is called before the first frame update
     void Start()
