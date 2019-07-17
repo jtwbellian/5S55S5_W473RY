@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
             CreateRiverPool();
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
                                         oarSpawnA.position, 
-                                        Quaternion.identity, 0);
+                                        oarSpawnA.rotation, 0);
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
                                         oarSpawnB.position, 
-                                        Quaternion.identity, 0);
+                                        oarSpawnB.rotation, 0);
         }
     }
     
@@ -57,14 +57,21 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < 15; j++)
             {
-                //GameObject block = Instantiate(RiverTypes[i]);
-
                 GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", RiverTypes[i]),
                                         Vector3.zero, 
                                         Quaternion.identity, 0);
 
                 RiverPool.Add(block);
-                block.SetActive(false);
+                RiverSegment rs =  block.GetComponent<RiverSegment>();
+
+                if (rs == null)
+                {
+                    Debug.Log("River Segment could not be found");
+                    return;
+                }
+
+                rs.pv.RPC("Activate", RpcTarget.All, false);
+                //RiverPool[i].SetActive(false);
             }
         }
 
@@ -85,12 +92,24 @@ public class GameManager : MonoBehaviour
             if (!RiverPool[i].activeInHierarchy)
             {
                 RiverPool[i].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
-                RiverPool[i].SetActive(true);
-                lastRiverSegment = RiverPool[i].GetComponent<RiverSegment>();
+                
+                RiverSegment rs = RiverPool[i].GetComponent<RiverSegment>();
+                
+                if (rs == null)
+                {
+                    Debug.Log("River Segment could not be found");
+                    return;
+                }
+
+                rs.pv.RPC("Activate", RpcTarget.All, true);
+                //RiverPool[i].SetActive(true);
+
+                lastRiverSegment = rs;
                 return;
             }
         }
     }
+
     public void RandomizePool()
     {
         for (int i = 0; i < RiverPool.Count; i++)

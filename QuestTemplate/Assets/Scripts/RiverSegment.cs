@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RiverSegment : MonoBehaviour
 {
     private GameManager gm;
     private Coin [] coins;
     public Transform endPoint;
+    public PhotonView pv;
 
     // Start is called before the first frame update
     void Start()
     {
         gm = GameManager.instance;
         coins = GetComponentsInChildren<Coin>();
+        pv = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -31,8 +34,14 @@ public class RiverSegment : MonoBehaviour
                 c.gameObject.SetActive(true);
             }
 
-            gameObject.SetActive(false);
+            pv.RPC("Activate", RpcTarget.All, false);
             gm.AddRiver();
         }
+    }
+
+    [PunRPC]
+    void Activate(bool on)
+    {
+        gameObject.SetActive(on);
     }
 }
