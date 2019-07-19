@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    RiverManager gm;
+    GameManager gm;
     float spinSpeed = 8f;
 
     // Start is called before the first frame update
     void Start()
     {
-        gm = RiverManager.instance;
+        gm = GameManager.instance;
     }
 
     // Update is called once per frame

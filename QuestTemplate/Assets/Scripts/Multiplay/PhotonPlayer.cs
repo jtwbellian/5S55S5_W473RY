@@ -22,8 +22,8 @@ public class PhotonPlayer : MonoBehaviour
         if (PV.IsMine)
         {
             myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
-                                                GameSetup.GS.spawnPoints[GameSetup.GS.currentSpawn].position, 
-                                                GameSetup.GS.spawnPoints[GameSetup.GS.currentSpawn].rotation, 0);
+                                                Vector3.zero, 
+                                                Quaternion.identity, 0);
             
             GameObject obj = Resources.Load<GameObject>("PhotonPrefabs/OVRPlayerController");
             var player = Instantiate(obj);

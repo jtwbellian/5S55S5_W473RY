@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 749113762843725013}
   - component: {fileID: 1539325117805414408}
   m_Layer: 0
-  m_Name: river_straitD
+  m_Name: r_straitD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
