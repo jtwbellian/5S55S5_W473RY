@@ -16,6 +16,7 @@ permissions and limitations under the License.
 
 using System;
 using UnityEngine;
+//using Photon.Pun;
 
 /// <summary>
 /// An object that can be grabbed and thrown by OVRGrabber.
@@ -117,7 +118,12 @@ public class OVRGrabbable : MonoBehaviour
         m_grabbedBy = hand;
         m_grabbedCollider = grabPoint;
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
+        OnGrab();
     }
+
+    public virtual void OnGrab(){}
+    public virtual void OnDrop(){}
 
 	/// <summary>
 	/// Notifies the object that it has been released.
@@ -130,6 +136,8 @@ public class OVRGrabbable : MonoBehaviour
         rb.angularVelocity = angularVelocity;
         m_grabbedBy = null;
         m_grabbedCollider = null;
+
+        OnDrop();
     }
 
     void Awake()

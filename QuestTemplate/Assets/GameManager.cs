@@ -64,14 +64,14 @@ public class GameManager : MonoBehaviour
                 RiverPool.Add(block);
                 RiverSegment rs =  block.GetComponent<RiverSegment>();
 
+                //rs.pv.RPC("Activate", RpcTarget.All, false);
+                rs.DisableChildObject(false);
+
                 if (rs == null)
                 {
                     Debug.Log("River Segment could not be found");
                     return;
                 }
-
-                rs.pv.RPC("Activate", RpcTarget.All, false);
-                //RiverPool[i].SetActive(false);
             }
         }
 
@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
             AddRiver();
         }
     }
+    
     public void AddRiver()
     {
         // Shuffle the pool to mix it up
@@ -101,8 +102,9 @@ public class GameManager : MonoBehaviour
                     return;
                 }
 
-                rs.pv.RPC("Activate", RpcTarget.All, true);
+                //rs.pv.RPC("Activate", RpcTarget.All, true);
                 //RiverPool[i].SetActive(true);
+                rs.DisableChildObject(true);
 
                 lastRiverSegment = rs;
                 return;
