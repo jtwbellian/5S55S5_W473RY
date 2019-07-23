@@ -7,7 +7,7 @@ public class FXManager : MonoBehaviour
 
     public enum FX
     {
-        Splash, Spray, Ripple
+        Splash, Spray, Ripple, Confetti2, Confetti1
     }
 
     static FXManager instance = null;
