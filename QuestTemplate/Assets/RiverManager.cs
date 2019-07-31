@@ -6,11 +6,22 @@ using TMPro;
 using Photon.Pun;
 using System.IO;
 
-public class GameManager : MonoBehaviour
+public class RiverManager : MonoBehaviour
 {
+    #region RiverGeneration
+
     private List<GameObject> RiverPool = new List<GameObject>();
-    [SerializeField]
+    public string [] RiverTypes;
+    public int numSegments = 5;
+
+    #endregion
+
+    #region RiverMovement
+
+    //private float spawnDelay = 200f;
+    //private float lastSpawnTime = 0;
     private float turnSpeed = 0.25f;
+    [SerializeField]
     private Vector3 riverVelocity = Vector3.zero;
     private Vector3 boatRightVelocity = Vector3.zero;
 
@@ -19,35 +30,36 @@ public class GameManager : MonoBehaviour
 
     [Range(0f, 10f)]
     public float levelSpeed = 0f;
+    public RiverSegment lastRiverSegment;
+
+    public Transform riverMaster;
+    public RiverSegment targetSegment;
+
+    public int activeParts = 2;
+    public Boat boat;
+
+    #endregion
 
     public int score = 0;
     public int lives = 3;
-
-    public int numSegments = 5;
+    public Transform oarSpawnA, oarSpawnB;
     public bool gameOver = false;
-    public string [] RiverTypes;
-    public RiverSegment lastRiverSegment;
 
     #region singleton implementation
-    public static GameManager instance;   
-    public Transform oarSpawnA, oarSpawnB;
-    public Transform riverMaster;
-    public RiverSegment targetSegment;
-    public Boat boat;
 
-    private float spawnDelay = 200f;
-    private float lastSpawnTime = 0;
+    public static RiverManager instance;   
 
    // public vector3 current
 
     void Awake()
     {
-        if (GameManager.instance != this)
+        if (RiverManager.instance != this)
         {
-            GameManager.instance = this;
+            RiverManager.instance = this;
         }
     }
-#endregion
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -127,6 +139,8 @@ public class GameManager : MonoBehaviour
                 rs.DisableChildObject(true);
                 //targetRotation = lastRiverSegment.endPoint.rotation;
                 lastRiverSegment = rs;
+                activeParts ++;
+
                 return;
             }
         }
@@ -167,9 +181,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+/*
     public Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles) {
         return Quaternion.Euler(angles) * (point - pivot) + pivot;
     }
+    */
 
     public void RandomizePool()
     {

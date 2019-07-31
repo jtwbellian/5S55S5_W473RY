@@ -14,7 +14,7 @@ void OnTriggerEnter(Collider other) {
     if (other.CompareTag("Finish"))
     {
         gameObject.SetActive(false);
-        GameManager.instance.AddRiver();
+        RiverManager.instance.AddRiver();
     }
     
 }

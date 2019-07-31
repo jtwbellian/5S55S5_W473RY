@@ -21,8 +21,8 @@ public class Boat : MonoBehaviour
 
        if (rs != null) 
        {
-           GameManager.instance.rotationOffset += rs.myAngle;
-           GameManager.instance.targetSegment = rs;
+           RiverManager.instance.rotationOffset += rs.myAngle;
+           RiverManager.instance.targetSegment = rs;
        }
 
     }

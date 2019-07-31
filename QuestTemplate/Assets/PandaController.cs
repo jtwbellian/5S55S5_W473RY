@@ -14,10 +14,10 @@ public class PandaController : OVRPlayerController
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRInput.GetDown(OVRInput.Button.Three))
         {
             Debug.Log("Pressing X");
-            transform.position = (GameManager.instance.boat.transform.position - trackingPoint.localPosition) + (Vector3.up * 3f);
+            transform.position = (RiverManager.instance.boat.transform.position - trackingPoint.localPosition) + (Vector3.up * 3f);
         }
     }
 }
