@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private List<GameObject> RiverPool = new List<GameObject>();
     [SerializeField]
     private float turnSpeed = 0.25f;
+    private Vector3 riverVelocity = Vector3.zero;
+    private Vector3 boatRightVelocity = Vector3.zero;
+
     public float rotationOffset = 0;
     public bool riverMove = false;
 
@@ -27,9 +30,10 @@ public class GameManager : MonoBehaviour
 
     #region singleton implementation
     public static GameManager instance;   
-    public Transform oarSpawnA, oarSpawnB, boat;
+    public Transform oarSpawnA, oarSpawnB;
     public Transform riverMaster;
     public RiverSegment targetSegment;
+    public Boat boat;
 
     private float spawnDelay = 200f;
     private float lastSpawnTime = 0;
@@ -133,7 +137,10 @@ public class GameManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient && riverMove)
         {
-            riverMaster.transform.Translate((Vector3.forward * Time.deltaTime) * -levelSpeed, Space.World);//((targetSegment.endPoint.position - targetSegment.transform.position).normalized * Time.deltaTime) * levelSpeed;
+            riverVelocity = (Vector3.forward * -levelSpeed) * Time.deltaTime;
+            boatRightVelocity = (Vector3.right * boat.rudder) * Time.deltaTime;
+
+            riverMaster.transform.Translate(riverVelocity + boatRightVelocity, Space.World);//((targetSegment.endPoint.position - targetSegment.transform.position).normalized * Time.deltaTime) * levelSpeed;
 
             var rotAmt = 0f;
             

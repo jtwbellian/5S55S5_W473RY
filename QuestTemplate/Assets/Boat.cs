@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
+    private const float TOL = 0.05f;
+    public Vector3 positionOffset = Vector3.zero;
+
+    [Range(-10, 10)]
+    public float rudder = 0f;
     // Start is called before the first frame update
     void Start()
     {
         
     }
     
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerEnter(Collider other) 
+    {
         var rs = other.GetComponent<RiverSegment>();
 
        if (rs != null) 
@@ -21,9 +27,7 @@ public class Boat : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update() 
     {
-        
     }
 }

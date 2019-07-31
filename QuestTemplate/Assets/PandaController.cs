@@ -17,7 +17,7 @@ public class PandaController : OVRPlayerController
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("Pressing X");
-            transform.position = GameManager.instance.boat.position - trackingPoint.localPosition + (Vector3.up * 3f);
+            transform.position = (GameManager.instance.boat.transform.position - trackingPoint.localPosition) + (Vector3.up * 3f);
         }
     }
 }
