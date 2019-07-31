@@ -36,5 +36,6 @@ MonoBehaviour:
   - RPC_LoadedGameScene
   - RPC_AssignAvatar
   - Activate
+  - RemoveBlock
   DisableAutoOpenWizard: 1
   ShowSettings: 1

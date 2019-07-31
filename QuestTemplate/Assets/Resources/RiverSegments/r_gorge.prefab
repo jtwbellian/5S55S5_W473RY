@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 8860945822850699315}
   - component: {fileID: 5115422939066917438}
   - component: {fileID: 7741637555344697058}
+  - component: {fileID: -4253528322269244726}
   m_Layer: 0
   m_Name: r_gorge
   m_TagString: Untagged
@@ -185,6 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPoint: {fileID: 6750223782036835716}
+  pv: {fileID: 5115422939066917438}
+  myAngle: 0
 --- !u!114 &5115422939066917438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +225,19 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!65 &-4253528322269244726
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090851689820360098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15, y: 5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3012511585307150875
 GameObject:
   m_ObjectHideFlags: 0
