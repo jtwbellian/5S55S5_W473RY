@@ -247,9 +247,10 @@ GameObject:
   - component: {fileID: 483407616508376555}
   - component: {fileID: 7788779518286490871}
   - component: {fileID: -4328219808247663796}
+  - component: {fileID: 8180994810193164235}
   m_Layer: 0
   m_Name: Fruit
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,11 +286,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.09487982
+  - screenRelativeHeight: 0.024237413
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7439338822070658255}
-  - screenRelativeHeight: 0.015755132
+  - screenRelativeHeight: 0.0054428806
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3425390523420658990}
@@ -327,8 +328,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.12724271
+  m_Center: {x: 0.0040049255, y: -0.0006674826, z: -0.014684677}
 --- !u!54 &7499877477978006370
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -399,3 +400,15 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &8180994810193164235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243442818982576313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8d41d5fbeaa9c42bda1d938f23b331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
