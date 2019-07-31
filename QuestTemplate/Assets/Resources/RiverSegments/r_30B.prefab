@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 8966752159518939022}
   - component: {fileID: 3658542211269684420}
   - component: {fileID: 1935059701098187831}
+  - component: {fileID: 3217344765900295688}
   m_Layer: 0
   m_Name: r_30B
   m_TagString: Untagged
@@ -263,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endPoint: {fileID: 5005593757300720416}
   pv: {fileID: 3658542211269684420}
+  myAngle: 30
 --- !u!114 &3658542211269684420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +302,19 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!65 &3217344765900295688
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394456831468478502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15, y: 5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7410396671327917053
 GameObject:
   m_ObjectHideFlags: 0

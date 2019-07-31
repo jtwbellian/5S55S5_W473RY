@@ -11,6 +11,12 @@ public class VRButton : MonoBehaviour
     void Start()
     {}
 
+    [ContextMenu("Click")]
+public void Click()
+{
+    OnClick.Invoke();
+}
+
     private void OnTriggerEnter(Collider other) {
         OnClick.Invoke();
     }

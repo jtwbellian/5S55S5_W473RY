@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 9173372201598306829}
   - component: {fileID: 3967086798061751153}
   - component: {fileID: 1311797520595363084}
+  - component: {fileID: 7835718633698668923}
   m_Layer: 0
   m_Name: r_30C
   m_TagString: Untagged
@@ -339,6 +340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPoint: {fileID: 61261893245569804}
+  pv: {fileID: 0}
+  myAngle: 30
 --- !u!114 &3967086798061751153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,3 +379,16 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!65 &7835718633698668923
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968419062309028090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15, y: 5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

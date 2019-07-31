@@ -9,6 +9,17 @@ public class Boat : MonoBehaviour
     {
         
     }
+    
+    void OnTriggerEnter(Collider other) {
+        var rs = other.GetComponent<RiverSegment>();
+
+       if (rs != null) 
+       {
+           GameManager.instance.rotationOffset += rs.myAngle;
+           GameManager.instance.targetSegment = rs;
+       }
+
+    }
 
     // Update is called once per frame
     void Update()

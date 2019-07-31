@@ -11,6 +11,8 @@ public class RiverSegment : MonoBehaviour
     public Transform endPoint;
     public PhotonView pv;
 
+    public float myAngle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,20 +25,14 @@ public class RiverSegment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var newPos = transform.position + Vector3.forward * gm.levelSpeed * Time.deltaTime;
-        transform.position = newPos;
+        /* var newPos = transform.position + Vector3.forward * gm.levelSpeed * Time.deltaTime;
+        transform.position = newPos;*/
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Finish")
         {
-            foreach (var c in coins)
-            {
-                c.gameObject.SetActive(true);
-            }
-
-            //pv.RPC("Activate", RpcTarget.All, false);
             DisableChildObject(false);
             gm.AddRiver();
         }
