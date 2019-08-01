@@ -10,8 +10,9 @@ public class RiverManager : MonoBehaviour
 {
     #region RiverGeneration
 
-    private List<GameObject> RiverPool = new List<GameObject>();
-    public string [] RiverTypes;
+    private const int POOL_SIZE = 6;
+    private List<GameObject> riverPool = new List<GameObject>();
+    public GameObject [] riverTypes;
     public int numSegments = 5;
 
     #endregion
@@ -81,7 +82,6 @@ public class RiverManager : MonoBehaviour
             Invoke("TurnOnStartButton", 3f);
             waitMessage.SetActive(false);
         }
-
     }
 
     private void TurnOnStartButton()
@@ -92,27 +92,26 @@ public class RiverManager : MonoBehaviour
     public void CreateRiverPool()
     {
         // create the River prefabs
-        for (int i = 0; i < RiverTypes.Length; i++)
+        for (int i = 0; i < riverTypes.Length; i++)
         {
-            for (int j = 0; j < 15; j++)
+            for (int j = 0; j < POOL_SIZE; j++)
             {
-                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", RiverTypes[i]),
+                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", riverTypes[i].name),
                                         Vector3.zero, 
                                         Quaternion.identity, 0);
 
-                RiverPool.Add(block);
+                riverPool.Add(block);
                 block.transform.SetParent(riverMaster);
 
                 RiverSegment rs =  block.GetComponent<RiverSegment>();
-
-                //rs.pv.RPC("Activate", RpcTarget.All, false);
-                rs.DisableChildObject(false);
 
                 if (rs == null)
                 {
                     Debug.Log("River Segment could not be found");
                     return;
                 }
+                // deactivate river segments on creation
+                rs.DisableChildObject(false);
             }
         }
 
@@ -129,13 +128,13 @@ public class RiverManager : MonoBehaviour
         RandomizePool();
 
         // Finds the first inactive segment and lays it down
-        for (int i = 0; i < RiverPool.Count - 1; i++)
+        for (int i = 0; i < riverPool.Count - 1; i++)
         {
-            if (!RiverPool[i].activeInHierarchy)
+            if (!riverPool[i].activeInHierarchy)
             {
-                RiverPool[i].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
+                riverPool[i].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
                 
-                RiverSegment rs = RiverPool[i].GetComponent<RiverSegment>();
+                RiverSegment rs = riverPool[i].GetComponent<RiverSegment>();
                 
                 if (rs == null)
                 {
@@ -144,7 +143,7 @@ public class RiverManager : MonoBehaviour
                 }
 
                 //rs.pv.RPC("Activate", RpcTarget.All, true);
-                //RiverPool[i].SetActive(true);
+                //riverPool[i].SetActive(true);
                 rs.DisableChildObject(true);
                 //targetRotation = lastRiverSegment.endPoint.rotation;
                 lastRiverSegment = rs;
@@ -211,12 +210,12 @@ public class RiverManager : MonoBehaviour
 
     public void RandomizePool()
     {
-        for (int i = 0; i < RiverPool.Count; i++)
+        for (int i = 0; i < riverPool.Count; i++)
         {
-            GameObject temp = RiverPool[i];
-            int randomIndex = Random.Range(i, RiverPool.Count);
-            RiverPool[i] = RiverPool[randomIndex];
-            RiverPool[randomIndex] = temp;
+            GameObject temp = riverPool[i];
+            int randomIndex = Random.Range(i, riverPool.Count);
+            riverPool[i] = riverPool[randomIndex];
+            riverPool[randomIndex] = temp;
         }
     }
 }
