@@ -17,9 +17,9 @@ public class PandaController : OVRPlayerController
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Three))
+        if (OVRInput.GetDown(OVRInput.Button.Three) || OVRInput.GetDown(OVRInput.Button.One) )
         {
-            Debug.Log("Pressing X");
+            Debug.Log("Teleport Home");
             GoHome();
         }
 
@@ -28,6 +28,6 @@ public class PandaController : OVRPlayerController
 
     public void GoHome()
     {
-        transform.position = (RiverManager.instance.boat.transform.position - trackingPoint.localPosition);// + trackingPoint.localPosition);// + (Vector3.up * 3f);
+        transform.position = (RiverManager.instance.boat.transform.position - trackingPoint.position);// + trackingPoint.localPosition);// + (Vector3.up * 3f);
     }
 }

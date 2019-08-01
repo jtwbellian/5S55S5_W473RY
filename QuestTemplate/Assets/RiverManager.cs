@@ -14,6 +14,8 @@ public class RiverManager : MonoBehaviour
     private List<GameObject> riverPool = new List<GameObject>();
     public GameObject [] riverTypes;
     public int numSegments = 5;
+    private int progress = 0;
+    private RiverSegment turtleSegment = null;
 
     #endregion
 
@@ -23,8 +25,8 @@ public class RiverManager : MonoBehaviour
     //private float lastSpawnTime = 0;
     private float turnSpeed = 0.25f;
     [SerializeField]
-    private Vector3 riverVelocity = Vector3.zero;
-    private Vector3 boatRightVelocity = Vector3.zero;
+    public Vector3 riverVelocity = Vector3.zero;
+    public Vector3 boatRightVelocity = Vector3.zero;
 
     public float rotationOffset = 0;
     public bool riverMove = false;
@@ -79,6 +81,15 @@ public class RiverManager : MonoBehaviour
                                         oarSpawnB.position, 
                                         oarSpawnB.rotation, 0);
 
+            // Spawn the special pieces
+            var turtleSegObj = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", "r_turtle"),
+                                        oarSpawnB.position, 
+                                        oarSpawnB.rotation, 0);
+
+            turtleSegment = turtleSegObj.GetComponent<RiverSegment>();
+            turtleSegment.DisableChildObject(false);
+
+
             Invoke("TurnOnStartButton", 3f);
             waitMessage.SetActive(false);
         }
@@ -92,6 +103,13 @@ public class RiverManager : MonoBehaviour
     {
         startButton.SetActive(true);
     }    
+
+    [PunRPC]
+    void ShowMessage(bool setActive)
+    {
+        waitMessage.SetActive(setActive);
+    }
+
     // Initializes Our Object Pool of River segments, disabling all at first
     public void CreateRiverPool()
     {
@@ -130,6 +148,16 @@ public class RiverManager : MonoBehaviour
     {
         // Shuffle the pool to mix it up
         RandomizePool();
+
+        // number of segments before fishing game
+        if (progress == 15)
+        {
+            turtleSegment.transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
+            turtleSegment.DisableChildObject(true);
+            lastRiverSegment = turtleSegment;
+            activeParts ++;
+            return;
+        }
 
         // Finds the first inactive segment and lays it down
         for (int i = 0; i < riverPool.Count - 1; i++)
@@ -205,6 +233,7 @@ public class RiverManager : MonoBehaviour
         {
             startButton.SetActive(false);
             riverMove = true;
+            GetComponent<PhotonView>().RPC("ShowMessage", RpcTarget.AllBuffered, false);
         }
         else
         {
