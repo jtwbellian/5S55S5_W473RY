@@ -233,7 +233,7 @@ public class RiverManager : MonoBehaviour
         {
             startButton.SetActive(false);
             riverMove = true;
-            GetComponent<PhotonView>().RPC("ShowMessage", RpcTarget.AllBuffered, false);
+            //GetComponent<PhotonView>().RPC("ShowMessage", RpcTarget.AllBuffered, false);
         }
         else
         {

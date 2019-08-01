@@ -86,8 +86,11 @@ public class PhotonSpawner : MonoBehaviour
             objPool.Add(block);
                             
             // Change this part to be a universal "Photon Disableable Class" as soon as we think of a better name
-            var fish = block.GetComponent<Fish>();
-            fish.DisableChildObject(false); // Deactivate the fish on creation
+            var pa = block.GetComponent<PhotonActor>();
+            if (!pa)
+                Debug.Log("No Photon Actor Script found");
+
+            pa.DisableChildObject(false); // Deactivate the fish on creation
         } 
     }
 
@@ -101,16 +104,16 @@ public class PhotonSpawner : MonoBehaviour
                 objPool[i].transform.SetPositionAndRotation(position, transform.rotation);
                 
                 // Change this part to be a universal "Photon Disableable Script" as soon as we think of a better name
-                Fish f = objPool[i].GetComponent<Fish>();
+                PhotonActor pa = objPool[i].GetComponent<PhotonActor>();
                 
-                if (f == null)
+                if (pa == null)
                 {
                     Debug.Log("Fish instance could not be found. Null or unknown entity in pool!");
                     return;
                 }
 
                 // Set this fish active
-                f.DisableChildObject(true);
+                pa.DisableChildObject(true);
                 return;
             }
         }
