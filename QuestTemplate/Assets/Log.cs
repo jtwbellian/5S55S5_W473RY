@@ -9,6 +9,7 @@ public class Log : MonoBehaviour
     void Start()
     {
         rm = RiverManager.instance;
+        
         if (!rm)
             Debug.Log("River Manager not found.");
     }
