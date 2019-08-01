@@ -105,6 +105,6 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     //[PunRPC]
     void CreatePlayer()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), new Vector3(0, 10, 0), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), new Vector3(0, 4f, -1.5f), Quaternion.identity, 0);
     }
 }

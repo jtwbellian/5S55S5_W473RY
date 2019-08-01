@@ -6,18 +6,19 @@ using Photon.Realtime;
 
 public class RiverSegment : MonoBehaviour
 {
-    private GameManager gm;
+    private RiverManager rm;
     private Coin [] coins;
     public Transform endPoint;
     public PhotonView pv;
+    public GameObject [] fruits;
 
     public float myAngle;
 
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameManager.instance;
-        coins = GetComponentsInChildren<Coin>();
+        rm = RiverManager.instance;
+        //coins = GetComponentsInChildren<Coin>();
         pv = GetComponent<PhotonView>();
         //pv.RPC("Activate", RpcTarget.All, false);
     }
@@ -25,7 +26,7 @@ public class RiverSegment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* var newPos = transform.position + Vector3.forward * gm.levelSpeed * Time.deltaTime;
+        /* var newPos = transform.position + Vector3.forward * rm.levelSpeed * Time.deltaTime;
         transform.position = newPos;*/
     }
 
@@ -33,8 +34,9 @@ public class RiverSegment : MonoBehaviour
     {
         if (other.tag == "Finish")
         {
+            rm.activeParts--;
             DisableChildObject(false);
-            gm.AddRiver();
+            rm.AddRiver();
         }
     }
 
