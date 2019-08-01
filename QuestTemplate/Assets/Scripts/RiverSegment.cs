@@ -10,6 +10,7 @@ public class RiverSegment : MonoBehaviour
     private Coin [] coins;
     public Transform endPoint;
     public PhotonView pv;
+    public GameObject [] fruits;
 
     public float myAngle;
 

@@ -45,6 +45,8 @@ public class RiverManager : MonoBehaviour
     public Transform oarSpawnA, oarSpawnB;
     public bool gameOver = false;
 
+    public GameObject startButton, waitMessage;
+
     #region singleton implementation
 
     public static RiverManager instance;   
@@ -69,16 +71,23 @@ public class RiverManager : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             CreateRiverPool();
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "FishingNet"),
                                         oarSpawnA.position, 
                                         oarSpawnA.rotation, 0);
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Paddle"),
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "FishingNet"),
                                         oarSpawnB.position, 
                                         oarSpawnB.rotation, 0);
+
+            Invoke("TurnOnStartButton", 3f);
+            waitMessage.SetActive(false);
         }
 
     }
-    
+
+    private void TurnOnStartButton()
+    {
+        startButton.SetActive(true);
+    }    
     // Initializes Our Object Pool of River segments, disabling all at first
     public void CreateRiverPool()
     {
@@ -186,6 +195,19 @@ public class RiverManager : MonoBehaviour
         return Quaternion.Euler(angles) * (point - pivot) + pivot;
     }
     */
+
+    public void StartRiver()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            startButton.SetActive(false);
+            riverMove = true;
+        }
+        else
+        {
+            waitMessage.SetActive(false);
+        }
+    }
 
     public void RandomizePool()
     {

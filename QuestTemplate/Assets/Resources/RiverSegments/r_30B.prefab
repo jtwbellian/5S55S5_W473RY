@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endPoint: {fileID: 5005593757300720416}
   pv: {fileID: 3658542211269684420}
+  fruits: []
   myAngle: 30
 --- !u!114 &3658542211269684420
 MonoBehaviour:
