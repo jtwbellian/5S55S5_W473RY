@@ -82,6 +82,10 @@ public class RiverManager : MonoBehaviour
             Invoke("TurnOnStartButton", 3f);
             waitMessage.SetActive(false);
         }
+        else
+        {
+            waitMessage.SetActive(true);
+        }
     }
 
     private void TurnOnStartButton()
