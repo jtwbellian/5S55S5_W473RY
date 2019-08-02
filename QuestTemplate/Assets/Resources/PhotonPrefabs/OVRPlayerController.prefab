@@ -230,7 +230,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.6
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
@@ -289,19 +289,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca93ab669ad2e64438f619c314196900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 0
+  Acceleration: 1.5
   Damping: 100
   BackAndSideDampen: 0.5
   JumpForce: 0.3
   RotationAmount: 1.5
   RotationRatchet: 45
   SnapRotation: 1
-  FixedSpeedSteps: 0
+  FixedSpeedSteps: 2
   HmdResetsY: 1
   HmdRotatesY: 1
   GravityModifier: 0.8
   useProfileData: 1
-  EnableLinearMovement: 0
+  EnableLinearMovement: 1
   EnableRotation: 1
   RotationEitherThumbstick: 0
   trackingPoint: {fileID: 1667240244970512829}

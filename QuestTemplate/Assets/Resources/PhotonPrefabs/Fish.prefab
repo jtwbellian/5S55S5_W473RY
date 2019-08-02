@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 218040795118810322}
   - component: {fileID: 98569138113029814}
   - component: {fileID: 5064704462540922051}
+  - component: {fileID: 7711044493240580811}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Collectable
@@ -439,7 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
+  m_SynchronizeScale: 0
 --- !u!114 &98569138113029814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +469,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59aa1b3aa52c027428c192886f080e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7711044493240580811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418866648439282035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43cf7b98c87ff3f4cb7c49303420edb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: -1
+  type: 0
 --- !u!1 &7224060489698376430
 GameObject:
   m_ObjectHideFlags: 0

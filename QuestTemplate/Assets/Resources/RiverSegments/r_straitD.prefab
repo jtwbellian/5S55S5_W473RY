@@ -166,8 +166,8 @@ GameObject:
   - component: {fileID: 412960494386216259}
   - component: {fileID: 5862214660090813369}
   - component: {fileID: 749113762843725013}
-  - component: {fileID: 1539325117805414408}
   - component: {fileID: 7582374271413833128}
+  - component: {fileID: -6266724531486414289}
   m_Layer: 0
   m_Name: r_straitD
   m_TagString: Untagged
@@ -256,11 +256,24 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1539325117805414408}
+  - {fileID: -6266724531486414289}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1539325117805414408
+--- !u!65 &7582374271413833128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293027960253061524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15, y: 5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6266724531486414289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,19 +288,6 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!65 &7582374271413833128
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4293027960253061524}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 15, y: 5, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6242191844198010344
 GameObject:
   m_ObjectHideFlags: 0

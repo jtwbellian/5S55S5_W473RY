@@ -13,6 +13,14 @@ public class POVRGrabbable : OVRGrabbable
 
         if (pv == null)
             pv =  GetComponent<PhotonView>();
+
+        var snapPos = snapOffset.localPosition;
+        var snapRot = snapOffset.localRotation;
+
+        // Fixes Oculus's shitty snapOffset system
+        snapOffset.SetParent(null);
+        snapOffset.position = snapPos;
+        snapOffset.rotation = snapRot;
     }
 
     public override void OnDrop()

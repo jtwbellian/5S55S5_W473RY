@@ -7,11 +7,13 @@ public class PandaController : OVRPlayerController
     public Transform trackingPoint;
     private CharacterController character;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        //Invoke("GoHome", 1f);
-        //character = GetComponent<CharacterController>();
+        Invoke("GoHome", 1f);
+        character = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -23,11 +25,14 @@ public class PandaController : OVRPlayerController
             GoHome();
         }
 
-        //character.center = trackingPoint.transform.localPosition;
+
     }
 
     public void GoHome()
     {
-        transform.position = (RiverManager.instance.boat.transform.position - trackingPoint.position);// + trackingPoint.localPosition);// + (Vector3.up * 3f);
+        //character.center = trackingPoint.transform.position;
+        character.enabled = false;
+        transform.position = RiverManager.instance.boat.transform.position + Vector3.up * 1.5f;//(RiverManager.instance.boat.transform.position - trackingPoint.position);// + trackingPoint.localPosition);// + (Vector3.up * 3f);
+        character.enabled = true;
     }
 }

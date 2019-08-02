@@ -8,7 +8,7 @@ public class Fish : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rigidbod;
-    private float speed = 2f;
+    private float speed = 1.2f;
     private FXManager fx;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class Fish : MonoBehaviour
         rigidbod = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
-        rigidbod.velocity = Vector3.forward * speed;
+        speed = Random.Range(1.2f, 3f);
 
         rigidbod.freezeRotation = true;
         fx = FXManager.GetInstance();
@@ -27,9 +27,29 @@ public class Fish : MonoBehaviour
             Debug.Log("FX Manager not found");
         }
     }
-//Splash into Water
+
+    void Update()
+    {
+        if (animator.GetBool("Flop") != true)
+            transform.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
+    }
+
+    //Splash into Water
     private void OnTriggerEnter(Collider other) 
     {
+
+        // Reach end
+        if (other.transform.CompareTag("Finish"))
+        {
+            var pa = GetComponent<PhotonActor>();
+
+            if (pa)
+            {
+                pa.DisableChildObject(false);
+            }
+        }
+
+
         if (other.gameObject.tag=="Water")
             {
                 fx.Burst(FXManager.FX.Splash, transform.position, 5);
