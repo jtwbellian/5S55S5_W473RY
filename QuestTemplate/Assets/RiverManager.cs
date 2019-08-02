@@ -8,6 +8,8 @@ using System.IO;
 
 public class RiverManager : MonoBehaviour
 {
+
+    public bool isHost = false;
     #region RiverGeneration
 
     private const int POOL_SIZE = 6;
@@ -73,6 +75,8 @@ public class RiverManager : MonoBehaviour
 
         if (PhotonNetwork.IsMasterClient)
         {
+            isHost = true;
+
             CreateRiverPool();
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "FishingNet"),
                                         oarSpawnA.position, 
@@ -229,16 +233,10 @@ public class RiverManager : MonoBehaviour
 
     public void StartRiver()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            startButton.SetActive(false);
-            riverMove = true;
-            //GetComponent<PhotonView>().RPC("ShowMessage", RpcTarget.AllBuffered, false);
-        }
-        else
-        {
-            waitMessage.SetActive(false);
-        }
+
+        startButton.SetActive(false);
+        riverMove = true;
+        //GetComponent<PhotonView>().RPC("ShowMessage", RpcTarget.AllBuffered, false);
     }
 
     public void RandomizePool()

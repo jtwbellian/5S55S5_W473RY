@@ -12,19 +12,22 @@ public class Boat : MonoBehaviour
     // Start is called before the first frame update
     void Start(){}
     
-    void OnTriggerEnter(Collider other) 
+    void OnTriggerStay(Collider other) 
     {
 
         if (other.transform.CompareTag("Left"))
         {
-            rudder -= 2f;
+            rudder -= 1.2f;
         }
 
         if (other.transform.CompareTag("Right"))
         {
-            rudder += 2f;
+            rudder += 1.2f;
         }
+    }
 
+    void OnTriggerEnter(Collider other) 
+    {
         var rs = other.GetComponent<RiverSegment>();
 
        if (rs != null) 
@@ -32,7 +35,6 @@ public class Boat : MonoBehaviour
            RiverManager.instance.rotationOffset += rs.myAngle;
            RiverManager.instance.targetSegment = rs;
        }
-
     }
 
     void Update() 

@@ -27,7 +27,7 @@ public class PhotonPlayer : MonoBehaviour
             
             GameObject obj = Resources.Load<GameObject>("PhotonPrefabs/OVRPlayerController");
             var player = Instantiate(obj);
-            player.transform.position =  GameSetup.GS.spawnPoints[GameSetup.GS.currentSpawn].position;
+            //player.transform.position =  GameSetup.GS.spawnPoints[GameSetup.GS.currentSpawn].position;
 
             parts = myAvatar.GetComponent<AvatarParts>();
             avController = player.GetComponent<AvatarController>();
@@ -43,6 +43,15 @@ public class PhotonPlayer : MonoBehaviour
             parts.LHand.SetParent(avController.lhandTarget.transform);
             parts.LHand.localRotation = Quaternion.identity;
             parts.LHand.localPosition = Vector3.zero;
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                parts.scarfRed.SetActive(false);
+            }
+            else
+            {
+                parts.scarfBlue.SetActive(false);
+            }
         }
     }
 

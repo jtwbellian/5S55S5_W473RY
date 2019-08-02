@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 3471368090196783554}
   - component: {fileID: 6426520277511694288}
   - component: {fileID: 8980247721874899406}
+  - component: {fileID: 1930501700150098238}
   m_Layer: 0
   m_Name: FishingNet
   m_TagString: Untagged
@@ -286,6 +287,21 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &1930501700150098238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872802884278270385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b0ecc6d64edc2469e2f1e7737f292e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4094242393675976125}
+  rimBound: {fileID: 4325775838579271395}
+  netBound: {fileID: 2193303416532786117}
 --- !u!1 &4500461559037166912
 GameObject:
   m_ObjectHideFlags: 0

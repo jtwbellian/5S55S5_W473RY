@@ -9,9 +9,22 @@ public class Log : MonoBehaviour
     void Start()
     {
         rm = RiverManager.instance;
-        
+
         if (!rm)
             Debug.Log("River Manager not found.");
+    }
+
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.transform.CompareTag("Finish"))
+        {
+            var pa = GetComponent<PhotonActor>();
+
+            if (pa)
+            {
+                pa.DisableChildObject(false);
+            }
+        }
     }
 
     // Update is called once per frame
