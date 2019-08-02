@@ -24,8 +24,6 @@ public class PandaController : OVRPlayerController
             Debug.Log("Teleport Home");
             GoHome();
         }
-
-
     }
 
     public void GoHome()

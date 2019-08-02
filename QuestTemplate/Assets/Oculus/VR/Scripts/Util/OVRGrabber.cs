@@ -56,9 +56,15 @@ public class OVRGrabber : MonoBehaviour
     protected Quaternion m_anchorOffsetRotation;
     protected Vector3 m_anchorOffsetPosition;
     protected float m_prevFlex;
-	protected OVRGrabbable m_grabbedObj = null;
+
+    ////////////////////////////////////////////////////////////////////////////////////////// MADE THIS PUBLIC
+	public OVRGrabbable m_grabbedObj = null;
+    ////////////////////////////////////////////////////////////////////////////////////////// Should probably eventually make an extension of this class
+
     protected Vector3 m_grabbedObjectPosOff;
     protected Quaternion m_grabbedObjectRotOff;
+
+
 	protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
 	protected bool operatingWithoutOVRCameraRig = true;
 

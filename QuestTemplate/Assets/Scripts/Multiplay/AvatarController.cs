@@ -9,7 +9,6 @@ public class AvatarController : MonoBehaviour
     public Transform rhandTarget = null;
 
     private Animator rhandPose, lhandPose;
-    private bool leftyMode = false;
 
     private float lGrab = 0f;
     private float lFinger = 0f;
@@ -17,18 +16,55 @@ public class AvatarController : MonoBehaviour
     private float rGrab = 0f;
     private float rFinger = 0f;
     private bool rThumb = false;
+    [ReadOnly]
+    public bool rHoldNet = false;
+    [ReadOnly]
+    public bool lHoldNet = false;
+
+    private OVRGrabber rGrabber, lGrabber;
 
     // Start is called before the first frame update
     void Start()
     {
         rhandPose = rhandTarget.GetComponentInChildren<Animator>();
         lhandPose = lhandTarget.GetComponentInChildren<Animator>();
+
         rhandPose.speed = 1f;
         lhandPose.speed = 1f;
+
+        rGrabber = rhandTarget.GetComponent<OVRGrabber>();
+        lGrabber = lhandTarget.GetComponent<OVRGrabber>();
     }
 
     void Update()
     {
+        // Change to check components for more grab poses, right now one pose for all grabbables
+        // Right hand hold net
+        if (!rHoldNet && rGrabber.m_grabbedObj != null)
+        {
+            rhandPose.SetBool("HoldNet", true);   
+            rHoldNet = true;
+        }
+        
+        if (rHoldNet && rGrabber.m_grabbedObj == null)
+        {
+            rhandPose.SetBool("HoldNet", false);
+            rHoldNet = false;
+        }
+
+        // Left hand hold net
+         if (!lHoldNet && lGrabber.m_grabbedObj != null)
+        {
+            lhandPose.SetBool("HoldNet", true);   
+            lHoldNet = true;
+        }
+        
+        if (lHoldNet && lGrabber.m_grabbedObj == null)
+        {
+            lhandPose.SetBool("HoldNet", false);
+            lHoldNet = false;
+        }
+
         rGrab = OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger);
         rFinger = OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger);
         rThumb = OVRInput.Get(OVRInput.NearTouch.SecondaryThumbButtons);
