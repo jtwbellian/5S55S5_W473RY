@@ -9,6 +9,7 @@ TagManager:
   - Right
   - Hazard
   - Water
+  - Boat
   layers:
   - Default
   - TransparentFX

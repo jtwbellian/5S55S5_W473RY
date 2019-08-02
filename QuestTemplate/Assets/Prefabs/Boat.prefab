@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 175565494649299730}
   m_Layer: 0
   m_Name: Boat
-  m_TagString: Untagged
+  m_TagString: Boat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -808,61 +808,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.8000004
       objectReference: {fileID: 0}
-    - target: {fileID: 2960754159563066136, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2216731188529024986, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3118759647710003782, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8153253517093781872, guid: e9fba3cbf91581540b2305c6f4c6170e,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -908,11 +853,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4906336987448993011, guid: e9fba3cbf91581540b2305c6f4c6170e,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6237870141652950405, guid: e9fba3cbf91581540b2305c6f4c6170e,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -933,10 +873,30 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1495257660628579607, guid: e9fba3cbf91581540b2305c6f4c6170e,
+    - target: {fileID: 4906336987448993011, guid: e9fba3cbf91581540b2305c6f4c6170e,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710202260882555665, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3474822351403339161, guid: e9fba3cbf91581540b2305c6f4c6170e,
         type: 3}
@@ -954,6 +914,46 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3474822351403339161, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118759647710003782, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960754159563066136, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495257660628579607, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216731188529024986, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 623167791611455817, guid: e9fba3cbf91581540b2305c6f4c6170e,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1

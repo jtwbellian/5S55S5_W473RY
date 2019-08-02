@@ -7,7 +7,7 @@ public class FXManager : MonoBehaviour
 
     public enum FX
     {
-        Splash, Spray, Ripple, Confetti2, Confetti1
+        Splash, Spray, Ripple, Confetti2, Confetti1, LogSplit, Mist
     }
 
     static FXManager instance = null;
@@ -46,7 +46,6 @@ public class FXManager : MonoBehaviour
     public void Burst(FX type, Vector3 pos, int amt)
     {
         var emitter = new ParticleSystem.EmitParams(); 
-
         emitter.position = pos;
         emitter.applyShapeToPosition = true;
         part_systems[(int)type].Emit(emitter, amt);
