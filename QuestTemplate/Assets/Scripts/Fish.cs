@@ -34,7 +34,7 @@ public class Fish : MonoBehaviour
             transform.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
     }
 
-//Splash into Water
+    //Splash into Water
     private void OnTriggerEnter(Collider other) 
     {
 

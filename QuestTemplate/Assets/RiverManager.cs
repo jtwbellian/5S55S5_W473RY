@@ -5,11 +5,21 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using System.IO;
+using TMPro;
 
 public class RiverManager : MonoBehaviour
 {
 
     public bool isHost = false;
+    public TextMeshProUGUI messageField;
+
+    public TextMeshPro [] scoreUIP1, scoreUIP2;
+    private PhotonView photonView;
+
+    // x is fish, y is clams, z is fruit
+    private Vector3 [] playerScores = new Vector3[2];
+    
+
     #region RiverGeneration
 
     private const int POOL_SIZE = 6;
@@ -71,7 +81,11 @@ public class RiverManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerScores[0] = Vector3.zero;
+        playerScores[1] = Vector3.zero;
+
         riverMove = false;
+        photonView = GetComponent<PhotonView>();
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -106,12 +120,47 @@ public class RiverManager : MonoBehaviour
     private void TurnOnStartButton()
     {
         startButton.SetActive(true);
+
+        if (PhotonNetwork.IsMasterClient)
+            photonView.RPC("SendMessage", RpcTarget.AllBuffered, " ");
     }    
 
-    [PunRPC]
-    void ShowMessage(bool setActive)
+    public void AddPoints(int player, int type, int amt)
     {
-        waitMessage.SetActive(setActive);
+        Debug.Log("Sending points...");
+        photonView.RPC("AddToScore", RpcTarget.AllBuffered, player, type, amt);
+    }
+
+    [PunRPC]
+    void SendMessage(string message) 
+    {
+        messageField.text = message;
+    }
+
+    [PunRPC]
+    void AddToScore(int player, int type, int amt)
+    {
+        if (player == -1)
+        {
+            Debug.Log("Err: No owner given, unsure who to give the points to.");
+            return;
+        }
+
+        Vector3 score = playerScores[player];
+        score[type] = score[type] + amt;
+        playerScores[player] = score;
+
+        switch(player)
+        {
+            case 0:
+                scoreUIP1[type].text = (score[type]).ToString();
+                break;
+
+            case 1:
+                scoreUIP2[type].text = (score[type]).ToString();
+                break;
+        }
+
     }
 
     // Initializes Our Object Pool of River segments, disabling all at first

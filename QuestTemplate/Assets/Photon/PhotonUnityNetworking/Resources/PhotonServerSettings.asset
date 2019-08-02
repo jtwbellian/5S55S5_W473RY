@@ -39,5 +39,7 @@ MonoBehaviour:
   - RemoveBlock
   - DisableMessage
   - ShowMessage
+  - SendMessage
+  - AddToScore
   DisableAutoOpenWizard: 1
   ShowSettings: 1

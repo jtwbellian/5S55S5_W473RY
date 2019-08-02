@@ -20,11 +20,11 @@ GameObject:
   - component: {fileID: 5088813188474482851}
   - component: {fileID: 5088813188474482848}
   - component: {fileID: 6535010775361164365}
-  - component: {fileID: 4244046942199974666}
   - component: {fileID: 3471368090196783554}
   - component: {fileID: 6426520277511694288}
   - component: {fileID: 8980247721874899406}
   - component: {fileID: 1930501700150098238}
+  - component: {fileID: 4752641682957808781}
   m_Layer: 0
   m_Name: FishingNet
   m_TagString: Untagged
@@ -46,6 +46,7 @@ Transform:
   - {fileID: 4094242393675976125}
   - {fileID: 4325775838579271395}
   - {fileID: 2193303416532786117}
+  - {fileID: 3461123707989812552}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -215,24 +216,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17618696, y: 0.21610224, z: 0.04074514}
   m_Center: {x: 0.0017588958, y: 0.76743287, z: -0.33079135}
---- !u!114 &4244046942199974666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3872802884278270385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints:
-  - {fileID: 5088813188474482848}
 --- !u!114 &3471368090196783554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +285,25 @@ MonoBehaviour:
   target: {fileID: 4094242393675976125}
   rimBound: {fileID: 4325775838579271395}
   netBound: {fileID: 2193303416532786117}
+--- !u!114 &4752641682957808781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872802884278270385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bdeaa7e37ef304992d0c06c7a78b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 1
+  m_snapOrientation: 1
+  m_snapOffset: {fileID: 3461123707989812552}
+  m_grabPoints:
+  - {fileID: 5088813188474482848}
+  pv: {fileID: 3471368090196783554}
 --- !u!1 &4500461559037166912
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +363,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 280820134406605730}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7370565934595336738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3461123707989812552}
+  m_Layer: 0
+  m_Name: HandPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3461123707989812552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370565934595336738}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 280820134406605730}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8035235311960889284
 GameObject:

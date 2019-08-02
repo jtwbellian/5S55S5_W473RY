@@ -18,6 +18,7 @@ public class Rudder : OVRGrabbable
     {
         localStartPos = transform.localPosition;
         localStartRot = transform.localRotation;
+        base.Start();
     }
 
     // Update is called once per frame
