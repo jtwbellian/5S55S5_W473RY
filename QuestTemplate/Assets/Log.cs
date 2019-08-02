@@ -5,26 +5,36 @@ using UnityEngine;
 public class Log : MonoBehaviour
 {
     RiverManager rm;
+    private FXManager fx;
+
     // Start is called before the first frame update
     void Start()
     {
-        rm = RiverManager.instance;
+        fx = FXManager.GetInstance();
 
+        if (!fx)
+        {
+            Debug.Log("FX Manager not found");
+        }
+
+        rm = RiverManager.instance;
+        
         if (!rm)
             Debug.Log("River Manager not found.");
     }
 
-    void OnTriggerEnter(Collider other) 
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Finish"))
-        {
-            var pa = GetComponent<PhotonActor>();
+        Debug.Log("Hit the boat");
 
-            if (pa)
+        if (other.gameObject.tag=="Boat")
             {
-                pa.DisableChildObject(false);
+                fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
+                fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
+                fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
+                fx.Burst(FXManager.FX.Spray, transform.position, 2);
+                fx.Burst(FXManager.FX.Ripple, transform.position, 1);
             }
-        }
     }
 
     // Update is called once per frame
