@@ -17,12 +17,12 @@ public class Boat : MonoBehaviour
 
         if (other.transform.CompareTag("Left"))
         {
-            rudder -= 1.2f;
+            rudder -= 1f;
         }
 
         if (other.transform.CompareTag("Right"))
         {
-            rudder += 1.2f;
+            rudder += 1f;
         }
     }
 

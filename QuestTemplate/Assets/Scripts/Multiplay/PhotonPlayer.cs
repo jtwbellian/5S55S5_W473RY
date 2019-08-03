@@ -46,11 +46,11 @@ public class PhotonPlayer : MonoBehaviour
 
             if (PhotonNetwork.IsMasterClient)
             {
-                parts.scarfRed.SetActive(false);
+                parts.scarfBlue.SetActive(false);
             }
             else
             {
-                parts.scarfBlue.SetActive(false);
+                parts.scarfRed.SetActive(false);
             }
         }
     }

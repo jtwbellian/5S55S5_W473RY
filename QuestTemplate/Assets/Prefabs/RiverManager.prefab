@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4203738474764408631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4203738474764408633}
+  - component: {fileID: 4203738474764408632}
+  - component: {fileID: 4203738474764408630}
+  - component: {fileID: 4203738474764408635}
+  m_Layer: 0
+  m_Name: RiverManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4203738474764408633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203738474764408631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07, y: 10.11, z: -0.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4203738474764408632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203738474764408631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 4203738474764408635}
+  viewIdField: 0
+  InstantiationId: 2
+  isRuntimeInstantiated: 0
+--- !u!114 &4203738474764408630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203738474764408631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21f824876c13f04b897697876b40de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHost: 0
+  messageField: {fileID: 0}
+  scoreUIP1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  scoreUIP2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  riverTypes:
+  - {fileID: 2729183508499274713, guid: 1682e8296ef9e5f4bbafcad8306662d0, type: 3}
+  - {fileID: 7394456831468478502, guid: c99cb9df8928f0048872288d136ea963, type: 3}
+  - {fileID: 3873063715028435474, guid: dff21aab29d397642a5ee13db8c5f6d3, type: 3}
+  - {fileID: 7968419062309028090, guid: e7ad8d4dece8db5449e1542595b8f445, type: 3}
+  - {fileID: 7760438079864609825, guid: cc774f6d0d344c945a38810dd2db3dba, type: 3}
+  - {fileID: 5301161689053719799, guid: c3b6551c8d1c65c43ae5a5cfda2a7715, type: 3}
+  - {fileID: 1446925317332639162, guid: 6deb7a16b0b905d44b17d021096c2f6b, type: 3}
+  - {fileID: 6253784293766216614, guid: 2befc50941a5b114cbb66c49ae8eca82, type: 3}
+  - {fileID: 4293027960253061524, guid: 40f4525e2164c80439603b79ac5c78db, type: 3}
+  - {fileID: 2090851689820360098, guid: 78351f4ed059a864188351faac11ace0, type: 3}
+  numSegments: 6
+  riverVelocity: {x: 0, y: 0, z: 0}
+  boatRightVelocity: {x: 0, y: 0, z: 0}
+  rotationOffset: 0
+  riverMove: 1
+  levelSpeed: 1
+  lastRiverSegment: {fileID: 0}
+  riverMaster: {fileID: 0}
+  targetSegment: {fileID: 0}
+  activeParts: 2
+  boat: {fileID: 0}
+  score: 0
+  lives: 3
+  oarSpawnA: {fileID: 0}
+  oarSpawnB: {fileID: 0}
+  gameOver: 0
+  startButton: {fileID: 0}
+  waitMessage: {fileID: 0}
+--- !u!114 &4203738474764408635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203738474764408631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
