@@ -8,17 +8,4 @@ public class AvatarParts : MonoBehaviour
 {
     public Transform Head, RHand, LHand;
     public GameObject scarfRed, scarfBlue;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        /* if (RiverManager.instance.isHost)
-        {
-            scarfBlue.SetActive(true);
-        }
-        else
-        {
-            scarfRed.SetActive(true);
-        }*/
-    }
 }

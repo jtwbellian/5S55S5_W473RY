@@ -289,17 +289,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca93ab669ad2e64438f619c314196900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.5
-  Damping: 100
+  Acceleration: 0.1
+  Damping: 0.3
   BackAndSideDampen: 0.5
   JumpForce: 0.3
   RotationAmount: 1.5
   RotationRatchet: 45
   SnapRotation: 1
-  FixedSpeedSteps: 2
+  FixedSpeedSteps: 0
   HmdResetsY: 1
   HmdRotatesY: 1
-  GravityModifier: 0.8
+  GravityModifier: 1
   useProfileData: 1
   EnableLinearMovement: 1
   EnableRotation: 1
@@ -667,6 +667,7 @@ MonoBehaviour:
   - {fileID: 1667240244456638459}
   m_controller: 1
   m_parentTransform: {fileID: 1667240244970437843}
+  m_grabbedObj: {fileID: 0}
 --- !u!1 &1667240244970750499
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +818,7 @@ MonoBehaviour:
   - {fileID: 1667240244831791441}
   m_controller: 2
   m_parentTransform: {fileID: 1667240244970433725}
+  m_grabbedObj: {fileID: 0}
 --- !u!1 &1668263034755325391
 GameObject:
   m_ObjectHideFlags: 0
