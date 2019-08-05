@@ -41,5 +41,7 @@ MonoBehaviour:
   - ShowMessage
   - SendMessage
   - AddToScore
+  - SendRiverList
+  - SetSegmentActive
   DisableAutoOpenWizard: 1
   ShowSettings: 1
