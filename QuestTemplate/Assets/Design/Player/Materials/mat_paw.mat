@@ -89,12 +89,13 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _aclip: 0
-    - _distance: 0.882
+    - _aclip: 0.241
+    - _distance: 0.14
     - _floorlevel: 0
     - _globaldither: 0
     - _globdith: 0
     - _height: 0
+    - _lcdistance: 0.74
     - _localdither: 1
     - _locdith: 1
     - _shine: 1
