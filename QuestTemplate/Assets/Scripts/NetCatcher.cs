@@ -14,7 +14,7 @@ public class NetCatcher : MonoBehaviour
     private RiverManager rm;
 
     // Added reference to this objects grabbable component to get grabbable info
-    private OVRGrabbable grabbable;
+    private POVRGrabbable grabbable;
     private Vector3 startPos;
     private Quaternion startRot;
 
@@ -70,7 +70,7 @@ public class NetCatcher : MonoBehaviour
         }
 
         // Prepare to invoke reset when dropped in water
-        if (other.gameObject.tag == "Water" && !grabbable.isGrabbed)
+        if (other.gameObject.tag == "Water" && !grabbable.isGrabbed && !grabbable.rb.isKinematic)
         {
             Invoke("Reset", 5f);
         }
@@ -78,7 +78,7 @@ public class NetCatcher : MonoBehaviour
 
     private void Reset() 
     {
-        if (grabbable.isGrabbed)
+        if (grabbable.isGrabbed || grabbable.rb.isKinematic)
         {
             // Don't teleport if the player manages to pick it up.
             return;

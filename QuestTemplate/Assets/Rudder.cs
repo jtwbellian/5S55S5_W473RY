@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Rudder : OVRGrabbable
+public class Rudder : POVRGrabbable
 {
     public Transform targetObject;
     public Vector3 localStartPos;
@@ -11,6 +13,7 @@ public class Rudder : OVRGrabbable
     private float maxAngle = 35f;
     private float minAngle = -35f;
 
+    [SerializeField]
     private bool isHeld = false;
 
     // Start is called before the first frame update
@@ -26,15 +29,18 @@ public class Rudder : OVRGrabbable
     {
         if (isHeld)
         {
-            var newRot = Quaternion.LookRotation(m_grabbedBy.transform.position - transform.position, Vector3.up);
-            targetObject.transform.rotation = Quaternion.Euler(0f, 0f, newRot.eulerAngles.z);
+            //if (transform.position.x > targetObject.position.x)
+             //   return;
+
+           Vector3  newTarget = new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z);
+           targetObject.transform.LookAt(newTarget);
         }
     }
 
     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
         base.GrabBegin(hand, grabPoint);
-        isHeld = true;
+        pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
     }
 
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
@@ -46,5 +52,12 @@ public class Rudder : OVRGrabbable
         transform.SetParent(targetObject);
         transform.localPosition = localStartPos;
         transform.localRotation = localStartRot;
+        pv.RPC("SetHeld", RpcTarget.AllBuffered, false);
+    }
+
+    [PunRPC]
+    void SetHeld(bool h)
+    {
+        isHeld = h;
     }
 }

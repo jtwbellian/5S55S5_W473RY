@@ -242,9 +242,7 @@ GameObject:
   - component: {fileID: 9208413871631638244}
   - component: {fileID: 8627002662378276896}
   - component: {fileID: 3162639050783749306}
-  - component: {fileID: 2641605338003642946}
   - component: {fileID: 2290726891745815726}
-  - component: {fileID: 9031277516951093634}
   m_Layer: 0
   m_Name: r_straitA
   m_TagString: Untagged
@@ -312,31 +310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPoint: {fileID: 437902459476929302}
-  pv: {fileID: 2641605338003642946}
   fruits: []
   myAngle: 0
---- !u!114 &2641605338003642946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5301161689053719799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 9031277516951093634}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
+  id: -1
 --- !u!65 &2290726891745815726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -350,21 +326,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15, y: 5, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9031277516951093634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5301161689053719799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
 --- !u!1 &5995408704707940829
 GameObject:
   m_ObjectHideFlags: 0

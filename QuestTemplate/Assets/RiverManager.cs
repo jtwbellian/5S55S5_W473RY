@@ -9,6 +9,7 @@ using TMPro;
 
 public class RiverManager : MonoBehaviour
 {
+    private const float TOL = 1f;
     public bool isHost = false;
     public TextMeshProUGUI messageField;
 
@@ -102,7 +103,7 @@ public class RiverManager : MonoBehaviour
 
             // Generates a random river order and then  shares it with clients
             GenerateRiverList();
-            photonView.RPC("SendRiverList", RpcTarget.AllBuffered, riverSegList);
+            photonView.RPC("SendRiverList", RpcTarget.AllBuffered, (object)riverSegList);
             // Spawn the special pieces
             /* 
             var turtleSegObj = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", "r_turtle"),
@@ -118,6 +119,7 @@ public class RiverManager : MonoBehaviour
         }
         else
         {
+            isHost = false;
             waitMessage.SetActive(true);
         }
     }
@@ -180,9 +182,9 @@ public class RiverManager : MonoBehaviour
     void SendRiverList(string [] strList)
     {
         riverSegList = strList;
+        Debug.Log("Set river list to " + riverSegList);
         // Both sides will create an identical 'River Pool'
         CreateRiverPool();
-        Debug.Log("Set river list to " + riverSegList);
     }
 
     public void RemoveSeg(int id)
@@ -210,7 +212,7 @@ public class RiverManager : MonoBehaviour
             
             if (rs == null)
             {
-                Debug.Log("River Segment could not be found");
+                Debug.Log("River Segment could not be found for \"" + riverSegList[j] + "\"");
                 return;
             }
 
@@ -226,7 +228,6 @@ public class RiverManager : MonoBehaviour
             AddSeg();
         }
     }
-
     # endregion
 
     public void GenerateRiverList()
@@ -234,7 +235,10 @@ public class RiverManager : MonoBehaviour
         for(int i = 0; i < POOL_SIZE; i ++)
         {
             riverSegList[i] = riverTypes[Random.Range(0, riverTypes.Length)].name;
+            Debug.Log("Setting element " + i.ToString() + " = " + riverSegList[i].ToString());
         }
+
+        Debug.Log("Generated River: " + riverSegList.ToString());
     }
     
     /*public void AddRiver()
@@ -296,7 +300,9 @@ public class RiverManager : MonoBehaviour
         rs.gameObject.SetActive(true);
 
         lastRiverSegment = rs;
-        currentSegment ++;
+
+        if (currentSegment < riverPool.Count - 1)
+            currentSegment ++;
     }
 
     public void Update()
@@ -310,14 +316,18 @@ public class RiverManager : MonoBehaviour
 
             var rotAmt = 0f;
             
-            if (rotationOffset < 0)
+            if (rotationOffset < TOL)
             {
                 rotAmt = Time.deltaTime * levelSpeed;
             }
-            
-            if (rotationOffset > 0)
+            else
+            if (rotationOffset > TOL)
             {
                 rotAmt = Time.deltaTime * levelSpeed * -1;
+            }
+            else
+            {
+                rotAmt = 0f;
             }
 
             rotationOffset += rotAmt;
@@ -327,7 +337,6 @@ public class RiverManager : MonoBehaviour
             var z = riverMaster.root.rotation.eulerAngles.z;
 
             riverMaster.root.rotation = Quaternion.Euler(x, y, z);
-
             //if (targetSegment != null)
             //riverMaster.rotation = RotatePointAroundPivot(riverMaster.transform.position, boat.transform.position, targetSegment.endPoint.rotation.toEulers());
         }

@@ -43,5 +43,7 @@ MonoBehaviour:
   - AddToScore
   - SendRiverList
   - SetSegmentActive
+  - SetKinematic
+  - MoveTo
   DisableAutoOpenWizard: 1
   ShowSettings: 1

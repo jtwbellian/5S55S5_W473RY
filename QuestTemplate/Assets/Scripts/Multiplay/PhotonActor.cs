@@ -14,8 +14,19 @@ public class PhotonActor : MonoBehaviour
         Disable.transform.gameObject.SetActive(setActive);
     }
 
+    [PunRPC]
+    void MoveTo(Vector3 pos, Quaternion rot)
+    {
+        transform.SetPositionAndRotation(pos, rot);
+    }
+
     public void DisableChildObject(bool setActive)
     {
         GetComponent<PhotonView>().RPC("RemoveBlock", RpcTarget.AllBuffered, transform.gameObject.GetComponent<PhotonView>().ViewID, setActive);
+    }
+
+    public void SetPositionAndRotation(Vector3 pos, Quaternion rot)
+    {
+        GetComponent<PhotonView>().RPC("MoveTo", RpcTarget.AllBuffered, pos, rot);
     }
 }

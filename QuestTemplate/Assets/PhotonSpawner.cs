@@ -104,7 +104,7 @@ public class PhotonSpawner : MonoBehaviour
         {
             if (!objPool[i].activeInHierarchy)
             {
-                objPool[i].transform.SetPositionAndRotation(position, transform.rotation);
+                //objPool[i].transform.SetPositionAndRotation(position, transform.rotation);
                 
                 // Change this part to be a universal "Photon Disableable Script" as soon as we think of a better name
                 PhotonActor pa = objPool[i].GetComponent<PhotonActor>();
@@ -117,6 +117,7 @@ public class PhotonSpawner : MonoBehaviour
 
                 // Set this fish active
                 pa.DisableChildObject(true);
+                pa.SetPositionAndRotation(position, transform.rotation);
                 return;
             }
         }

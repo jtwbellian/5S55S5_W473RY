@@ -7,6 +7,7 @@ using Photon.Realtime;
 public class POVRGrabbable : OVRGrabbable
 {
     public PhotonView pv = null;
+    public Rigidbody rb;
 
     void Start() {
         base.Start();
@@ -21,6 +22,7 @@ public class POVRGrabbable : OVRGrabbable
         snapOffset.SetParent(null);
         snapOffset.position = snapPos;
         snapOffset.rotation = snapRot;
+        rb = GetComponentInChildren<Rigidbody>();
     }
 
     public override void OnDrop()
@@ -28,6 +30,7 @@ public class POVRGrabbable : OVRGrabbable
         if (pv != null)
         {
             pv.TransferOwnership(0);
+            pv.RPC("SetKinematic", RpcTarget.Others, false);
         }
     }
 
@@ -36,7 +39,14 @@ public class POVRGrabbable : OVRGrabbable
         if (pv != null)
         {
             pv.RequestOwnership();
+            pv.RPC("SetKinematic", RpcTarget.Others, true);
         }
+    }
+
+    [PunRPC]
+    public void SetKinematic(bool active)
+    {
+        rb.isKinematic = active;
     }
 
 }
