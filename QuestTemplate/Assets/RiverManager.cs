@@ -354,6 +354,10 @@ public class RiverManager : MonoBehaviour
 
     public void StartRiver()
     {
+        var fx = FXManager.GetInstance();
+
+        fx.Burst(FXManager.FX.LogSplit, startButton.transform.position, 4);
+        //fx.Burst(FXManager.FX., startButton.transform.position, 2);
 
         startButton.SetActive(false);
         riverMove = true;

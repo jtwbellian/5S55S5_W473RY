@@ -41,7 +41,7 @@ public class PandaController : MonoBehaviour//OVRPlayerController
         // Walk
         Vector2 stickInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
 
-        character.SimpleMove((Vector3.forward  * stickInput.y * speed) + (Vector3.right * stickInput.x * speed));
+        character.SimpleMove((trackingPoint.forward  * stickInput.y * speed) + (trackingPoint.right * stickInput.x * speed));
 
         // Turn View Left
         if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))

@@ -44,20 +44,20 @@ public class AvatarController : MonoBehaviour
 
         if (pgRight != null && pgRight.hidesHands)
         {
-            rhandTarget.gameObject.SetActive(false);
+            rhandPose.gameObject.SetActive(false);
         }
-        else if (!rhandTarget.gameObject.activeSelf)
+        else if (!rhandPose.gameObject.activeSelf)
         {
-            rhandTarget.gameObject.SetActive(true);
+            rhandPose.gameObject.SetActive(true);
         }
 
         if (pgLeft != null && pgLeft.hidesHands)
         {
-            lhandTarget.gameObject.SetActive(false);
+            lhandPose.gameObject.SetActive(false);
         }
-        else if (!lhandTarget.gameObject.activeSelf)
+        else if (!lhandPose.gameObject.activeSelf)
         {
-            lhandTarget.gameObject.SetActive(true);
+            lhandPose.gameObject.SetActive(true);
         }
 
 
