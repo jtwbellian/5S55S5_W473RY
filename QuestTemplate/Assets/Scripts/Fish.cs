@@ -37,9 +37,8 @@ public class Fish : MonoBehaviour
     //Splash into Water
     private void OnTriggerEnter(Collider other) 
     {
-
         // Reach end
-        if (other.transform.CompareTag("Finish"))
+        if (other.transform.CompareTag("Finish") || other.transform.CompareTag("Right") || other.transform.CompareTag("Left"))
         {
             var pa = GetComponent<PhotonActor>();
 

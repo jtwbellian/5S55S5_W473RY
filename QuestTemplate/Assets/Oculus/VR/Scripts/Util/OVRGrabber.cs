@@ -45,7 +45,7 @@ public class OVRGrabber : MonoBehaviour
 
     // Should be OVRInput.Controller.LTouch or OVRInput.Controller.RTouch.
     [SerializeField]
-    protected OVRInput.Controller m_controller;
+    public OVRInput.Controller m_controller; // I needed this so I made it public .... remind to extend this class soon
 
     [SerializeField]
     protected Transform m_parentTransform;

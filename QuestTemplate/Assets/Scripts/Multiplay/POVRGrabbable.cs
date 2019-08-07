@@ -8,6 +8,9 @@ public class POVRGrabbable : OVRGrabbable
 {
     public PhotonView pv = null;
     public Rigidbody rb;
+    public bool isHeld = false;
+
+    public bool hidesHands = false;
 
     void Start() {
         base.Start();
@@ -29,8 +32,9 @@ public class POVRGrabbable : OVRGrabbable
     {
         if (pv != null)
         {
-            pv.TransferOwnership(0);
-            pv.RPC("SetKinematic", RpcTarget.Others, false);
+            //cpv.TransferOwnership(0);
+            pv.RPC("SetHeld", RpcTarget.Others, false);
+            isHeld = false;
         }
     }
 
@@ -39,14 +43,17 @@ public class POVRGrabbable : OVRGrabbable
         if (pv != null)
         {
             pv.RequestOwnership();
-            pv.RPC("SetKinematic", RpcTarget.Others, true);
+            pv.RPC("SetHeld", RpcTarget.Others, true);
+            isHeld = true;
         }
     }
 
     [PunRPC]
-    public void SetKinematic(bool active)
+    public void SetHeld(bool active)
     {
         rb.isKinematic = active;
+        isHeld = active;
     }
+    
 
 }

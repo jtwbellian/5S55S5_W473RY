@@ -38,6 +38,29 @@ public class AvatarController : MonoBehaviour
 
     void Update()
     {
+        // Hands disappear for rudder
+        POVRGrabbable pgRight = rGrabber.m_grabbedObj as POVRGrabbable;
+        POVRGrabbable pgLeft = lGrabber.m_grabbedObj as POVRGrabbable;
+
+        if (pgRight != null && pgRight.hidesHands)
+        {
+            rhandTarget.gameObject.SetActive(false);
+        }
+        else if (!rhandTarget.gameObject.activeSelf)
+        {
+            rhandTarget.gameObject.SetActive(true);
+        }
+
+        if (pgLeft != null && pgLeft.hidesHands)
+        {
+            lhandTarget.gameObject.SetActive(false);
+        }
+        else if (!lhandTarget.gameObject.activeSelf)
+        {
+            lhandTarget.gameObject.SetActive(true);
+        }
+
+
         // Change to check components for more grab poses, right now one pose for all grabbables
         // Right hand hold net
         if (!rHoldNet && rGrabber.m_grabbedObj != null)

@@ -127,9 +127,6 @@ public class RiverManager : MonoBehaviour
     private void TurnOnStartButton()
     {
         startButton.SetActive(true);
-
-        if (PhotonNetwork.IsMasterClient)
-            photonView.RPC("SendMessage", RpcTarget.AllBuffered, " ");
     }    
 
     public void AddPoints(int player, int type, int amt)
@@ -187,6 +184,7 @@ public class RiverManager : MonoBehaviour
         CreateRiverPool();
     }
 
+
     public void RemoveSeg(int id)
     {
         photonView.RPC("SetSegmentActive", RpcTarget.AllBuffered, id, false);
@@ -240,6 +238,12 @@ public class RiverManager : MonoBehaviour
 
         Debug.Log("Generated River: " + riverSegList.ToString());
     }
+
+    public float GetPercentComplete()
+    {
+        return (currentSegment / POOL_SIZE) * 100f;
+    }
+
     
     /*public void AddRiver()
     {
@@ -353,6 +357,9 @@ public class RiverManager : MonoBehaviour
 
         startButton.SetActive(false);
         riverMove = true;
+
+        if (PhotonNetwork.IsMasterClient)
+            photonView.RPC("SendMessage", RpcTarget.AllBuffered, " ");
         //GetComponent<PhotonView>().RPC("ShowMessage", RpcTarget.AllBuffered, false);
     }
 

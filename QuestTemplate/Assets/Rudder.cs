@@ -9,12 +9,13 @@ public class Rudder : POVRGrabbable
     public Transform targetObject;
     public Vector3 localStartPos;
     public Quaternion localStartRot;
+    public GameObject leftHand;
+    public GameObject rightHand;
 
     private float maxAngle = 35f;
     private float minAngle = -35f;
 
     [SerializeField]
-    private bool isHeld = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,27 +38,36 @@ public class Rudder : POVRGrabbable
         }
     }
 
-    public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
+     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
         base.GrabBegin(hand, grabPoint);
-        pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
+
+        // right hand
+        if (hand.m_controller == OVRInput.Controller.RTouch)
+        {   
+            rightHand.SetActive(true);
+        }
+        else // left hand
+        {
+            leftHand.SetActive(true);
+        }
+        //pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
     }
 
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
-        base.GrabEnd(linearVelocity, angularVelocity);  
+        base.GrabEnd(Vector3.zero, Vector3.zero);  
 
-        isHeld = false;
+        //isHeld = false;
 
         transform.SetParent(targetObject);
         transform.localPosition = localStartPos;
         transform.localRotation = localStartRot;
-        pv.RPC("SetHeld", RpcTarget.AllBuffered, false);
+
+        leftHand.SetActive(false);
+        rightHand.SetActive(false);
+        //pv.RPC("SetHeld", RpcTarget.AllBuffered, false);
     }
 
-    [PunRPC]
-    void SetHeld(bool h)
-    {
-        isHeld = h;
-    }
+
 }

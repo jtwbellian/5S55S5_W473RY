@@ -44,6 +44,13 @@ private void OnTriggerEnter(Collider other)
             fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
             fx.Burst(FXManager.FX.Spray, transform.position, 2);
             fx.Burst(FXManager.FX.Ripple, transform.position, 1);
+
+            var pa = GetComponent<PhotonActor>();
+
+            if (pa)
+            {
+                pa.DisableChildObject(false);
+            }
         }
     }
 
