@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 8195965932331667206}
   m_Layer: 0
   m_Name: OVRPlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingPoint: {fileID: 1667240244970512829}
+  speed: 2
 --- !u!1 &1667240244970552731
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8e1d778abf442e4bec449c360e9e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 3
+  fadeTime: 2
   fadeColor: {r: 1, g: 1, b: 1, a: 1}
   fadeOnStart: 1
   renderQueue: 5000

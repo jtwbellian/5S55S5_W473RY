@@ -44,6 +44,7 @@ public class Fish : MonoBehaviour
 
             if (pa)
             {
+                rigidbod.useGravity = true;
                 pa.DisableChildObject(false);
             }
         }

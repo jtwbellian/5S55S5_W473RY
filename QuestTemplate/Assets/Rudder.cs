@@ -14,6 +14,7 @@ public class Rudder : POVRGrabbable
 
     private float maxAngle = 35f;
     private float minAngle = -35f;
+    private float returnSpeed = 0.01f;
 
     [SerializeField]
 
@@ -35,10 +36,15 @@ public class Rudder : POVRGrabbable
 
            Vector3  newTarget = new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z);
            targetObject.transform.LookAt(newTarget);
+           Debug.Log("Rudder Quat: " + targetObject.transform.rotation);
+        }
+        else if (targetObject.transform.rotation != Quaternion.identity)
+        {
+            targetObject.transform.rotation = Quaternion.Lerp(targetObject.transform.rotation, Quaternion.identity, Time.time * returnSpeed);       
         }
     }
 
-     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
+    public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
         base.GrabBegin(hand, grabPoint);
 

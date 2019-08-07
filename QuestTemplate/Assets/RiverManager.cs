@@ -201,7 +201,13 @@ public class RiverManager : MonoBehaviour
             //                        Vector3.zero, 
             //                        Quaternion.identity, 0);
 
-            GameObject block = Instantiate(Resources.Load(Path.Combine("RiverSegments", riverSegList[j]))) as GameObject;
+            
+            GameObject block;
+
+            if (j == POOL_SIZE)
+                block = Instantiate(Resources.Load(Path.Combine("RiverSegments", "r_endzone"))) as GameObject;
+            else
+                block = Instantiate(Resources.Load(Path.Combine("RiverSegments", riverSegList[j]))) as GameObject;
             
             riverPool.Add(block);
             block.transform.SetParent(riverMaster);

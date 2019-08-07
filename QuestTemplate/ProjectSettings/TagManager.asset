@@ -10,6 +10,8 @@ TagManager:
   - Hazard
   - Water
   - Boat
+  - Item
+  - FinishLine
   layers:
   - Default
   - TransparentFX

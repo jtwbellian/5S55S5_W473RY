@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 7060099078311779548}
   m_Layer: 0
   m_Name: OfflineVRPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -604,6 +604,8 @@ MonoBehaviour:
   headTarget: {fileID: 8862664384481052514}
   lhandTarget: {fileID: 8862664384480975372}
   rhandTarget: {fileID: 8862664384480971362}
+  rHoldNet: 0
+  lHoldNet: 0
 --- !u!1 &8862664384480566088
 GameObject:
   m_ObjectHideFlags: 0
