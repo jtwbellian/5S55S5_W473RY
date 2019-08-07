@@ -5,6 +5,8 @@ using UnityEngine;
 public class PandaController : MonoBehaviour//OVRPlayerController
 {
     public Transform trackingPoint;
+    public float speed = 0.5f;
+    
     private OVRScreenFade fade;
     private CharacterController character;
 
@@ -36,7 +38,10 @@ public class PandaController : MonoBehaviour//OVRPlayerController
             GoHome();
         }
         
-        character.SimpleMove(Vector3 .forward  * 0);
+        // Walk
+        Vector2 stickInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+
+        character.SimpleMove((Vector3.forward  * stickInput.y * speed) + (Vector3.right * stickInput.x * speed));
 
         // Turn View Left
         if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
