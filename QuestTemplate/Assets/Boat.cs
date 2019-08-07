@@ -6,6 +6,7 @@ public class Boat : MonoBehaviour
 {
     private const float TOL = 0.05f;
     public Vector3 positionOffset = Vector3.zero;
+    public float speed = 3f;
 
     [Range(-10, 10)]
     public float rudder = 0f;
@@ -14,23 +15,32 @@ public class Boat : MonoBehaviour
     
     void OnTriggerStay(Collider other) 
     {
+        if (!RiverManager.instance.isHost) 
+        {
+            return;
+        }
 
         if (other.transform.CompareTag("Left"))
         {
-            rudder -= 1.2f;
+            rudder -= speed * Time.deltaTime;
         }
 
         if (other.transform.CompareTag("Right"))
         {
-            rudder += 1.2f;
+            rudder += speed * Time.deltaTime;
         }
     }
 
     void OnTriggerEnter(Collider other) 
     {
+        if (!RiverManager.instance.isHost) 
+        {
+            return;
+        }
+
         var rs = other.GetComponent<RiverSegment>();
 
-       if (rs != null) 
+       if (rs != null)
        {
            RiverManager.instance.rotationOffset += rs.myAngle;
            RiverManager.instance.targetSegment = rs;
@@ -39,7 +49,11 @@ public class Boat : MonoBehaviour
 
     void Update() 
     {
-
+        if (!RiverManager.instance.isHost) 
+        {
+            return;
+        }
+        
         rudder = rudder * 0.95f;
     }
 }

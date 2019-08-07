@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class NetCatcher : MonoBehaviour
 {
@@ -13,11 +14,12 @@ public class NetCatcher : MonoBehaviour
     private RiverManager rm;
 
     // Added reference to this objects grabbable component to get grabbable info
-    private OVRGrabbable grabbable;
+    private POVRGrabbable grabbable;
     private Vector3 startPos;
     private Quaternion startRot;
 
-    private void Start() {
+    private void Start() 
+    {
         rm = RiverManager.instance;
         grabbable = GetComponent<POVRGrabbable>();
 
@@ -25,7 +27,6 @@ public class NetCatcher : MonoBehaviour
         {
             Debug.Log("Could not find grabbable component");
         }
-
 
         // Save starting position
         startPos = transform.position;
@@ -36,21 +37,31 @@ public class NetCatcher : MonoBehaviour
             Debug.Log("No River Manager found, danger Will Robinson");
         }
     }
-    
+
     void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.tag == "Collectable")
         {
             var item = other.GetComponent<Item>();
-            
+            var pv = other.GetComponent<PhotonView>();
+
+            if (pv != null)
+            {
+                pv.RequestOwnership();
+            }
+
             // Set the owner of the item
             if (item)
             {
                 if ((rm.isHost && transform.root.GetComponent<OVRPlayerController>())
                     || !rm.isHost && !transform.root.GetComponent<OVRPlayerController>())
+                {
                     item.owner = 0;
+                }
                 else 
+                {
                     item.owner = 1;
+                }
             }
             else
             {
@@ -59,7 +70,7 @@ public class NetCatcher : MonoBehaviour
         }
 
         // Prepare to invoke reset when dropped in water
-        if (other.gameObject.tag == "Water" && !grabbable.isGrabbed)
+        if (other.gameObject.tag == "Water" && !grabbable.isGrabbed && !grabbable.rb.isKinematic)
         {
             Invoke("Reset", 5f);
         }
@@ -67,7 +78,7 @@ public class NetCatcher : MonoBehaviour
 
     private void Reset() 
     {
-        if (grabbable.isGrabbed)
+        if (grabbable.isGrabbed || grabbable.rb.isKinematic)
         {
             // Don't teleport if the player manages to pick it up.
             return;
@@ -90,16 +101,16 @@ public class NetCatcher : MonoBehaviour
         }
     }
 
-    /* private void OnTriggerExit(Collider other)
+     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Collectable")
         {
-            var item = other.GetComponent<Item>();
+            var pv = other.GetComponent<PhotonView>();
 
-            if (item)
+            if (pv != null)
             {
-                item.owner = -1;
+                pv.TransferOwnership(0);
             }
         }
-    }*/
+    }
 }

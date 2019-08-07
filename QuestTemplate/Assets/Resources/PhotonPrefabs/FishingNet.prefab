@@ -232,7 +232,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   ObservedComponents:
   - {fileID: 6426520277511694288}
   - {fileID: 8980247721874899406}
@@ -253,8 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
   m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 1
 --- !u!114 &8980247721874899406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +304,7 @@ MonoBehaviour:
   m_grabPoints:
   - {fileID: 5088813188474482848}
   pv: {fileID: 3471368090196783554}
+  rb: {fileID: 0}
 --- !u!1 &4500461559037166912
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 7370565934595336738}
   m_LocalRotation: {x: 0.67398006, y: 0, z: 0, w: 0.7387495}
   m_LocalPosition: {x: 0, y: 0.025, z: 0.45}
-  m_LocalScale: {x: 1.0000014, y: 1.0000011, z: 1.0000015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 280820134406605730}
   m_RootOrder: 3

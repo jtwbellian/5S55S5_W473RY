@@ -3222,5 +3222,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8862664384486583972, guid: 28e3cc7294cae974fa4781fb421d0bf8,
+        type: 3}
+      propertyPath: GravityModifier
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28e3cc7294cae974fa4781fb421d0bf8, type: 3}

@@ -399,8 +399,8 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 1
     m_Devices:
-    - OpenVR
     - Oculus
+    - OpenVR
   - m_BuildTarget: iPhone
     m_Enabled: 1
     m_Devices:
@@ -412,6 +412,7 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Enabled: 1
     m_Devices:
+    - OpenVR
     - Oculus
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 1

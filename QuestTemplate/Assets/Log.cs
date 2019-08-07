@@ -23,18 +23,42 @@ public class Log : MonoBehaviour
             Debug.Log("River Manager not found.");
     }
 
-    private void OnCollisionEnter(Collision other)
+private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log("Hit the boat");
+
+        // Reach end
+        if (other.transform.CompareTag("Finish"))
+        {
+            var pa = GetComponent<PhotonActor>();
+
+            if (pa)
+            {
+                pa.DisableChildObject(false);
+            }
+        }
 
         if (other.gameObject.tag=="Boat")
-            {
-                fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
-                fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
-                fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
-                fx.Burst(FXManager.FX.Spray, transform.position, 2);
-                fx.Burst(FXManager.FX.Ripple, transform.position, 1);
-            }
+        {
+            fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
+            fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
+            fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
+            fx.Burst(FXManager.FX.Spray, transform.position, 2);
+            fx.Burst(FXManager.FX.Ripple, transform.position, 1);
+        }
+    }
+
+    void OnTriggerStay(Collider other) 
+    {
+
+        if (other.transform.CompareTag("Left"))
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * 3f, Space.World);
+        }
+
+        if (other.transform.CompareTag("Right"))
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * -3f, Space.World);
+        }
     }
 
     // Update is called once per frame

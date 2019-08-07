@@ -9,7 +9,7 @@ using TMPro;
 
 public class RiverManager : MonoBehaviour
 {
-
+    private const float TOL = 1f;
     public bool isHost = false;
     public TextMeshProUGUI messageField;
 
@@ -18,16 +18,18 @@ public class RiverManager : MonoBehaviour
 
     // x is fish, y is clams, z is fruit
     private Vector3 [] playerScores = new Vector3[2];
-    
 
     #region RiverGeneration
 
-    private const int POOL_SIZE = 6;
+    private const int POOL_SIZE = 25;
     private List<GameObject> riverPool = new List<GameObject>();
     public GameObject [] riverTypes;
     public int numSegments = 5;
     private int progress = 0;
     private RiverSegment turtleSegment = null;
+
+    private string [] riverSegList = new string[POOL_SIZE]; 
+    private int currentSegment = 0;
 
     #endregion
 
@@ -91,7 +93,7 @@ public class RiverManager : MonoBehaviour
         {
             isHost = true;
 
-            CreateRiverPool();
+            //CreateRiverPool();
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "FishingNet"),
                                         oarSpawnA.position, 
                                         oarSpawnA.rotation, 0);
@@ -99,20 +101,25 @@ public class RiverManager : MonoBehaviour
                                         oarSpawnB.position, 
                                         oarSpawnB.rotation, 0);
 
+            // Generates a random river order and then  shares it with clients
+            GenerateRiverList();
+            photonView.RPC("SendRiverList", RpcTarget.AllBuffered, (object)riverSegList);
             // Spawn the special pieces
+            /* 
             var turtleSegObj = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", "r_turtle"),
                                         oarSpawnB.position, 
                                         oarSpawnB.rotation, 0);
 
             turtleSegment = turtleSegObj.GetComponent<RiverSegment>();
             turtleSegment.DisableChildObject(false);
-
+            */
 
             Invoke("TurnOnStartButton", 3f);
             waitMessage.SetActive(false);
         }
         else
         {
+            isHost = false;
             waitMessage.SetActive(true);
         }
     }
@@ -130,6 +137,8 @@ public class RiverManager : MonoBehaviour
         Debug.Log("Sending points...");
         photonView.RPC("AddToScore", RpcTarget.AllBuffered, player, type, amt);
     }
+
+    #region PunRPC 
 
     [PunRPC]
     void SendMessage(string message) 
@@ -160,86 +169,142 @@ public class RiverManager : MonoBehaviour
                 scoreUIP2[type].text = (score[type]).ToString();
                 break;
         }
+    }
 
+    [PunRPC]
+    void SetSegmentActive(int id, bool active)
+    {
+        GameObject block = riverPool[id];
+        block.SetActive(active);
+    }
+
+    [PunRPC]
+    void SendRiverList(string [] strList)
+    {
+        riverSegList = strList;
+        Debug.Log("Set river list to " + riverSegList);
+        // Both sides will create an identical 'River Pool'
+        CreateRiverPool();
+    }
+
+    public void RemoveSeg(int id)
+    {
+        photonView.RPC("SetSegmentActive", RpcTarget.AllBuffered, id, false);
     }
 
     // Initializes Our Object Pool of River segments, disabling all at first
+    //[PunRPC]
     public void CreateRiverPool()
     {
         // create the River prefabs
-        for (int i = 0; i < riverTypes.Length; i++)
+        for (int j = 0; j < POOL_SIZE; j++)
         {
-            for (int j = 0; j < POOL_SIZE; j++)
+            //GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", riverTypes[i].name),
+            //                        Vector3.zero, 
+            //                        Quaternion.identity, 0);
+
+            GameObject block = Instantiate(Resources.Load(Path.Combine("RiverSegments", riverSegList[j]))) as GameObject;
+            
+            riverPool.Add(block);
+            block.transform.SetParent(riverMaster);
+
+            RiverSegment rs =  block.GetComponent<RiverSegment>();
+            
+            if (rs == null)
             {
-                GameObject block = PhotonNetwork.Instantiate(Path.Combine("RiverSegments", riverTypes[i].name),
-                                        Vector3.zero, 
-                                        Quaternion.identity, 0);
-
-                riverPool.Add(block);
-                block.transform.SetParent(riverMaster);
-
-                RiverSegment rs =  block.GetComponent<RiverSegment>();
-
-                if (rs == null)
-                {
-                    Debug.Log("River Segment could not be found");
-                    return;
-                }
-                // deactivate river segments on creation
-                rs.DisableChildObject(false);
+                Debug.Log("River Segment could not be found for \"" + riverSegList[j] + "\"");
+                return;
             }
+
+            rs.id = j;
+            block.SetActive(false);
+            // deactivate river segments on creation
+            //rs.DisableChildObject(false);
         }
 
         // Build first n River segments
         for (int i = 0; i < numSegments; i++)
         {
-            AddRiver();
+            AddSeg();
         }
     }
+    # endregion
+
+    public void GenerateRiverList()
+    {
+        for(int i = 0; i < POOL_SIZE; i ++)
+        {
+            riverSegList[i] = riverTypes[Random.Range(0, riverTypes.Length)].name;
+            Debug.Log("Setting element " + i.ToString() + " = " + riverSegList[i].ToString());
+        }
+
+        Debug.Log("Generated River: " + riverSegList.ToString());
+    }
     
-    public void AddRiver()
+    /*public void AddRiver()
     {
         // Shuffle the pool to mix it up
-        RandomizePool();
+        //RandomizePool(); 
 
         // number of segments before fishing game
-        if (progress == 15)
+        //if (progress >= 15)
+        //{
+        //    turtleSegment.transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
+        //    turtleSegment.DisableChildObject(true);
+        //    lastRiverSegment = turtleSegment;
+        //    activeParts ++;
+        //    return;
+        //}
+
+        // activates the next segment and lays it down
+        //for (int i = 0; i < riverPool.Count - 1; i++)
+        //{
+            //if (!riverPool[i].activeInHierarchy)
+            //{
+        riverPool[currentSegment].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
+        
+        RiverSegment rs = riverPool[i].GetComponent<RiverSegment>();
+        
+        if (rs == null)
         {
-            turtleSegment.transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
-            turtleSegment.DisableChildObject(true);
-            lastRiverSegment = turtleSegment;
-            activeParts ++;
+            Debug.Log("River Segment could not be found");
             return;
         }
 
-        // Finds the first inactive segment and lays it down
-        for (int i = 0; i < riverPool.Count - 1; i++)
+        //rs.pv.RPC("Activate", RpcTarget.All, true);
+        //riverPool[i].SetActive(true);
+        //rs.DisableChildObject(true);
+        //targetRotation = lastRiverSegment.endPoint.rotation;
+        lastRiverSegment = rs;
+        currentSegment ++;
+        //activeParts ++;
+
+               // return;
+            //}
+        //}
+    }
+*/
+    //[PunRPC]
+    public void AddSeg()
+    {
+        riverPool[currentSegment].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
+
+        RiverSegment rs = riverPool[currentSegment].GetComponent<RiverSegment>();
+        
+        if (rs == null)
         {
-            if (!riverPool[i].activeInHierarchy)
-            {
-                riverPool[i].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
-                
-                RiverSegment rs = riverPool[i].GetComponent<RiverSegment>();
-                
-                if (rs == null)
-                {
-                    Debug.Log("River Segment could not be found");
-                    return;
-                }
-
-                //rs.pv.RPC("Activate", RpcTarget.All, true);
-                //riverPool[i].SetActive(true);
-                rs.DisableChildObject(true);
-                //targetRotation = lastRiverSegment.endPoint.rotation;
-                lastRiverSegment = rs;
-                activeParts ++;
-
-                return;
-            }
+            Debug.Log("River Segment could not be found");
+            return;
         }
+
+        rs.gameObject.SetActive(true);
+
+        lastRiverSegment = rs;
+
+        if (currentSegment < riverPool.Count - 1)
+            currentSegment ++;
     }
 
-    
     public void Update()
     {
         if (PhotonNetwork.IsMasterClient && riverMove)
@@ -251,14 +316,18 @@ public class RiverManager : MonoBehaviour
 
             var rotAmt = 0f;
             
-            if (rotationOffset < 0)
+            if (rotationOffset < TOL)
             {
                 rotAmt = Time.deltaTime * levelSpeed;
             }
-            
-            if (rotationOffset > 0)
+            else
+            if (rotationOffset > TOL)
             {
                 rotAmt = Time.deltaTime * levelSpeed * -1;
+            }
+            else
+            {
+                rotAmt = 0f;
             }
 
             rotationOffset += rotAmt;
@@ -268,7 +337,6 @@ public class RiverManager : MonoBehaviour
             var z = riverMaster.root.rotation.eulerAngles.z;
 
             riverMaster.root.rotation = Quaternion.Euler(x, y, z);
-
             //if (targetSegment != null)
             //riverMaster.rotation = RotatePointAroundPivot(riverMaster.transform.position, boat.transform.position, targetSegment.endPoint.rotation.toEulers());
         }

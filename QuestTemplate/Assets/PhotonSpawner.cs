@@ -64,8 +64,11 @@ public class PhotonSpawner : MonoBehaviour
     [ContextMenu("Start")]
     public void StartSpawning()
     {
-        active = true;
-        StartCoroutine("SpawnUpdate");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            active = true;
+            StartCoroutine("SpawnUpdate");
+        }
     }
 
     [ContextMenu("Stop")]
@@ -101,7 +104,7 @@ public class PhotonSpawner : MonoBehaviour
         {
             if (!objPool[i].activeInHierarchy)
             {
-                objPool[i].transform.SetPositionAndRotation(position, transform.rotation);
+                //objPool[i].transform.SetPositionAndRotation(position, transform.rotation);
                 
                 // Change this part to be a universal "Photon Disableable Script" as soon as we think of a better name
                 PhotonActor pa = objPool[i].GetComponent<PhotonActor>();
@@ -114,6 +117,7 @@ public class PhotonSpawner : MonoBehaviour
 
                 // Set this fish active
                 pa.DisableChildObject(true);
+                pa.SetPositionAndRotation(position, transform.rotation);
                 return;
             }
         }
@@ -123,7 +127,7 @@ public class PhotonSpawner : MonoBehaviour
     {
         while (true)
         {
-            Vector3 ranPos = new Vector3(Random.Range(-8, 8), transform.position.y, transform.position.z);
+            Vector3 ranPos = new Vector3(Random.Range(-6, 6), transform.position.y, transform.position.z);
             AddObj(ranPos);
 
             if (!active) // Break coroutine if not active
