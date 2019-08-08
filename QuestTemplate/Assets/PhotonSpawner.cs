@@ -118,6 +118,8 @@ public class PhotonSpawner : MonoBehaviour
                 // Set this fish active
                 pa.DisableChildObject(true);
                 pa.SetPositionAndRotation(position, transform.rotation);
+                pa.SetGravity(true);
+
                 return;
             }
         }

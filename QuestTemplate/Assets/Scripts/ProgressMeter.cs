@@ -15,7 +15,7 @@ public class ProgressMeter : MonoBehaviour
     void Start()
     {
         rm = RiverManager.instance;
-        InvokeRepeating("UpdateValues", 30f, 10f);
+        InvokeRepeating("UpdateValues", 30f, 1f);
     }
 
 
