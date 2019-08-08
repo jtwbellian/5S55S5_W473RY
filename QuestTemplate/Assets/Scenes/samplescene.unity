@@ -3303,7 +3303,7 @@ PrefabInstance:
     - target: {fileID: 6232038216598979656, guid: ed8f4f98ced576640a27ece588877774,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6928784065954608731, guid: ed8f4f98ced576640a27ece588877774,
         type: 3}
@@ -22556,7 +22556,12 @@ PrefabInstance:
     - target: {fileID: 6628332369562906558, guid: eb36cdda4fd1e8f4a868df8913cede13,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628332369562906558, guid: eb36cdda4fd1e8f4a868df8913cede13,
+        type: 3}
+      propertyPath: m_TagString
+      value: Water
       objectReference: {fileID: 0}
     - target: {fileID: 6628332369562906554, guid: eb36cdda4fd1e8f4a868df8913cede13,
         type: 3}

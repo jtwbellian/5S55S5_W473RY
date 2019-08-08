@@ -53,7 +53,7 @@ public class Fish : MonoBehaviour
         if (other.gameObject.tag=="Water")
             {
                 fx.Burst(FXManager.FX.Splash, transform.position, 5);
-                fx.Burst(FXManager.FX.Ripple, transform.position, 1);
+                fx.Burst(FXManager.FX.Ripple, transform.position - Vector3.up * 0.3f, 1);
                 fx.Burst(FXManager.FX.Spray, transform.position, 2);
 
             if (animator.GetBool("Flop")==true)
