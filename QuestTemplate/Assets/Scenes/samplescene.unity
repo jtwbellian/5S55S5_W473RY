@@ -2403,7 +2403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9992783883274999, guid: 884919546eec2f94db3285a097c930cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: 9992783883274999, guid: 884919546eec2f94db3285a097c930cf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22497,22 +22497,22 @@ PrefabInstance:
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.47395584
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.52475315
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.52475315
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.47395584
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
@@ -22522,17 +22522,17 @@ PrefabInstance:
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 270
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6807044002531742715, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -84.177
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5596972259885565624, guid: 89c28931d8d3dfe48aa6630772cc8349,
         type: 3}
@@ -22556,7 +22556,12 @@ PrefabInstance:
     - target: {fileID: 6628332369562906558, guid: eb36cdda4fd1e8f4a868df8913cede13,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628332369562906558, guid: eb36cdda4fd1e8f4a868df8913cede13,
+        type: 3}
+      propertyPath: m_TagString
+      value: Water
       objectReference: {fileID: 0}
     - target: {fileID: 6628332369562906554, guid: eb36cdda4fd1e8f4a868df8913cede13,
         type: 3}
