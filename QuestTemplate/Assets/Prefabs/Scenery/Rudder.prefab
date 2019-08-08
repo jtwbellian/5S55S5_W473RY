@@ -132,7 +132,7 @@ MonoBehaviour:
   m_snapOrientation: 1
   m_snapOffset: {fileID: 0}
   m_grabPoints:
-  - {fileID: 0}
+  - {fileID: 7084759617117325756}
   pv: {fileID: 6073182779293592994}
   rb: {fileID: 555866768592432286}
   isHeld: 0

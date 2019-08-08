@@ -10,6 +10,8 @@ public class Fish : MonoBehaviour
     private Rigidbody rigidbod;
     private float speed = 1.2f;
     private FXManager fx;
+    [ReadOnly]
+    private bool canSwim = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class Fish : MonoBehaviour
         speed = Random.Range(1.2f, 3f);
 
         rigidbod.freezeRotation = true;
+        rigidbod.useGravity = true;
         fx = FXManager.GetInstance();
 
         if (!fx)
@@ -30,8 +33,11 @@ public class Fish : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetBool("Flop") != true)
+        if (canSwim)
+        {
+            //rigidbod.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
+        }
     }
 
     //Splash into Water
@@ -44,17 +50,17 @@ public class Fish : MonoBehaviour
 
             if (pa)
             {
-                rigidbod.useGravity = true;
+                //rigidbod.useGravity = true;
                 pa.DisableChildObject(false);
             }
         }
 
-
         if (other.gameObject.tag=="Water")
             {
                 fx.Burst(FXManager.FX.Splash, transform.position, 5);
-                fx.Burst(FXManager.FX.Ripple, transform.position - Vector3.up * 0.3f, 1);
+                fx.Burst(FXManager.FX.Ripple, transform.position -  Vector3.up * 0.3f, 1);
                 fx.Burst(FXManager.FX.Spray, transform.position, 2);
+                canSwim = true;
 
             if (animator.GetBool("Flop")==true)
                 {
@@ -91,6 +97,7 @@ public class Fish : MonoBehaviour
             rigidbod.useGravity = true;
             rigidbod.freezeRotation = true;
             animator.SetBool("Flop", true);  
+            canSwim = false;
         } 
     }
 

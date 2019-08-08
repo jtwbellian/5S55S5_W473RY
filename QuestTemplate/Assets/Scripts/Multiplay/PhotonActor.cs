@@ -20,6 +20,20 @@ public class PhotonActor : MonoBehaviour
         transform.SetPositionAndRotation(pos, rot);
     }
 
+    [PunRPC]
+    void Gravity(bool active)
+    {
+       var rb = transform.GetComponentInChildren<Rigidbody>();
+       
+       if (rb)
+            rb.useGravity = active;
+    }
+
+    public void SetGravity(bool active)
+    {
+        GetComponent<PhotonView>().RPC("Gravity", RpcTarget.AllBuffered, active);
+    }
+
     public void DisableChildObject(bool setActive)
     {
         GetComponent<PhotonView>().RPC("RemoveBlock", RpcTarget.AllBuffered, transform.gameObject.GetComponent<PhotonView>().ViewID, setActive);
@@ -29,4 +43,5 @@ public class PhotonActor : MonoBehaviour
     {
         GetComponent<PhotonView>().RPC("MoveTo", RpcTarget.AllBuffered, pos, rot);
     }
+
 }

@@ -247,7 +247,10 @@ public class RiverManager : MonoBehaviour
 
     public float GetPercentComplete()
     {
-        return (currentSegment / POOL_SIZE) * 100f;
+        var p = (currentSegment / POOL_SIZE) * 100f;
+        Debug.Log(p);
+
+        return p;
     }
 
     

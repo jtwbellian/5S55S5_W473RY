@@ -18,8 +18,11 @@ public class NetCatcher : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
 
+    private FXManager fx;
+
     private void Start() 
     {
+        fx = FXManager.GetInstance();
         rm = RiverManager.instance;
         grabbable = GetComponent<POVRGrabbable>();
 
@@ -53,8 +56,8 @@ public class NetCatcher : MonoBehaviour
             // Set the owner of the item
             if (item)
             {
-                if ((rm.isHost && transform.root.GetComponent<OVRPlayerController>())
-                    || !rm.isHost && !transform.root.GetComponent<OVRPlayerController>())
+                if ((rm.isHost && transform.root.GetComponent<PandaController>())
+                    || !rm.isHost && !transform.root.GetComponent<PandaController>())
                 {
                     item.owner = 0;
                 }
@@ -70,9 +73,12 @@ public class NetCatcher : MonoBehaviour
         }
 
         // Prepare to invoke reset when dropped in water
-        if (other.gameObject.tag == "Water" && !grabbable.isGrabbed && !grabbable.rb.isKinematic)
+        if (other.gameObject.tag == "Water")
         {
-            Invoke("Reset", 5f);
+            if (!grabbable.isGrabbed && !grabbable.rb.isKinematic)
+                Invoke("Reset", 5f);
+
+            fx.Burst(FXManager.FX.Ripple, rimBound.position, 1); 
         }
     }
 
@@ -111,6 +117,11 @@ public class NetCatcher : MonoBehaviour
             {
                 pv.TransferOwnership(0);
             }
+        }
+
+        if (other.gameObject.tag == "Water")
+        {
+            fx.Burst(FXManager.FX.Splash, rimBound.position, 1); 
         }
     }
 }
