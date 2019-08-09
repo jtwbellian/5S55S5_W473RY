@@ -5,12 +5,14 @@ using UnityEngine;
 public class CollectFX : MonoBehaviour
 {
     public Transform target;
-
+    public AudioClip clip;
     private RiverManager rm;
+    private SoundManager sm;
 
     private void Start() 
     {
         rm = RiverManager.instance;
+        sm = SoundManager.instance;
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -19,6 +21,7 @@ public class CollectFX : MonoBehaviour
         {
            var rm = RiverManager.instance;
 
+            sm.RandomizeSFX(clip);
             FXManager.GetInstance().Burst(FXManager.FX.Confetti1, target.position, 1);
             FXManager.GetInstance().Burst(FXManager.FX.Confetti2, target.position, 15); 
 

@@ -6,12 +6,14 @@ public class Log : MonoBehaviour
 {
     RiverManager rm;
     private FXManager fx;
+    private SoundManager sm;
     public AudioClip[] clips;
 
     // Start is called before the first frame update
     void Start()
     {
         fx = FXManager.GetInstance();
+        sm = SoundManager.instance;
 
         if (!fx)
         {
@@ -48,7 +50,7 @@ private void OnTriggerEnter(Collider other)
 
             //Play Random Sound From list
             int randomIndex = Random.Range(0, clips.Length);
-            SoundManager.instance.PlaySingle(clips[randomIndex], transform.position);
+            sm.PlaySingle(clips[randomIndex], transform.position);
 
             var pa = GetComponent<PhotonActor>();
 

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public AudioSource globalSound;
     //public AudioSource efxSource;
     //public AudioSource environmentSource;
     public AudioSource musicSource;
     public static SoundManager instance = null;
 
-    //public float lowPitchRange = 0.95f;
-    //public float highPitchRange = 1.05f;
+    public float lowPitchRange = 0.95f;
+    public float highPitchRange = 1.05f;
 
     // Start is called before the first frame update
     void Awake ()
@@ -28,13 +29,11 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(clip, pos);
     }
 
-//    public void RandomizeSFX (params AudioClip [] clips, Vector3 pos)
- //   {
-   //     int randomIndex = Random.Range(0, clips.Length);
-        //float randomPitch = Random.Range(lowPitchRange, highPitchRange);
-
-        //efxSource.pitch = randomPitch;
-        
-  //      AudioSource.PlayClipAtPoint(clips[randomIndex], pos);
-   // }
+    public void RandomizeSFX (AudioClip clip)
+    {
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+        globalSound.pitch = randomPitch;
+        globalSound.clip = clip;
+        globalSound.Play();
+    }
 }

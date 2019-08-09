@@ -12,22 +12,28 @@ public class NetCatcher : MonoBehaviour
 
     // Added reference to River manager since we're going to be calling him a lot. Think of it like speed dial.
     private RiverManager rm;
+    private SoundManager sm;
 
     // Added reference to this objects grabbable component to get grabbable info
     private POVRGrabbable grabbable;
     private Vector3 startPos;
     private Quaternion startRot;
-    private bool canSplash = true;
+    //private bool canSplash;               //Testing a better method to detect enter water, look for splashCounter
+    private int splashCounter =0;
 
     [ReadOnly]
     public GameObject caughtItem = null;
 
     private FXManager fx;
+    public AudioClip[] enterClips;
+    public AudioClip[] exitClips;
 
     private void Start() 
     {
+        //canSplash = true;                 //Testing a better method to detect enter water
         fx = FXManager.GetInstance();
         rm = RiverManager.instance;
+        sm = SoundManager.instance;
         grabbable = GetComponent<POVRGrabbable>();
 
         if (!grabbable)
@@ -48,16 +54,25 @@ public class NetCatcher : MonoBehaviour
     void OnTriggerEnter(Collider other) 
     {
         // Prepare to invoke reset when dropped in water
-        if (other.gameObject.tag == "Water" && canSplash)
+        if (other.gameObject.tag == "Water")                   //Testing a better method to detect enter water
         {
+            splashCounter += 1;
+
             if (!grabbable.isGrabbed && !grabbable.rb.isKinematic)
                 Invoke("Reset", 5f);
+            
+            if (splashCounter == 1 )                //Testing a better method to detect enter water
+                {
+                Vector3 splashPos = rimBound.position;
+                splashPos[1] = other.transform.position.y;
 
-            Vector3 splashPos = rimBound.position;
-            splashPos[1] = other.transform.position.y;
+                fx.Burst(FXManager.FX.Ripple,splashPos, 1); 
 
-            fx.Burst(FXManager.FX.Ripple,splashPos, 1); 
-            canSplash = false;
+                //play sound effects
+                int randomIndex = Random.Range(0, enterClips.Length);
+                sm.PlaySingle(enterClips[randomIndex], transform.position);
+                }
+            //canSplash = false;                    //Testing a better method to detect enter water
         }
 
         //PhotonView view = grabbable.GetComponent<PhotonView>();
@@ -190,13 +205,22 @@ public class NetCatcher : MonoBehaviour
      private void OnTriggerExit(Collider other)
     {
 
-        if (other.gameObject.tag == "Water" && !canSplash)
+        if (other.gameObject.tag == "Water")          //Testing a better method to detect enter water
         {
-            Vector3 splashPos = rimBound.position;
-            splashPos[1] = other.transform.position.y;
+            splashCounter -=1;
 
-            fx.Burst(FXManager.FX.Splash, splashPos, 1); 
-            canSplash = false;
+            if (splashCounter == 0)
+                {
+                Vector3 splashPos = rimBound.position;
+                splashPos[1] = other.transform.position.y;
+
+                fx.Burst(FXManager.FX.Splash, splashPos, 1); 
+
+                //play sound effects
+                int randomIndex = Random.Range(0, exitClips.Length);
+                sm.PlaySingle(exitClips[randomIndex], transform.position);
+                }
+            //canSplash = true;                     //Testing a better method to detect enter water
         }
 
         if (!RiverManager.instance.isHost)
