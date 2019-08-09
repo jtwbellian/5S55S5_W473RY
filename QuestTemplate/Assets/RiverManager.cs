@@ -184,7 +184,6 @@ public class RiverManager : MonoBehaviour
         CreateRiverPool();
     }
 
-
     public void RemoveSeg(int id)
     {
         photonView.RPC("SetSegmentActive", RpcTarget.AllBuffered, id, false);
@@ -252,7 +251,6 @@ public class RiverManager : MonoBehaviour
 
         return p;
     }
-
     
     /*public void AddRiver()
     {

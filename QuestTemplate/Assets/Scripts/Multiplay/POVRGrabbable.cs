@@ -36,14 +36,24 @@ public class POVRGrabbable : OVRGrabbable
             pv.RPC("SetHeld", RpcTarget.Others, false);
             isHeld = false;
         }
+        
+        var item = GetComponentInChildren<Item>();
+
+        if (item)
+            item.transform.SetParent(null);
     }
 
     public override void OnGrab()
     {
+
         if (pv != null)
         {
             pv.RequestOwnership();
             pv.RPC("SetHeld", RpcTarget.Others, true);
+            
+            if (isHeld)
+                pv.RPC("Take", RpcTarget.Others);
+
             isHeld = true;
         }
     }
@@ -53,6 +63,14 @@ public class POVRGrabbable : OVRGrabbable
     {
         rb.isKinematic = active;
         isHeld = active;
+    }
+    [PunRPC]
+    public void Take()
+    {
+        if (isHeld)
+        {
+            m_grabbedBy.ForceRelease(this);
+        }
     }
     
 

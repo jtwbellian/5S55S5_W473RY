@@ -11,9 +11,10 @@ public class Rudder : POVRGrabbable
     public Quaternion localStartRot;
     public GameObject leftHand;
     public GameObject rightHand;
+    public Boat boat;
 
-    private float maxAngle = 35f;
-    private float minAngle = -35f;
+    private float maxAngle = 20f;
+    private float minAngle = -20f;
     private float returnSpeed = 0.01f;
 
     [SerializeField]
@@ -31,16 +32,32 @@ public class Rudder : POVRGrabbable
     {
         if (isHeld)
         {
-            //if (transform.position.x > targetObject.position.x)
-             //   return;
+            if (transform.position.z < targetObject.position.z)
+               return;
 
            Vector3  newTarget = new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z);
            targetObject.transform.LookAt(newTarget);
-           Debug.Log("Rudder Quat: " + targetObject.transform.rotation);
+           //Debug.Log("Rudder Euler: " + targetObject.transform.rotation.eulerAngles);
+
+            //RiverManager.instance.AddForceToRudder(Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 10f);
         }
         else if (targetObject.transform.rotation != Quaternion.identity)
         {
             targetObject.transform.rotation = Quaternion.Lerp(targetObject.transform.rotation, Quaternion.identity, Time.time * returnSpeed);       
+        }
+
+        // Only modify boat on host
+        if (RiverManager.instance.isHost)
+        {
+            var rudderAngle = targetObject.transform.rotation.eulerAngles.y;
+
+            if (rudderAngle > 180)
+                rudderAngle -= 360;
+
+            if (rudderAngle < -180)
+                rudderAngle += 360;
+
+            boat.rudder -= Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 500f;  
         }
     }
 
@@ -74,6 +91,4 @@ public class Rudder : POVRGrabbable
         rightHand.SetActive(false);
         //pv.RPC("SetHeld", RpcTarget.AllBuffered, false);
     }
-
-
 }

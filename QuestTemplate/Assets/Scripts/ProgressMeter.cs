@@ -27,5 +27,7 @@ public class ProgressMeter : MonoBehaviour
             this.transform.localPosition = new Vector3(percentComplete * 0.008f - 0.4f, transform.localPosition.y, transform.localPosition.z);
 
         label.text = ((int)percentComplete).ToString() + "%";
+
+        Debug.Log("calculated percent complete");
     }
 }

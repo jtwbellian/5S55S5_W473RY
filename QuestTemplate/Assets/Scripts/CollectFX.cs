@@ -25,6 +25,21 @@ public class CollectFX : MonoBehaviour
             if (rm.isHost)
             {
                 var pa = other.gameObject.GetComponent<PhotonActor>();
+
+                if (pa.transform.parent != null)
+                {
+                    var net = pa.transform.root.GetComponentInChildren<NetCatcher>();
+
+                    if (net)
+                    {
+                        net.caughtItem = null;
+                    }
+                    else 
+                    Debug.Log("ERR couldnt find net");
+
+                    pa.transform.SetParent(null);
+                }
+
                 
                 if (pa)
                     pa.DisableChildObject(false);

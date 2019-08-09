@@ -11,7 +11,7 @@ public class Fish : MonoBehaviour
     private float speed = 1.2f;
     private FXManager fx;
     [ReadOnly]
-    private bool canSwim = true;
+    public bool canSwim = true;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,13 @@ public class Fish : MonoBehaviour
         {
             //rigidbod.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
+
+            if (transform.parent != null)
+                canSwim = false;
+        }
+        else if (animator.GetBool("Flop") == false)
+        {
+            animator.SetBool("Flop", true);
         }
     }
 
@@ -44,7 +51,7 @@ public class Fish : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         // Reach end
-        if (other.transform.CompareTag("Finish") || other.transform.CompareTag("Right") || other.transform.CompareTag("Left"))
+        if ((other.transform.CompareTag("Finish") || other.transform.CompareTag("Right") || other.transform.CompareTag("Left")) && transform.parent == null)
         {
             var pa = GetComponent<PhotonActor>();
 
@@ -55,20 +62,22 @@ public class Fish : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag=="Water")
+        if (other.gameObject.tag=="Water" && transform.parent == null)
             {
                 fx.Burst(FXManager.FX.Splash, transform.position, 5);
                 fx.Burst(FXManager.FX.Ripple, transform.position -  Vector3.up * 0.3f, 1);
                 fx.Burst(FXManager.FX.Spray, transform.position, 2);
                 canSwim = true;
+                //rigidbod.freezeRotation = true;
+                transform.rotation = Quaternion.identity;
 
-            if (animator.GetBool("Flop")==true)
+            if (animator.GetBool("Flop") == true)
                 {
                     rigidbod.velocity =  Vector3.zero;//new Vector3(0f, 0f, 0f);
-                    rigidbod.angularVelocity =Vector3.zero;// new Vector3(0f, 0f, 0f);
-                    transform.rotation= Quaternion.identity;
+                    rigidbod.angularVelocity = Vector3.zero;// new Vector3(0f, 0f, 0f);
+                    transform.rotation = Quaternion.identity;
                     rigidbod.useGravity = false;
-                    rigidbod.freezeRotation = true;
+                    //rigidbod.freezeRotation = false;
                     animator.SetBool("Flop", false);
                 }
             }
@@ -90,9 +99,10 @@ public class Fish : MonoBehaviour
         }
     }*/
 
+/* 
    private void OnTriggerExit(Collider other) 
     {
-        if (other.gameObject.tag=="Water")
+        if (other.gameObject.tag=="Water" && transform.parent == null)
         {
             rigidbod.useGravity = true;
             rigidbod.freezeRotation = true;
@@ -100,7 +110,7 @@ public class Fish : MonoBehaviour
             canSwim = false;
         } 
     }
-
+*/
     /* Update is called once per frame
     void Update()
     {
