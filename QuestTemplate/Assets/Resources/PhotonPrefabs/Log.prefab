@@ -94,7 +94,7 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.42347723
   m_Height: 5.0271854
-  m_Direction: 0
+  m_Direction: 2
   m_Center: {x: 0.036888123, y: 0.028290927, z: 0.15439218}
 --- !u!114 &5596972259885565624
 MonoBehaviour:
@@ -157,3 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4acc746ddcb21e449e1add32fac0fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 4f830b0a28ed4a0418cfcf5fe3afac1d, type: 3}
+  - {fileID: 8300000, guid: 0cc30d38e6540dd41a5afb836c80ef04, type: 3}
+  - {fileID: 8300000, guid: dec47cccca479774aac6536ea399e9d3, type: 3}
