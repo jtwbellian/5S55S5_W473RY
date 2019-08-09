@@ -1097,7 +1097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5764911183511265972}
   - component: {fileID: 5764911183511265930}
-  - component: {fileID: 5764911183511265973}
+  - component: {fileID: 4934544936990792631}
   m_Layer: 0
   m_Name: MasterRiver
   m_TagString: Untagged
@@ -1139,11 +1139,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 5764911183511265973}
+  - {fileID: 4934544936990792631}
   viewIdField: 0
   InstantiationId: 3
   isRuntimeInstantiated: 0
---- !u!114 &5764911183511265973
+--- !u!114 &4934544936990792631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1152,12 +1152,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 5764911183511265975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 4
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 5
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 2
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &5764911183550171709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,6 +1502,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7836705442865911855, guid: 6deb7a16b0b905d44b17d021096c2f6b,
+        type: 3}
+      propertyPath: pv
+      value: 
+      objectReference: {fileID: 5304251383106297355, guid: 7bacc14524d196343bf10f9a4759e02a,
+        type: 3}
     - target: {fileID: 6412386777522858224, guid: 6deb7a16b0b905d44b17d021096c2f6b,
         type: 3}
       propertyPath: viewIdField
@@ -1494,12 +1518,6 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7836705442865911855, guid: 6deb7a16b0b905d44b17d021096c2f6b,
-        type: 3}
-      propertyPath: pv
-      value: 
-      objectReference: {fileID: 5304251383106297355, guid: 7bacc14524d196343bf10f9a4759e02a,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6deb7a16b0b905d44b17d021096c2f6b, type: 3}
 --- !u!4 &8236748493731362916 stripped

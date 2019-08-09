@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
-    private const float TOL = 0.05f;
+    private const float TOL = 2f;
     public Vector3 positionOffset = Vector3.zero;
     public float speed = 3f;
 
@@ -22,11 +22,17 @@ public class Boat : MonoBehaviour
 
         if (other.transform.CompareTag("Left"))
         {
+            if (rudder > TOL)
+                rudder = 0;
+
             rudder -= speed * Time.deltaTime;
         }
 
         if (other.transform.CompareTag("Right"))
         {
+            if (rudder < -TOL)
+                rudder = 0;
+
             rudder += speed * Time.deltaTime;
         }
     }
@@ -37,7 +43,7 @@ public class Boat : MonoBehaviour
         {
             return;
         }
-
+        
         var rs = other.GetComponent<RiverSegment>();
 
        if (rs != null)

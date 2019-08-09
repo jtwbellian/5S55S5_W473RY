@@ -227,6 +227,11 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8591775806771444534, guid: ed8f4f98ced576640a27ece588877774,
+        type: 3}
+      propertyPath: boat
+      value: 
+      objectReference: {fileID: 1416224518}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed8f4f98ced576640a27ece588877774, type: 3}
 --- !u!1 &128948265
@@ -329,7 +334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210244413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 5.1, z: -113}
+  m_LocalPosition: {x: -7, y: 5.1, z: -100.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 128948266}
@@ -881,8 +886,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Wait for Player 1 to start...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3c43ef69661fb0458512e12df675556, type: 2}
+  m_sharedMaterial: {fileID: 442356246626338027, guid: b3c43ef69661fb0458512e12df675556,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -907,8 +913,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -924,7 +930,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 18
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1348,6 +1354,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5198276160247418675, guid: 4d9bde890dde7254b8fe5506a14149e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5198276160247418674, guid: 4d9bde890dde7254b8fe5506a14149e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1457,6 +1468,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032104958319665340, guid: 4d9bde890dde7254b8fe5506a14149e9,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b3c43ef69661fb0458512e12df675556,
+        type: 2}
+    - target: {fileID: 2032104958319665340, guid: 4d9bde890dde7254b8fe5506a14149e9,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 442356246626338027, guid: b3c43ef69661fb0458512e12df675556,
+        type: 2}
+    - target: {fileID: 2032104958319665340, guid: 4d9bde890dde7254b8fe5506a14149e9,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032104958319665340, guid: 4d9bde890dde7254b8fe5506a14149e9,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032104958319665340, guid: 4d9bde890dde7254b8fe5506a14149e9,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032104958319665340, guid: 4d9bde890dde7254b8fe5506a14149e9,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 3446436209712139019, guid: 4d9bde890dde7254b8fe5506a14149e9,
         type: 3}
@@ -1742,7 +1785,7 @@ PrefabInstance:
     - target: {fileID: 4566765753019156629, guid: 9e1528b60eb952e45b40d1e370a3dc31,
         type: 3}
       propertyPath: m_Name
-      value: RiverAnchor
+      value: BoatController
       objectReference: {fileID: 0}
     - target: {fileID: 4566765753019156632, guid: 9e1528b60eb952e45b40d1e370a3dc31,
         type: 3}
@@ -1906,7 +1949,7 @@ PrefabInstance:
     - target: {fileID: 5764911183511265930, guid: 0151dd4a05ec86747a2abaa23972ac19,
         type: 3}
       propertyPath: Synchronization
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 647475879228309309, guid: 0151dd4a05ec86747a2abaa23972ac19,
         type: 3}
@@ -1915,6 +1958,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0151dd4a05ec86747a2abaa23972ac19, type: 3}
+--- !u!1 &5764911182188081835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764911181588740371, guid: 0151dd4a05ec86747a2abaa23972ac19,
+    type: 3}
+  m_PrefabInstance: {fileID: 5764911182188081834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5764911182188081836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764911182188081835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+--- !u!114 &5764911182188081837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764911182188081835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 5764911182188081836}
+  viewIdField: 5
+  InstantiationId: 5
+  isRuntimeInstantiated: 0
 --- !u!1001 &6017783383805448364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1926,6 +2012,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FishSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017783383542723955, guid: 5e0fd9d3f473659459f75516a6bf0b1d,
+        type: 3}
+      propertyPath: poolSize
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6017783383542723954, guid: 5e0fd9d3f473659459f75516a6bf0b1d,
         type: 3}
@@ -1995,6 +2086,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LogSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667921652882401365, guid: 3bbdebcbb369a044ca2532034c47387e,
+        type: 3}
+      propertyPath: poolSize
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7667921652882401362, guid: 3bbdebcbb369a044ca2532034c47387e,
         type: 3}

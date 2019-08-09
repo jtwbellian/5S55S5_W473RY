@@ -13,8 +13,8 @@ public class Rudder : POVRGrabbable
     public GameObject rightHand;
     public Boat boat;
 
-    private float maxAngle = 35f;
-    private float minAngle = -35f;
+    private float maxAngle = 20f;
+    private float minAngle = -20f;
     private float returnSpeed = 0.01f;
 
     [SerializeField]
@@ -32,12 +32,12 @@ public class Rudder : POVRGrabbable
     {
         if (isHeld)
         {
-            if (transform.position.x > targetObject.position.x)
+            if (transform.position.z < targetObject.position.z)
                return;
 
            Vector3  newTarget = new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z);
            targetObject.transform.LookAt(newTarget);
-           Debug.Log("Rudder Euler: " + targetObject.transform.rotation.eulerAngles);
+           //Debug.Log("Rudder Euler: " + targetObject.transform.rotation.eulerAngles);
 
             //RiverManager.instance.AddForceToRudder(Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 10f);
         }
@@ -50,9 +50,15 @@ public class Rudder : POVRGrabbable
         if (RiverManager.instance.isHost)
         {
             var rudderAngle = targetObject.transform.rotation.eulerAngles.y;
-            boat.rudder += Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 10f;  
-        }
 
+            if (rudderAngle > 180)
+                rudderAngle -= 360;
+
+            if (rudderAngle < -180)
+                rudderAngle += 360;
+
+            boat.rudder -= Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 500f;  
+        }
     }
 
     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
@@ -85,6 +91,4 @@ public class Rudder : POVRGrabbable
         rightHand.SetActive(false);
         //pv.RPC("SetHeld", RpcTarget.AllBuffered, false);
     }
-
-
 }

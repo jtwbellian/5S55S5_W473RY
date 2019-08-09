@@ -17,6 +17,10 @@ public class NetCatcher : MonoBehaviour
     private POVRGrabbable grabbable;
     private Vector3 startPos;
     private Quaternion startRot;
+    private bool canSplash = true;
+
+    [ReadOnly]
+    public GameObject caughtItem = null;
 
     private FXManager fx;
 
@@ -43,15 +47,54 @@ public class NetCatcher : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
+        // Prepare to invoke reset when dropped in water
+        if (other.gameObject.tag == "Water" && canSplash)
+        {
+            if (!grabbable.isGrabbed && !grabbable.rb.isKinematic)
+                Invoke("Reset", 5f);
+
+            Vector3 splashPos = rimBound.position;
+            splashPos[1] = other.transform.position.y;
+
+            fx.Burst(FXManager.FX.Ripple,splashPos, 1); 
+            canSplash = false;
+        }
+
+        //PhotonView view = grabbable.GetComponent<PhotonView>();
+        if (!grabbable.pv.IsMine)
+            return;
+
         if (other.gameObject.tag == "Collectable")
         {
-            var item = other.GetComponent<Item>();
-            var pv = other.GetComponent<PhotonView>();
 
-            if (pv != null)
+            if (caughtItem != null || other.transform.parent != null)
+                return;
+
+            caughtItem = other.gameObject;
+            var item = caughtItem.GetComponent<Item>();
+            var pv = caughtItem.GetComponent<PhotonView>();
+            var rb = caughtItem.GetComponent<Rigidbody>();
+            var col = caughtItem.GetComponent<Collider>();
+
+            if (rb)
+            {
+                rb.useGravity = false;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+            
+            if (col)
+            {
+                col.isTrigger = true;
+            }
+
+            if (pv)
             {
                 pv.RequestOwnership();
             }
+
+            caughtItem.transform.SetParent(target);
+            caughtItem.transform.localPosition = Vector3.zero;
 
             // Set the owner of the item
             if (item)
@@ -71,15 +114,6 @@ public class NetCatcher : MonoBehaviour
                 Debug.Log("No item component found.");
             }
         }
-
-        // Prepare to invoke reset when dropped in water
-        if (other.gameObject.tag == "Water")
-        {
-            if (!grabbable.isGrabbed && !grabbable.rb.isKinematic)
-                Invoke("Reset", 5f);
-
-            fx.Burst(FXManager.FX.Ripple, rimBound.position, 1); 
-        }
     }
 
     private void Reset() 
@@ -94,7 +128,53 @@ public class NetCatcher : MonoBehaviour
         transform.rotation = startRot;
     }
 
-    private void OnTriggerStay(Collider other) 
+    private void Update() 
+    {
+        if (!grabbable.pv.IsMine)
+            return;
+
+        if (caughtItem != null)
+        {
+            if (!caughtItem.gameObject.activeSelf)
+            {
+                caughtItem.transform.SetParent(null);
+                caughtItem = null;
+                return;
+            }
+
+            if (caughtItem.transform.parent == null)
+            {
+                caughtItem.transform.parent = transform;
+                caughtItem.transform.localPosition = Vector3.zero;
+            }
+
+            // fall out of net
+            if (rimBound.position.y - netBound.position.y < linearLimit)
+            {
+                caughtItem.transform.SetParent(null);
+
+
+                var rb = caughtItem.GetComponent<Rigidbody>();
+
+                if (rb)
+                {
+                    rb.useGravity = true;
+                }
+
+                var col = caughtItem.GetComponent<Collider>();
+
+                if (col)
+                {
+                    col.isTrigger = false;
+                }
+                
+                caughtItem = null;
+            }
+        }
+
+    }
+
+    /*private void OnTriggerStay(Collider other) 
     {
         //Instead of comparing rotation with Quaternions, the net is checking a linear ratio between two tranforms located at the net end and the rim end. 
         //By comparing the difference in y postions, the code can determine if the net is in a "dipping up" or "dipping down" position 
@@ -105,10 +185,25 @@ public class NetCatcher : MonoBehaviour
             other.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
             other.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, 0f); 
         }
-    }
+    }*/
 
      private void OnTriggerExit(Collider other)
     {
+
+        if (other.gameObject.tag == "Water" && !canSplash)
+        {
+            Vector3 splashPos = rimBound.position;
+            splashPos[1] = other.transform.position.y;
+
+            fx.Burst(FXManager.FX.Splash, splashPos, 1); 
+            canSplash = false;
+        }
+
+        if (!RiverManager.instance.isHost)
+        {
+            return;
+        }
+
         if (other.gameObject.tag == "Collectable")
         {
             var pv = other.GetComponent<PhotonView>();
@@ -119,9 +214,6 @@ public class NetCatcher : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag == "Water")
-        {
-            fx.Burst(FXManager.FX.Splash, rimBound.position, 1); 
-        }
+
     }
 }

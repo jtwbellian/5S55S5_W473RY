@@ -285,6 +285,7 @@ MonoBehaviour:
   target: {fileID: 4094242393675976125}
   rimBound: {fileID: 4325775838579271395}
   netBound: {fileID: 2193303416532786117}
+  caughtItem: {fileID: 0}
 --- !u!114 &4752641682957808781
 MonoBehaviour:
   m_ObjectHideFlags: 0

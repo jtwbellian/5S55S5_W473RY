@@ -47,5 +47,6 @@ MonoBehaviour:
   - MoveTo
   - SetHeld
   - Gravity
+  - Take
   DisableAutoOpenWizard: 1
   ShowSettings: 1
