@@ -22,8 +22,8 @@ public class CollectFX : MonoBehaviour
             FXManager.GetInstance().Burst(FXManager.FX.Confetti1, target.position, 1);
             FXManager.GetInstance().Burst(FXManager.FX.Confetti2, target.position, 15); 
 
-            if (rm.isHost)
-            {
+           // if (rm.isHost)
+           // {
                 var pa = other.gameObject.GetComponent<PhotonActor>();
 
                 if (pa.transform.parent != null)
@@ -62,7 +62,7 @@ public class CollectFX : MonoBehaviour
                 }
 
                 item.owner = -1;
-            }
+           // }
 
             //Destroy(other.gameObject); 
 

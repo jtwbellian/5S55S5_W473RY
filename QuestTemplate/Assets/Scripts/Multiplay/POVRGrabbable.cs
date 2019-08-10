@@ -70,8 +70,7 @@ public class POVRGrabbable : OVRGrabbable
         if (isHeld)
         {
             m_grabbedBy.ForceRelease(this);
+            pv.TransferOwnership(0);
         }
     }
-    
-
 }

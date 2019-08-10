@@ -135,7 +135,7 @@ public class NetCatcher : MonoBehaviour
 
         if (caughtItem != null)
         {
-            if (!caughtItem.gameObject.activeSelf)
+            if (!caughtItem.gameObject.activeSelf) // If still holding and object disabled
             {
                 caughtItem.transform.SetParent(null);
                 caughtItem = null;
@@ -169,6 +169,13 @@ public class NetCatcher : MonoBehaviour
                 }
                 
                 caughtItem = null;
+
+                var pv = caughtItem.GetComponent<PhotonView>();
+
+                if (pv != null)
+                {
+                    pv.TransferOwnership(0);
+                }
             }
         }
 
@@ -199,10 +206,6 @@ public class NetCatcher : MonoBehaviour
             canSplash = false;
         }
 
-        if (!RiverManager.instance.isHost)
-        {
-            return;
-        }
 
         if (other.gameObject.tag == "Collectable")
         {
