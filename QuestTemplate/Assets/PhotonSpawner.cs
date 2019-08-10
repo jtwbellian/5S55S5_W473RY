@@ -118,7 +118,7 @@ public class PhotonSpawner : MonoBehaviour
                 // Set this fish active
                 pa.DisableChildObject(true);
                 pa.SetPositionAndRotation(position, transform.rotation);
-                pa.SetGravity(true);
+                pa.SetForces(true, Vector3.zero, Vector3.zero);
 
                 return;
             }
@@ -138,8 +138,6 @@ public class PhotonSpawner : MonoBehaviour
             }
 
             yield return new WaitForSeconds(spawnDelay);
-
         }
     }
-
 }

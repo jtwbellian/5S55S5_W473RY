@@ -8,6 +8,7 @@ public class Rudder : POVRGrabbable
 {
     public Transform targetObject;
     public Vector3 localStartPos;
+    public Vector3 startPos;
     public Quaternion localStartRot;
     public GameObject leftHand;
     public GameObject rightHand;
@@ -22,6 +23,7 @@ public class Rudder : POVRGrabbable
     // Start is called before the first frame update
     void Start()
     {
+        startPos = transform.position;
         localStartPos = transform.localPosition;
         localStartRot = transform.localRotation;
         base.Start();
@@ -38,7 +40,6 @@ public class Rudder : POVRGrabbable
            Vector3  newTarget = new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z);
            targetObject.transform.LookAt(newTarget);
            //Debug.Log("Rudder Euler: " + targetObject.transform.rotation.eulerAngles);
-
             //RiverManager.instance.AddForceToRudder(Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 10f);
         }
         else if (targetObject.transform.rotation != Quaternion.identity)
@@ -74,14 +75,22 @@ public class Rudder : POVRGrabbable
         {
             leftHand.SetActive(true);
         }
-        //pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
+
+        // Request ownership
+        if (pv != null)
+        {
+            pv.RequestOwnership();
+        }
+
+        pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
+        
     }
 
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
-        base.GrabEnd(Vector3.zero, Vector3.zero);  
+        transform.position = startPos;
 
-        //isHeld = false;
+        base.GrabEnd(Vector3.zero, Vector3.zero);  
 
         transform.SetParent(targetObject);
         transform.localPosition = localStartPos;
@@ -89,6 +98,7 @@ public class Rudder : POVRGrabbable
 
         leftHand.SetActive(false);
         rightHand.SetActive(false);
-        //pv.RPC("SetHeld", RpcTarget.AllBuffered, false);
+
+        pv.RPC("SetHeld", RpcTarget.AllBuffered, false);
     }
 }

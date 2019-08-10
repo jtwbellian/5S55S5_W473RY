@@ -8,10 +8,12 @@ public class Log : MonoBehaviour
     private FXManager fx;
     private SoundManager sm;
     public AudioClip[] clips;
+    private PhotonActor pa;
 
     // Start is called before the first frame update
     void Start()
     {
+        pa = GetComponent<PhotonActor>();
         fx = FXManager.GetInstance();
         sm = SoundManager.instance;
 
@@ -29,11 +31,12 @@ public class Log : MonoBehaviour
 private void OnTriggerEnter(Collider other) 
     {
 
+        if (!rm.isHost)
+            return; 
+
         // Reach end
         if (other.transform.CompareTag("Finish"))
         {
-            var pa = GetComponent<PhotonActor>();
-
             if (pa)
             {
                 pa.DisableChildObject(false);
@@ -51,18 +54,14 @@ private void OnTriggerEnter(Collider other)
             //Play Random Sound From list
             int randomIndex = Random.Range(0, clips.Length);
             sm.PlaySingle(clips[randomIndex], transform.position);
-
-            var pa = GetComponent<PhotonActor>();
-
-            if (pa)
-            {
-                pa.DisableChildObject(false);
-            }
+            pa.DisableChildObject(false);
         }
     }
 
     void OnTriggerStay(Collider other) 
     {
+        if (!rm.isHost)
+            return; 
 
         if (other.transform.CompareTag("Left"))
         {
@@ -78,8 +77,16 @@ private void OnTriggerEnter(Collider other)
     // Update is called once per frame
     void Update()
     {
-        if (rm)
+        if (rm.isHost)
         {
+            // delete after 20m behind boat
+            var behindBoatZ = (rm.boat.transform.position.z - 20f);
+            
+            if (transform.position.z < behindBoatZ)
+            {
+                pa.DisableChildObject(false);
+            }
+
             transform.Translate(rm.riverVelocity + rm.boatRightVelocity, Space.World);
         }
     }
