@@ -599,6 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2497888447222221127}
+  clip: {fileID: 8300000, guid: 5a56fe14ec0126045a86b1c56e933ce9, type: 3}
 --- !u!1 &9153522842808358265
 GameObject:
   m_ObjectHideFlags: 0

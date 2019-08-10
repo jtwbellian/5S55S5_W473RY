@@ -286,6 +286,17 @@ MonoBehaviour:
   rimBound: {fileID: 4325775838579271395}
   netBound: {fileID: 2193303416532786117}
   caughtItem: {fileID: 0}
+  enterClips:
+  - {fileID: 8300000, guid: e3fb7820f1df70647b66d195783f2826, type: 3}
+  - {fileID: 8300000, guid: b22c67c0ee92b9e42866c29063dd39a5, type: 3}
+  - {fileID: 8300000, guid: ec5b7c16eaa9b6a4abae368b2ca98634, type: 3}
+  - {fileID: 8300000, guid: 3c9e430a2052c584b9f107896d858fc9, type: 3}
+  exitClips:
+  - {fileID: 8300000, guid: b2118277fac8dca44a4e19ddfb34ee0b, type: 3}
+  - {fileID: 8300000, guid: 9d1ebd3bdaa207f449987be5e49493a8, type: 3}
+  - {fileID: 8300000, guid: 220dd1a1dea3d334ba2c69e4dd8e6867, type: 3}
+  - {fileID: 8300000, guid: 4f592ab90cd1a284ca1aea37492c2c34, type: 3}
+  - {fileID: 8300000, guid: 1606630697ea3c44784c786630d1616d, type: 3}
 --- !u!114 &4752641682957808781
 MonoBehaviour:
   m_ObjectHideFlags: 0

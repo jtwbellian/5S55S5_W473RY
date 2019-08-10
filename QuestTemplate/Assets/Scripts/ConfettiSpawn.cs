@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ConfettiSpawn : MonoBehaviour
 {
+    public AudioClip clip;
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -12,6 +13,8 @@ public class ConfettiSpawn : MonoBehaviour
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, transform.position + Vector3.right * 1.8f, 15); 
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, transform.position + Vector3.left * 1.8f, 15); 
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, transform.position, 15); 
+
+        SoundManager.instance.RandomizeSFX(clip);
         }
     }
 }
