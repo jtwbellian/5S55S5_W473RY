@@ -12,6 +12,8 @@ public class Fish : MonoBehaviour
     private FXManager fx;
     [ReadOnly]
     public bool canSwim = true;
+    private SoundManager sm;
+    public AudioClip[] clips;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class Fish : MonoBehaviour
         rigidbod.freezeRotation = true;
         rigidbod.useGravity = true;
         fx = FXManager.GetInstance();
+        sm = SoundManager.instance;
 
         if (!fx)
         {
@@ -67,6 +70,10 @@ public class Fish : MonoBehaviour
                 fx.Burst(FXManager.FX.Splash, transform.position, 5);
                 fx.Burst(FXManager.FX.Ripple, transform.position -  Vector3.up * 0.3f, 1);
                 fx.Burst(FXManager.FX.Spray, transform.position, 2);
+
+                int randomIndex = Random.Range(0, clips.Length);
+                sm.PlaySingle(clips[randomIndex], transform.position);
+
                 canSwim = true;
                 //rigidbod.freezeRotation = true;
                 transform.rotation = Quaternion.identity;

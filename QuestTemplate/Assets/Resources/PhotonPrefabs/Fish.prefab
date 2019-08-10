@@ -374,6 +374,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSwim: 1
+  clips:
+  - {fileID: 8300000, guid: 220dd1a1dea3d334ba2c69e4dd8e6867, type: 3}
+  - {fileID: 8300000, guid: 9d1ebd3bdaa207f449987be5e49493a8, type: 3}
+  - {fileID: 8300000, guid: b2118277fac8dca44a4e19ddfb34ee0b, type: 3}
+  - {fileID: 8300000, guid: 4f592ab90cd1a284ca1aea37492c2c34, type: 3}
+  - {fileID: 8300000, guid: 1606630697ea3c44784c786630d1616d, type: 3}
 --- !u!54 &2716554891089569604
 Rigidbody:
   m_ObjectHideFlags: 0
