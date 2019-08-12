@@ -80,10 +80,8 @@ public class Rudder : POVRGrabbable
         if (pv != null)
         {
             pv.RequestOwnership();
+            pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
         }
-
-        pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
-        
     }
 
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)

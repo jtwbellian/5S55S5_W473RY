@@ -285,6 +285,7 @@ MonoBehaviour:
   target: {fileID: 4094242393675976125}
   rimBound: {fileID: 4325775838579271395}
   netBound: {fileID: 2193303416532786117}
+  grabbable: {fileID: 4752641682957808781}
   caughtItem: {fileID: 0}
   enterClips:
   - {fileID: 8300000, guid: e3fb7820f1df70647b66d195783f2826, type: 3}
@@ -316,7 +317,7 @@ MonoBehaviour:
   m_grabPoints:
   - {fileID: 5088813188474482848}
   pv: {fileID: 3471368090196783554}
-  rb: {fileID: 0}
+  rb: {fileID: 5088813188474482857}
   isHeld: 0
   hidesHands: 0
 --- !u!1 &4500461559037166912

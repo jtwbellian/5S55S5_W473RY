@@ -18,6 +18,7 @@ public class PhotonActor : MonoBehaviour
     void RemoveBlock(int BlockToRemove, bool setActive)
     {
         PhotonView Disable = PhotonView.Find(BlockToRemove);
+        Disable.transform.SetParent(null);
         Disable.transform.gameObject.SetActive(setActive);
     }
 
@@ -28,49 +29,22 @@ public class PhotonActor : MonoBehaviour
     }
 
     [PunRPC]
-    void ChildTo(int block, Vector3 pos, Quaternion rot)
+    void ForcesTo(bool grav, Vector3 vel, Vector3 angVel)
     {
-        if (block == -1)
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb)
         {
-            transform.SetParent(null);
-            return;
+            rb.velocity = vel;
+            rb.angularVelocity = angVel;
+            rb.useGravity = grav;
         }
-
-        PhotonView parent = PhotonView.Find(block);
-
-        transform.SetParent(parent.transform);
-        transform.localPosition = pos;
-        transform.localRotation = rot;
-
-        Debug.Log("Chidling to block " + block.ToString() + " With offset " + pos.ToString());
-    }
-
-    [PunRPC]
-    void ForcesTo(bool active, Vector3 velocity, Vector3 angVelocity)
-    {
-       var rb = transform.GetComponentInChildren<Rigidbody>();
-       
-       if (rb)
-       {
-            rb.useGravity = active;
-            rb.velocity = velocity;
-            rb.angularVelocity = angVelocity;
-       }
     }
 
 
-    public void ChildToPhotonTransform(Transform obj, Vector3 pos, Quaternion rot)
+    public void SetForces(bool grav, Vector3 vel, Vector3 angVel)
     {
-        if (obj == null)
-            view.RPC("ChildTo", RpcTarget.AllBuffered, -1, pos, rot);
-        else
-            view.RPC("ChildTo", RpcTarget.AllBuffered, obj.GetComponent<PhotonView>().ViewID, pos, rot);
-    }
-
-    public void SetForces(bool active, Vector3 velocity, Vector3 angVelocity)
-    {
-        view.RPC("ForcesTo", RpcTarget.AllBuffered, active, velocity, angVelocity);
-        Debug.Log("Forces set to: " + (active == true ? "Gravity: ON" : "Gravity: OFF") + ", velocity: " + velocity.ToString());
+        view.RPC("ForcesTo", RpcTarget.AllBuffered, grav, vel, angVel);
     }
 
     public void DisableChildObject(bool setActive)

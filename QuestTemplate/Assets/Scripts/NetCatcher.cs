@@ -15,11 +15,12 @@ public class NetCatcher : MonoBehaviour
     private SoundManager sm;
 
     // Added reference to this objects grabbable component to get grabbable info
-    private POVRGrabbable grabbable;
+    public POVRGrabbable grabbable;
     private Vector3 startPos;
     private Quaternion startRot;
     //private bool canSplash;               //Testing a better method to detect enter water, look for splashCounter
     private int splashCounter = 0;
+    private PhotonView view;
 
     [ReadOnly]
     public GameObject caughtItem = null;
@@ -34,7 +35,11 @@ public class NetCatcher : MonoBehaviour
         fx = FXManager.GetInstance();
         rm = RiverManager.instance;
         sm = SoundManager.instance;
-        grabbable = GetComponent<POVRGrabbable>();
+
+        if (grabbable == null)
+            grabbable = GetComponent<POVRGrabbable>();
+
+        view = GetComponent<PhotonView>();
 
         if (!grabbable)
         {
@@ -65,7 +70,6 @@ public class NetCatcher : MonoBehaviour
             {
                 Debug.Log("Splash counter is " + splashCounter);
 
-
                 Vector3 splashPos = rimBound.position;
                 splashPos[1] = other.transform.position.y;
 
@@ -78,6 +82,10 @@ public class NetCatcher : MonoBehaviour
             //canSplash = false;                    //Testing a better method to detect enter water
         }
 
+
+        if (!view.IsMine) // Only do this next part if the view is mine
+            return;
+
         if (other.gameObject.tag == "Collectable")
         {
             if (caughtItem != null || other.transform.parent != null)
@@ -85,28 +93,17 @@ public class NetCatcher : MonoBehaviour
 
             caughtItem = other.gameObject;
             var item = caughtItem.GetComponent<Item>();
-            //var pv = caughtItem.GetComponent<PhotonView>();
-            var rb = caughtItem.GetComponent<Rigidbody>();
-            var col = caughtItem.GetComponent<Collider>();
-            var pa = caughtItem.GetComponent<PhotonActor>();
-            var fish = caughtItem.GetComponent<Fish>();
+            var fish = caughtItem.GetComponent<PhotonFish>();
 
             if (fish)
             {
-                fish.canSwim = false;
-                fish.collider.isTrigger = true;
-            }
-            
-            if (pa)
-            {
-                if (grabbable.pv.IsMine && pa.view != null)
+                if(!fish.isHeld)
                 {
-                    pa.view.RequestOwnership();
-                    pa.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
-                    pa.SetForces(false, Vector3.zero, Vector3.zero);
+                    fish.view.TransferOwnership(view.ViewID);
+                    fish.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
                 }
             }
-
+            
             //caughtItem.transform.SetParent(target);
             //caughtItem.transform.localPosition = Vector3.zero;
 
@@ -122,10 +119,6 @@ public class NetCatcher : MonoBehaviour
                 {
                     item.owner = 1;
                 }
-            }
-            else
-            {
-                Debug.Log("No item component found.");
             }
         }
     }
@@ -144,6 +137,9 @@ public class NetCatcher : MonoBehaviour
 
     private void Update() 
     {
+        if (!view.IsMine)
+            return;
+
         if (caughtItem != null)
         {
             if (!caughtItem.gameObject.activeSelf) // If still holding and object disabled
@@ -156,29 +152,17 @@ public class NetCatcher : MonoBehaviour
             if (caughtItem.transform.parent == null)
             {
                 caughtItem.transform.parent = transform;
-                caughtItem.transform.localPosition = Vector3.zero;
+                caughtItem.transform.localPosition = target.localPosition;
             }
 
             // fall out of net
             if (rimBound.position.y - netBound.position.y < linearLimit)
             {
-                var pa = caughtItem.GetComponent<PhotonActor>();
+                var fish = caughtItem.GetComponent<PhotonFish>();
 
-                if (pa)
-                {                    
-                    if (pa.view != null)
-                    {
-                        pa.view.TransferOwnership(0);
-                        pa.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
-                        pa.SetForces(true, Vector3.zero, Vector3.zero);
-                    }
-                }
-    
-                var col = caughtItem.GetComponent<Collider>();
-
-                if (col)
+                if (fish)
                 {
-                    col.isTrigger = false;
+                    fish.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
                 }
                 
                 caughtItem = null;
@@ -224,11 +208,11 @@ public class NetCatcher : MonoBehaviour
         if (other.gameObject.tag == "Collectable")
         {
             /*
-             var pv = other.GetComponent<PhotonView>();
+             var view = other.GetComponent<PhotonView>();
 
-            if (pv != null)
+            if (view != null)
             {
-                pv.TransferOwnership(0);
+                view.TransferOwnership(0);
             }
             */
         }

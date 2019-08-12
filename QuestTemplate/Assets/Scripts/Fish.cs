@@ -40,7 +40,7 @@ public class Fish : MonoBehaviour
 
     void Update()
     {
-        if (canSwim && transform.parent == null)
+        if (canSwim && pa.view.IsMine)
         {
             //rigidbod.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
@@ -52,9 +52,6 @@ public class Fish : MonoBehaviour
             {
                 pa.DisableChildObject(false);
             }
-
-            if (transform.parent != null)
-                canSwim = false;
         }
         else if (animator.GetBool("Flop") == false)
         {
@@ -65,15 +62,16 @@ public class Fish : MonoBehaviour
     //Splash into Water
     private void OnTriggerEnter(Collider other) 
     {
+
         // Reach end
-        if ((other.transform.CompareTag("Finish") || other.transform.CompareTag("Right") || other.transform.CompareTag("Left")) && transform.parent == null)
+        if (other.transform.CompareTag("Finish") || other.transform.CompareTag("Right") || other.transform.CompareTag("Left"))
         {
             //rigidbod.useGravity = true;
             pa.DisableChildObject(false);
         }
 
 
-        if (other.gameObject.tag=="Water" && transform.parent == null)
+        if (other.gameObject.tag == "Water")
         {
             fx.Burst(FXManager.FX.Splash, transform.position, 5);
             fx.Burst(FXManager.FX.Ripple, transform.position -  Vector3.up * 0.3f, 1);
@@ -87,6 +85,12 @@ public class Fish : MonoBehaviour
                 transform.rotation = Quaternion.identity;
             }
             */
+
+            if (pa.view.IsMine && transform.parent == null)
+            {
+                canSwim = true;
+                transform.rotation = Quaternion.identity;
+            }
 
             if (animator.GetBool("Flop") == true)
                 {
@@ -122,12 +126,17 @@ public class Fish : MonoBehaviour
 
    private void OnTriggerExit(Collider other) 
     {
-        if (other.gameObject.tag=="Water") //&& transform.parent == null)
+
+        if (other.gameObject.tag == "Water")
         {
             //rigidbod.useGravity = true;
             //rigidbod.freezeRotation = true;
             animator.SetBool("Flop", true);  
-            canSwim = false;
+
+            if (pa.view.IsMine && transform.parent == null)
+            {
+                canSwim = false;
+            }
         } 
     }
 

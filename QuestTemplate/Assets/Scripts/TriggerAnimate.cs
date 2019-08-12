@@ -16,22 +16,31 @@ public class TriggerAnimate : MonoBehaviour
     {
         if (Other.gameObject.transform.root.tag == "Player")
         {
-            
-                if (invertActivation==false)
+            if (invertActivation == false)
                 animator.SetBool(animgraphBoolName, true);
-                if (invertActivation==true)
+
+            if (invertActivation == true)
                 animator.SetBool(animgraphBoolName, false);
+
+            Invoke("Disable", 1.3f);
         }
     }
+
+    void Disable()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+
     private void OnTriggerExit(Collider Other)
     {
         if (Other.gameObject.transform.root.tag == "Player")
         {
-            if (persistAfterDeparture==false)
+            if (persistAfterDeparture == false)
 
-                if (invertActivation==false)
+                if (invertActivation == false)
                     animator.SetBool(animgraphBoolName, false);
-                if (invertActivation==true)
+
+                if (invertActivation == true)
                     animator.SetBool(animgraphBoolName, true);
         }
     }
