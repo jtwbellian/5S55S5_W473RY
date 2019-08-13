@@ -45,7 +45,6 @@ public class PhotonFish : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-
         if (other.gameObject.tag == "Water")
         {
             fx.Burst(FXManager.FX.Splash, transform.position, 5);

@@ -79,7 +79,7 @@ public class PhotonFruit : MonoBehaviour
         collider.isTrigger = true;
         isHeld = true;
 
-        Debug.Log("Chidling to block " + block.ToString() + " With offset " + pos.ToString());
+        Debug.Log("Childing to block " + block.ToString() + " With offset " + pos.ToString());
     }
 
 

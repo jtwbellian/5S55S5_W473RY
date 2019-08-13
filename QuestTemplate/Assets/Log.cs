@@ -28,7 +28,7 @@ public class Log : MonoBehaviour
             Debug.Log("River Manager not found.");
     }
 
-private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
 
         if (!rm.isHost)
@@ -43,7 +43,7 @@ private void OnTriggerEnter(Collider other)
             }
         }
 
-        if (other.gameObject.tag=="Boat")
+        if (other.gameObject.tag == "Boat")
         {
             fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
             fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);

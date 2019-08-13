@@ -309,6 +309,11 @@ public class RiverManager : MonoBehaviour
     //[PunRPC]
     public void AddSeg()
     {
+
+        if (currentSegment >= POOL_SIZE - 1)
+            return;
+
+        
         riverPool[currentSegment].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
 
         RiverSegment rs = riverPool[currentSegment].GetComponent<RiverSegment>();

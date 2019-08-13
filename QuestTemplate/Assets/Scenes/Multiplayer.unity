@@ -1803,6 +1803,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoatController
       objectReference: {fileID: 0}
+    - target: {fileID: 4566765753019156629, guid: 9e1528b60eb952e45b40d1e370a3dc31,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boat
+      objectReference: {fileID: 0}
     - target: {fileID: 4566765753019156632, guid: 9e1528b60eb952e45b40d1e370a3dc31,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1857,6 +1862,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566765753019156631, guid: 9e1528b60eb952e45b40d1e370a3dc31,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 4.079454
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566765753019156631, guid: 9e1528b60eb952e45b40d1e370a3dc31,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.4898417
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566765753019156631, guid: 9e1528b60eb952e45b40d1e370a3dc31,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.1702445
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566765753019156631, guid: 9e1528b60eb952e45b40d1e370a3dc31,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.018465638
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e1528b60eb952e45b40d1e370a3dc31, type: 3}
