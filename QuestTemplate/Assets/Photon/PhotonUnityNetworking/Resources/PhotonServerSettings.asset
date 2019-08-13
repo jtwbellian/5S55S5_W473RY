@@ -51,5 +51,6 @@ MonoBehaviour:
   - MoveLocalTo
   - ChildTo
   - ForcesTo
+  - RPC_MoveRudder
   DisableAutoOpenWizard: 1
   ShowSettings: 1

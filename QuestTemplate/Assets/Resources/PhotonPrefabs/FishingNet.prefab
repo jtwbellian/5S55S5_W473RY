@@ -298,6 +298,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 220dd1a1dea3d334ba2c69e4dd8e6867, type: 3}
   - {fileID: 8300000, guid: 4f592ab90cd1a284ca1aea37492c2c34, type: 3}
   - {fileID: 8300000, guid: 1606630697ea3c44784c786630d1616d, type: 3}
+  catchClip: {fileID: 8300000, guid: 39cd38d16e194ab47ae7ae092c5f9e07, type: 3}
 --- !u!114 &4752641682957808781
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class VRButton : MonoBehaviour
 {
     public UnityEvent OnClick;
     private bool active = false;
+    public AudioClip vibrationClip;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,16 @@ public class VRButton : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.CompareTag("Player"))
+        {
+            OVRGrabber hand = other.GetComponent<OVRGrabber>();
+
+            if (hand && vibrationClip)
+            {
+                HapticsManager.Vibrate(vibrationClip, hand.m_controller);
+            }
+
             OnClick.Invoke();
+        }
     }
     // Update is called once per frame
     void Update()

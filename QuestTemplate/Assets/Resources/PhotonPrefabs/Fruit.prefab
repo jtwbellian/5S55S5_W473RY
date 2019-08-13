@@ -241,13 +241,15 @@ GameObject:
   m_Component:
   - component: {fileID: 4917313183638975146}
   - component: {fileID: 5498421117870629998}
-  - component: {fileID: 4958148501291778461}
   - component: {fileID: 3811505920914456771}
   - component: {fileID: 7499877477978006370}
   - component: {fileID: 483407616508376555}
   - component: {fileID: 7788779518286490871}
-  - component: {fileID: -4328219808247663796}
-  - component: {fileID: 8180994810193164235}
+  - component: {fileID: 5088865873088359086}
+  - component: {fileID: 322271837139439781}
+  - component: {fileID: 2158511259907614180}
+  - component: {fileID: 4163101648936315713}
+  - component: {fileID: 4460993141835539900}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Collectable
@@ -299,24 +301,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 436181689847937642}
   m_Enabled: 1
---- !u!114 &4958148501291778461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8243442818982576313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 1
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints:
-  - {fileID: 3811505920914456771}
 --- !u!135 &3811505920914456771
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -362,10 +346,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   ObservedComponents:
   - {fileID: 7788779518286490871}
-  - {fileID: -4328219808247663796}
+  - {fileID: 5088865873088359086}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -382,10 +366,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
+  m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &-4328219808247663796
+--- !u!114 &5088865873088359086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,13 +378,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8243442818982576313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
---- !u!114 &8180994810193164235
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 2
+    InterpolateOption: 4
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 15
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 2
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
+--- !u!114 &322271837139439781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -409,6 +411,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 8243442818982576313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da8d41d5fbeaa9c42bda1d938f23b331, type: 3}
+  m_Script: {fileID: 11500000, guid: 59aa1b3aa52c027428c192886f080e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 483407616508376555}
+--- !u!114 &2158511259907614180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243442818982576313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43cf7b98c87ff3f4cb7c49303420edb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: -1
+  type: 1
+--- !u!114 &4163101648936315713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243442818982576313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bdeaa7e37ef304992d0c06c7a78b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints:
+  - {fileID: 3811505920914456771}
+  pv: {fileID: 483407616508376555}
+  rb: {fileID: 7499877477978006370}
+  isHeld: 0
+  hidesHands: 0
+--- !u!114 &4460993141835539900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243442818982576313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e5157cc3ad1704fb2834fa2b34e23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: {fileID: 322271837139439781}
+  view: {fileID: 483407616508376555}
+  rigidBody: {fileID: 7499877477978006370}
+  isHeld: 0
+  collider: {fileID: 3811505920914456771}
