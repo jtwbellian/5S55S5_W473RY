@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 6611194934393970123}
   - component: {fileID: 5064704462540922051}
   - component: {fileID: 7711044493240580811}
+  - component: {fileID: 6631984600801252216}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Collectable
@@ -373,6 +374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ced754d1deb7c4884e3ba924da9966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 220dd1a1dea3d334ba2c69e4dd8e6867, type: 3}
+  - {fileID: 8300000, guid: 9d1ebd3bdaa207f449987be5e49493a8, type: 3}
+  - {fileID: 8300000, guid: b2118277fac8dca44a4e19ddfb34ee0b, type: 3}
+  - {fileID: 8300000, guid: 4f592ab90cd1a284ca1aea37492c2c34, type: 3}
+  - {fileID: 8300000, guid: 1606630697ea3c44784c786630d1616d, type: 3}
   canSwim: 1
   collider: {fileID: 0}
 --- !u!54 &2716554891089569604
@@ -504,6 +511,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: -1
   type: 0
+--- !u!114 &6631984600801252216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418866648439282035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b713b789d69c6874381e01cbf622b12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 060ea1e958e012d469354afc57029efa, type: 3}
+  - {fileID: 8300000, guid: 790e72fe824111a4f8945bf0e92addc4, type: 3}
+  - {fileID: 8300000, guid: d02bcbddc2527db489a6ef3167c0aae6, type: 3}
 --- !u!1 &7224060489698376430
 GameObject:
   m_ObjectHideFlags: 0

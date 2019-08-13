@@ -11,6 +11,8 @@ public class Fish : MonoBehaviour
     private Rigidbody rigidbod;
     private float speed = 1.2f;
     private FXManager fx;
+    private SoundManager sm;
+    public AudioClip[] clips;
     [ReadOnly]
     public bool canSwim = true;
     public Collider collider;
@@ -20,6 +22,7 @@ public class Fish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {  
+        sm = SoundManager.instance;
         rm = RiverManager.instance;
         pa = GetComponent<PhotonActor>();
         rigidbod = GetComponent<Rigidbody>();
@@ -76,7 +79,8 @@ public class Fish : MonoBehaviour
             fx.Burst(FXManager.FX.Splash, transform.position, 5);
             fx.Burst(FXManager.FX.Ripple, transform.position -  Vector3.up * 0.3f, 1);
             fx.Burst(FXManager.FX.Spray, transform.position, 2);
-
+            int randomIndex = Random.Range(0, clips.Length);
+            sm.PlaySingle(clips[randomIndex], transform.position);
             /*
             if (pa.view.IsMine)
             {
