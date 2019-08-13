@@ -70,8 +70,11 @@ public class POVRGrabbable : OVRGrabbable
         if (isHeld)
         {
             m_grabbedBy.ForceRelease(this);
+
+            if (pv.IsMine && PhotonNetwork.IsMasterClient)
+                pv.TransferOwnership(1);
+            else
+                pv.TransferOwnership(0);
         }
     }
-    
-
 }

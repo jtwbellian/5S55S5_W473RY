@@ -282,7 +282,6 @@ GameObject:
   - component: {fileID: 8020696452781419360}
   - component: {fileID: 127577622817343002}
   - component: {fileID: 7438999337084894628}
-  - component: {fileID: 5345554101926888269}
   - component: {fileID: 2716554891089569604}
   - component: {fileID: 628016469302557551}
   - component: {fileID: 6057284628155417883}
@@ -290,8 +289,10 @@ GameObject:
   - component: {fileID: 6611194934393970123}
   - component: {fileID: 5064704462540922051}
   - component: {fileID: 7711044493240580811}
+  - component: {fileID: 7101100029818466379}
+  - component: {fileID: 2735260381042440377}
   m_Layer: 0
-  m_Name: Fish
+  m_Name: PhotonFish
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,20 +362,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6877639171722676477}
   m_Enabled: 1
---- !u!114 &5345554101926888269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6418866648439282035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ced754d1deb7c4884e3ba924da9966, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canSwim: 1
-  collider: {fileID: 0}
 --- !u!54 &2716554891089569604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -425,6 +412,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 6611194934393970123}
   - {fileID: 98569138113029814}
+  - {fileID: 2735260381042440377}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -459,8 +447,8 @@ MonoBehaviour:
   m_PositionModel:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 4
+    TeleportIfDistanceGreaterThan: 1
+    InterpolateOption: 3
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 5
     ExtrapolateOption: 0
@@ -504,6 +492,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: -1
   type: 0
+--- !u!114 &7101100029818466379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418866648439282035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf4faa6cf23a204895ad717ac235718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: {fileID: 5064704462540922051}
+  view: {fileID: 6057284628155417883}
+  rigidBody: {fileID: 2716554891089569604}
+  isHeld: 0
+  collider: {fileID: 628016469302557551}
+  canSwim: 1
+--- !u!114 &2735260381042440377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418866648439282035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: Flop
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &7224060489698376430
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 {
 
     public static PhotonLobby lobby;
+    private bool gameStarting = false;
 
     public GameObject PlayButton;
 
@@ -63,9 +64,12 @@ private void Awake() {
 
     public void OnPlayButtonPressed()
     {
-        PlayButton.SetActive(false);
+        if (gameStarting)
+            return;
+        //PlayButton.SetActive(false);
         CancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
+        gameStarting = true;
     }
 
 public void OnCancelButtonPressed()

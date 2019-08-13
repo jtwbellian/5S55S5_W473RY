@@ -21,7 +21,7 @@ public class RiverManager : MonoBehaviour
 
     #region RiverGeneration
 
-    private const int POOL_SIZE = 25;
+    private const int POOL_SIZE = 5;
     private List<GameObject> riverPool = new List<GameObject>();
     public GameObject [] riverTypes;
     public int numSegments = 5;
@@ -62,7 +62,7 @@ public class RiverManager : MonoBehaviour
     public Transform oarSpawnA, oarSpawnB;
     public bool gameOver = false;
 
-    public GameObject startButton, waitMessage;
+    public GameObject startButton, waitMessage, startCanvas;
 
     #region singleton implementation
 
@@ -363,10 +363,7 @@ public class RiverManager : MonoBehaviour
     {
         var fx = FXManager.GetInstance();
 
-        fx.Burst(FXManager.FX.LogSplit, startButton.transform.position, 4);
-        //fx.Burst(FXManager.FX., startButton.transform.position, 2);
-
-        startButton.SetActive(false);
+        startCanvas.SetActive(false);
         riverMove = true;
 
         if (PhotonNetwork.IsMasterClient)

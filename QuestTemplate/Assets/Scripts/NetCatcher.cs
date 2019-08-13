@@ -15,11 +15,12 @@ public class NetCatcher : MonoBehaviour
     private SoundManager sm;
 
     // Added reference to this objects grabbable component to get grabbable info
-    private POVRGrabbable grabbable;
+    public POVRGrabbable grabbable;
     private Vector3 startPos;
     private Quaternion startRot;
     //private bool canSplash;               //Testing a better method to detect enter water, look for splashCounter
-    private int splashCounter =0;
+    private int splashCounter = 0;
+    private PhotonView view;
 
     [ReadOnly]
     public GameObject caughtItem = null;
@@ -34,7 +35,11 @@ public class NetCatcher : MonoBehaviour
         fx = FXManager.GetInstance();
         rm = RiverManager.instance;
         sm = SoundManager.instance;
-        grabbable = GetComponent<POVRGrabbable>();
+
+        if (grabbable == null)
+            grabbable = GetComponent<POVRGrabbable>();
+
+        view = GetComponent<PhotonView>();
 
         if (!grabbable)
         {
@@ -62,7 +67,9 @@ public class NetCatcher : MonoBehaviour
                 Invoke("Reset", 5f);
             
             if (splashCounter == 1 )                //Testing a better method to detect enter water
-                {
+            {
+                Debug.Log("Splash counter is " + splashCounter);
+
                 Vector3 splashPos = rimBound.position;
                 splashPos[1] = other.transform.position.y;
 
@@ -71,51 +78,40 @@ public class NetCatcher : MonoBehaviour
                 //play sound effects
                 int randomIndex = Random.Range(0, enterClips.Length);
                 sm.PlaySingle(enterClips[randomIndex], transform.position);
-                }
+            }
             //canSplash = false;                    //Testing a better method to detect enter water
         }
 
-        //PhotonView view = grabbable.GetComponent<PhotonView>();
-        if (!grabbable.pv.IsMine)
+
+        if (!view.IsMine) // Only do this next part if the view is mine
             return;
 
         if (other.gameObject.tag == "Collectable")
         {
-
             if (caughtItem != null || other.transform.parent != null)
                 return;
 
             caughtItem = other.gameObject;
             var item = caughtItem.GetComponent<Item>();
-            var pv = caughtItem.GetComponent<PhotonView>();
-            var rb = caughtItem.GetComponent<Rigidbody>();
-            var col = caughtItem.GetComponent<Collider>();
+            var fish = caughtItem.GetComponent<PhotonFish>();
 
-            if (rb)
+            if (fish)
             {
-                rb.useGravity = false;
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
+                if(!fish.isHeld)
+                {
+                    fish.view.TransferOwnership(view.ViewID);
+                    fish.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
+                }
             }
             
-            if (col)
-            {
-                col.isTrigger = true;
-            }
-
-            if (pv)
-            {
-                pv.RequestOwnership();
-            }
-
-            caughtItem.transform.SetParent(target);
-            caughtItem.transform.localPosition = Vector3.zero;
+            //caughtItem.transform.SetParent(target);
+            //caughtItem.transform.localPosition = Vector3.zero;
 
             // Set the owner of the item
             if (item)
             {
-                if ((rm.isHost && transform.root.GetComponent<PandaController>())
-                    || !rm.isHost && !transform.root.GetComponent<PandaController>())
+                if (rm.isHost)//((rm.isHost && transform.root.GetComponent<PandaController>())
+                    //|| !rm.isHost && !transform.root.GetComponent<PandaController>())
                 {
                     item.owner = 0;
                 }
@@ -123,10 +119,6 @@ public class NetCatcher : MonoBehaviour
                 {
                     item.owner = 1;
                 }
-            }
-            else
-            {
-                Debug.Log("No item component found.");
             }
         }
     }
@@ -145,12 +137,12 @@ public class NetCatcher : MonoBehaviour
 
     private void Update() 
     {
-        if (!grabbable.pv.IsMine)
+        if (!view.IsMine)
             return;
 
         if (caughtItem != null)
         {
-            if (!caughtItem.gameObject.activeSelf)
+            if (!caughtItem.gameObject.activeSelf) // If still holding and object disabled
             {
                 caughtItem.transform.SetParent(null);
                 caughtItem = null;
@@ -160,33 +152,22 @@ public class NetCatcher : MonoBehaviour
             if (caughtItem.transform.parent == null)
             {
                 caughtItem.transform.parent = transform;
-                caughtItem.transform.localPosition = Vector3.zero;
+                caughtItem.transform.localPosition = target.localPosition;
             }
 
             // fall out of net
             if (rimBound.position.y - netBound.position.y < linearLimit)
             {
-                caughtItem.transform.SetParent(null);
+                var fish = caughtItem.GetComponent<PhotonFish>();
 
-
-                var rb = caughtItem.GetComponent<Rigidbody>();
-
-                if (rb)
+                if (fish)
                 {
-                    rb.useGravity = true;
-                }
-
-                var col = caughtItem.GetComponent<Collider>();
-
-                if (col)
-                {
-                    col.isTrigger = false;
+                    fish.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
                 }
                 
                 caughtItem = null;
             }
         }
-
     }
 
     /*private void OnTriggerStay(Collider other) 
@@ -207,10 +188,10 @@ public class NetCatcher : MonoBehaviour
 
         if (other.gameObject.tag == "Water")          //Testing a better method to detect enter water
         {
-            splashCounter -=1;
+            splashCounter -= 1;
 
             if (splashCounter == 0)
-                {
+            {
                 Vector3 splashPos = rimBound.position;
                 splashPos[1] = other.transform.position.y;
 
@@ -219,25 +200,22 @@ public class NetCatcher : MonoBehaviour
                 //play sound effects
                 int randomIndex = Random.Range(0, exitClips.Length);
                 sm.PlaySingle(exitClips[randomIndex], transform.position);
-                }
+            }
             //canSplash = true;                     //Testing a better method to detect enter water
         }
 
-        if (!RiverManager.instance.isHost)
-        {
-            return;
-        }
 
         if (other.gameObject.tag == "Collectable")
         {
-            var pv = other.GetComponent<PhotonView>();
+            /*
+             var view = other.GetComponent<PhotonView>();
 
-            if (pv != null)
+            if (view != null)
             {
-                pv.TransferOwnership(0);
+                view.TransferOwnership(0);
             }
+            */
         }
-
-
     }
 }
+
