@@ -4,17 +4,14 @@ using UnityEngine;
 using Photon.Pun;
 using System.IO;
 
-public class PhotonFish : MonoBehaviour
+public class PhotonFruit : MonoBehaviour
 {
     public PhotonActor actor;
     public PhotonView view;
     public Rigidbody rigidBody;
     public bool isHeld = false;
     public Collider collider; 
-    private Animator animator;
     private FXManager fx;
-    private float speed;
-    public bool canSwim = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +19,8 @@ public class PhotonFish : MonoBehaviour
         view = GetComponent<PhotonView>();
         actor = GetComponent<PhotonActor>();
         rigidBody = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
         fx = FXManager.GetInstance();
         collider = GetComponent<Collider>();
-
-        speed = Random.Range(0.7f, 2f);
     }
 
     // Update is called once per frame
@@ -34,13 +28,6 @@ public class PhotonFish : MonoBehaviour
     {
         if (!view.IsMine)
             return;
-
-        if (!isHeld && canSwim)
-        {
-            transform.Translate(Vector3.forward * -speed * Time.deltaTime, Space.World);
-            rigidBody.velocity = Vector3.zero;
-            rigidBody.angularVelocity = Vector3.zero;
-        }
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -55,28 +42,14 @@ public class PhotonFish : MonoBehaviour
             if (!view.IsMine)  // This will also ensure only one player makes the disable object RPC call
                 return;
 
-            animator.SetBool("Flop", false);
-            canSwim = true;
             transform.rotation = Quaternion.identity;
             rigidBody.angularVelocity = Vector3.zero;
         }
         // Reach end
-        if (other.transform.CompareTag("Finish") || other.transform.CompareTag("Right") || other.transform.CompareTag("Left"))
+        if (other.transform.CompareTag("Finish")) //|| other.transform.CompareTag("Right") || other.transform.CompareTag("Left"))
         {
             actor.DisableChildObject(false);
         }
-    }
-
-    private void OnTriggerExit(Collider other) 
-    {
-        if (!view.IsMine) 
-            return;
-
-        if (other.gameObject.tag == "Water") 
-        {
-            animator.SetBool("Flop", true);  
-            canSwim = false;
-        } 
     }
 
     #region PunRPC
@@ -105,7 +78,6 @@ public class PhotonFish : MonoBehaviour
         rigidBody.angularVelocity = Vector3.zero;
         collider.isTrigger = true;
         isHeld = true;
-        canSwim = false;
 
         Debug.Log("Chidling to block " + block.ToString() + " With offset " + pos.ToString());
     }

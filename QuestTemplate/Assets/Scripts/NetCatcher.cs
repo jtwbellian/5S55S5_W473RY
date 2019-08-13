@@ -82,7 +82,6 @@ public class NetCatcher : MonoBehaviour
             }
         }
 
-
         if (!view.IsMine) // Only do this next part if the view is mine
             return;
 
@@ -92,15 +91,29 @@ public class NetCatcher : MonoBehaviour
                 return;
 
             caughtItem = other.gameObject;
-            var item = caughtItem.GetComponent<Item>();
-            var fish = caughtItem.GetComponent<PhotonFish>();
 
+            var item = caughtItem.GetComponent<Item>();
+
+            var fish = caughtItem.GetComponent<PhotonFish>();
+            var fruit = caughtItem.GetComponent<PhotonFish>();
+
+            // Catch Fish
             if (fish)
             {
                 if(!fish.isHeld)
                 {
                     fish.view.TransferOwnership(view.ViewID);
                     fish.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
+                    HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
+                }
+            }
+            // Catch Fruits (these should really be children of a parent class, but whatever)
+            if (fruit)
+            {
+                if(!fruit.isHeld)
+                {
+                    fruit.view.TransferOwnership(view.ViewID);
+                    fruit.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
                     HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
                 }
             }
@@ -161,6 +174,13 @@ public class NetCatcher : MonoBehaviour
                 {
                     fish.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
                 }
+
+                var fruit = caughtItem.GetComponent<PhotonFruit>();
+
+                if (fruit)
+                {
+                    fruit.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
+                }
                 
                 caughtItem = null;
             }
@@ -170,7 +190,6 @@ public class NetCatcher : MonoBehaviour
 
      private void OnTriggerExit(Collider other)
     {
-
         if (other.gameObject.tag == "Water")          //Testing a better method to detect enter water
         {
             splashCounter -= 1;
