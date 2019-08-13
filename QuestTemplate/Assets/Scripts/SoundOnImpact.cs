@@ -17,7 +17,12 @@ public class SoundOnImpact : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter(Collision c)
     {
-        int randomIndex = Random.Range(0, clips.Length);
-        sm.PlaySingle(clips[randomIndex], transform.position);
+        if (c.gameObject.tag == "Boat")
+        {
+
+            int randomIndex = Random.Range(0, clips.Length);
+            sm.PlaySingle(clips[randomIndex], transform.position);
+        
+        }
     }
 }
