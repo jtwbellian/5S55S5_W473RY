@@ -126,11 +126,13 @@ GameObject:
   - component: {fileID: 627609930878490833}
   - component: {fileID: 4721377688334613402}
   - component: {fileID: 4471025434637402481}
-  - component: {fileID: 5853218702031569331}
   - component: {fileID: 7137503388766762709}
-  - component: {fileID: 6082298278330042521}
   - component: {fileID: 458146180767598534}
   - component: {fileID: 3959554541984382567}
+  - component: {fileID: 6082298278330042521}
+  - component: {fileID: 5853218702031569331}
+  - component: {fileID: 1766925338611323858}
+  - component: {fileID: 3174517862137651719}
   m_Layer: 0
   m_Name: Clam
   m_TagString: Collectable
@@ -243,18 +245,6 @@ MonoBehaviour:
   persistAfterDeparture: 0
   invertActivation: 0
   animgraphBoolName: Open
---- !u!114 &5853218702031569331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3985394852646055437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da8d41d5fbeaa9c42bda1d938f23b331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7137503388766762709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,22 +268,6 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!54 &6082298278330042521
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3985394852646055437}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!114 &458146180767598534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +298,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
+  m_SynchronizeScale: 0
+--- !u!54 &6082298278330042521
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985394852646055437}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!114 &5853218702031569331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985394852646055437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8d41d5fbeaa9c42bda1d938f23b331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1766925338611323858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985394852646055437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b713b789d69c6874381e01cbf622b12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 425b18e78c6d25246a34211b91fc256c, type: 3}
+  - {fileID: 8300000, guid: a66c381e63dc63b47bd7ade186f90fb8, type: 3}
+  - {fileID: 8300000, guid: 001a29a962afb7645a2e52adb8b0794b, type: 3}
+  - {fileID: 8300000, guid: 813edde049f636140a571939ae58a09f, type: 3}
+--- !u!114 &3174517862137651719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985394852646055437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e5157cc3ad1704fb2834fa2b34e23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: {fileID: 0}
+  view: {fileID: 0}
+  rigidBody: {fileID: 0}
+  isHeld: 0
+  collider: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: 220dd1a1dea3d334ba2c69e4dd8e6867, type: 3}
+  - {fileID: 8300000, guid: 9d1ebd3bdaa207f449987be5e49493a8, type: 3}
+  - {fileID: 8300000, guid: b2118277fac8dca44a4e19ddfb34ee0b, type: 3}
+  - {fileID: 8300000, guid: 4f592ab90cd1a284ca1aea37492c2c34, type: 3}
+  - {fileID: 8300000, guid: 1606630697ea3c44784c786630d1616d, type: 3}
 --- !u!1 &4119056329736201330
 GameObject:
   m_ObjectHideFlags: 0

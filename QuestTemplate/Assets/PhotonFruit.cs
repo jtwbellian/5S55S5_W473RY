@@ -12,10 +12,13 @@ public class PhotonFruit : MonoBehaviour
     public bool isHeld = false;
     public Collider collider; 
     private FXManager fx;
+    public AudioClip[] clips;
+    private SoundManager sm;
 
     // Start is called before the first frame update
     void Start()
     {
+        sm = SoundManager.instance;
         view = GetComponent<PhotonView>();
         actor = GetComponent<PhotonActor>();
         rigidBody = GetComponent<Rigidbody>();
@@ -38,6 +41,8 @@ public class PhotonFruit : MonoBehaviour
             fx.Burst(FXManager.FX.Splash, transform.position, 5);
             fx.Burst(FXManager.FX.Ripple, transform.position -  Vector3.up * 0.3f, 1);
             fx.Burst(FXManager.FX.Spray, transform.position, 2);
+            int randomIndex = Random.Range(0, clips.Length);
+            sm.PlaySingle(clips[randomIndex], transform.position);
 
             if (!view.IsMine)  // This will also ensure only one player makes the disable object RPC call
                 return;

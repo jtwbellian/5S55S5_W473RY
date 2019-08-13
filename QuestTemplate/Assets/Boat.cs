@@ -7,6 +7,8 @@ public class Boat : MonoBehaviour
     private const float TOL = 2f;
     public Vector3 positionOffset = Vector3.zero;
     public float speed = 3f;
+    private SoundManager sm;
+    public AudioClip clip;
 
     [Range(-10, 10)]
     public float rudder = 0f;
@@ -39,6 +41,12 @@ public class Boat : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
+
+        if (other.transform.CompareTag("Left") || other.transform.CompareTag("Right"))
+        {
+            sm.RandomizeSFX(clip);
+        }
+
         if (!RiverManager.instance.isHost) 
         {
             return;

@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 2158511259907614180}
   - component: {fileID: 4163101648936315713}
   - component: {fileID: 4460993141835539900}
+  - component: {fileID: 5390011709736263403}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Collectable
@@ -468,3 +469,26 @@ MonoBehaviour:
   rigidBody: {fileID: 7499877477978006370}
   isHeld: 0
   collider: {fileID: 3811505920914456771}
+  clips:
+  - {fileID: 8300000, guid: 220dd1a1dea3d334ba2c69e4dd8e6867, type: 3}
+  - {fileID: 8300000, guid: 9d1ebd3bdaa207f449987be5e49493a8, type: 3}
+  - {fileID: 8300000, guid: b2118277fac8dca44a4e19ddfb34ee0b, type: 3}
+  - {fileID: 8300000, guid: 4f592ab90cd1a284ca1aea37492c2c34, type: 3}
+  - {fileID: 8300000, guid: 1606630697ea3c44784c786630d1616d, type: 3}
+--- !u!114 &5390011709736263403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243442818982576313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b713b789d69c6874381e01cbf622b12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 425b18e78c6d25246a34211b91fc256c, type: 3}
+  - {fileID: 8300000, guid: a66c381e63dc63b47bd7ade186f90fb8, type: 3}
+  - {fileID: 8300000, guid: 001a29a962afb7645a2e52adb8b0794b, type: 3}
+  - {fileID: 8300000, guid: 813edde049f636140a571939ae58a09f, type: 3}
