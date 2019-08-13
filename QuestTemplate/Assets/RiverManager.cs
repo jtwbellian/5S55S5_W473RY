@@ -184,6 +184,17 @@ public class RiverManager : MonoBehaviour
         CreateRiverPool();
     }
 
+    [PunRPC]
+    void RPC_MoveRudder(float amt)
+    {
+        boat.rudder += amt;
+    }
+
+    public void MoveRudder(float amt)
+    {
+        photonView.RPC("RPC_MoveRudder", RpcTarget.AllBuffered, amt);
+    }
+
     public void RemoveSeg(int id)
     {
         photonView.RPC("SetSegmentActive", RpcTarget.AllBuffered, id, false);
@@ -203,7 +214,7 @@ public class RiverManager : MonoBehaviour
             
             GameObject block;
 
-            if (j == POOL_SIZE)
+            if (j == POOL_SIZE - 1)
                 block = Instantiate(Resources.Load(Path.Combine("RiverSegments", "r_endzone"))) as GameObject;
             else
                 block = Instantiate(Resources.Load(Path.Combine("RiverSegments", riverSegList[j]))) as GameObject;

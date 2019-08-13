@@ -120,6 +120,16 @@ public class PhotonSpawner : MonoBehaviour
                 pa.SetPositionAndRotation(position, transform.rotation);
                 pa.SetForces(true, Vector3.zero, Vector3.zero);
 
+                PhotonFish pf = pa.gameObject.GetComponent<PhotonFish>();
+
+                if (pf) // If it is a fish
+                {
+                    pf.rigidBody.useGravity = true;
+                    pf.rigidBody.isKinematic = false;
+                    pf.isHeld = false;
+                    pf.collider.isTrigger = false;
+                }
+
                 return;
             }
         }

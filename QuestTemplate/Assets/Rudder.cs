@@ -47,8 +47,8 @@ public class Rudder : POVRGrabbable
             targetObject.transform.rotation = Quaternion.Lerp(targetObject.transform.rotation, Quaternion.identity, Time.time * returnSpeed);       
         }
 
-        // Only modify boat on host
-        if (RiverManager.instance.isHost)
+        // Only modify boat on one client
+        if (pv.IsMine)
         {
             var rudderAngle = targetObject.transform.rotation.eulerAngles.y;
 
@@ -58,7 +58,7 @@ public class Rudder : POVRGrabbable
             if (rudderAngle < -180)
                 rudderAngle += 360;
 
-            boat.rudder -= Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 500f;  
+            RiverManager.instance.MoveRudder(-Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 500f);  
         }
     }
 

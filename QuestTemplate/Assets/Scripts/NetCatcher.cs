@@ -18,7 +18,6 @@ public class NetCatcher : MonoBehaviour
     public POVRGrabbable grabbable;
     private Vector3 startPos;
     private Quaternion startRot;
-    //private bool canSplash;               //Testing a better method to detect enter water, look for splashCounter
     private int splashCounter = 0;
     private PhotonView view;
 
@@ -28,10 +27,10 @@ public class NetCatcher : MonoBehaviour
     private FXManager fx;
     public AudioClip[] enterClips;
     public AudioClip[] exitClips;
+    public AudioClip catchClip;
 
     private void Start() 
     {
-        //canSplash = true;                 //Testing a better method to detect enter water
         fx = FXManager.GetInstance();
         rm = RiverManager.instance;
         sm = SoundManager.instance;
@@ -59,14 +58,14 @@ public class NetCatcher : MonoBehaviour
     void OnTriggerEnter(Collider other) 
     {
         // Prepare to invoke reset when dropped in water
-        if (other.gameObject.tag == "Water")                   //Testing a better method to detect enter water
+        if (other.gameObject.tag == "Water")
         {
             splashCounter += 1;
 
             if (!grabbable.isGrabbed && !grabbable.rb.isKinematic)
                 Invoke("Reset", 5f);
             
-            if (splashCounter == 1 )                //Testing a better method to detect enter water
+            if (splashCounter == 1 )
             {
                 Debug.Log("Splash counter is " + splashCounter);
 
@@ -77,9 +76,10 @@ public class NetCatcher : MonoBehaviour
 
                 //play sound effects
                 int randomIndex = Random.Range(0, enterClips.Length);
+
                 sm.PlaySingle(enterClips[randomIndex], transform.position);
+                HapticsManager.Vibrate(enterClips[randomIndex], grabbable.grabbedBy.m_controller);
             }
-            //canSplash = false;                    //Testing a better method to detect enter water
         }
 
 
@@ -101,17 +101,14 @@ public class NetCatcher : MonoBehaviour
                 {
                     fish.view.TransferOwnership(view.ViewID);
                     fish.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
+                    HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
                 }
             }
-            
-            //caughtItem.transform.SetParent(target);
-            //caughtItem.transform.localPosition = Vector3.zero;
 
             // Set the owner of the item
             if (item)
             {
-                if (rm.isHost)//((rm.isHost && transform.root.GetComponent<PandaController>())
-                    //|| !rm.isHost && !transform.root.GetComponent<PandaController>())
+                if (rm.isHost)
                 {
                     item.owner = 0;
                 }
@@ -170,18 +167,6 @@ public class NetCatcher : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerStay(Collider other) 
-    {
-        //Instead of comparing rotation with Quaternions, the net is checking a linear ratio between two tranforms located at the net end and the rim end. 
-        //By comparing the difference in y postions, the code can determine if the net is in a "dipping up" or "dipping down" position 
-        //regardless of axis of rotation and grab the collectable accordingly.
-        if (other.gameObject.tag == "Collectable" && rimBound.position.y - netBound.position.y > linearLimit) // Moved the tag lookup first to take advantage of short circuit
-        {
-            other.gameObject.transform.position = new Vector3(target.position.x, target.position.y, target.position.z);
-            other.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-            other.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, 0f); 
-        }
-    }*/
 
      private void OnTriggerExit(Collider other)
     {
@@ -201,20 +186,6 @@ public class NetCatcher : MonoBehaviour
                 int randomIndex = Random.Range(0, exitClips.Length);
                 sm.PlaySingle(exitClips[randomIndex], transform.position);
             }
-            //canSplash = true;                     //Testing a better method to detect enter water
-        }
-
-
-        if (other.gameObject.tag == "Collectable")
-        {
-            /*
-             var view = other.GetComponent<PhotonView>();
-
-            if (view != null)
-            {
-                view.TransferOwnership(0);
-            }
-            */
         }
     }
 }

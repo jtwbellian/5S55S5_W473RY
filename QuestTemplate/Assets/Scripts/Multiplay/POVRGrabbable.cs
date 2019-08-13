@@ -9,6 +9,7 @@ public class POVRGrabbable : OVRGrabbable
     public PhotonView pv = null;
     public Rigidbody rb;
     public bool isHeld = false;
+    AudioClip vibrationClip;
 
     public bool hidesHands = false;
 
@@ -45,6 +46,10 @@ public class POVRGrabbable : OVRGrabbable
 
     public override void OnGrab()
     {
+        if (vibrationClip)
+        {
+            HapticsManager.Vibrate(vibrationClip, grabbedBy.m_controller);
+        }
 
         if (pv != null)
         {
@@ -64,6 +69,7 @@ public class POVRGrabbable : OVRGrabbable
         rb.isKinematic = active;
         isHeld = active;
     }
+    
     [PunRPC]
     public void Take()
     {
