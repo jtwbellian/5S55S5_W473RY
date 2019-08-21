@@ -60,5 +60,6 @@ MonoBehaviour:
   - RPC_ResetToSpawn
   - RPC_SetScarf
   - RPC_Destroy
+  - RPC_ChangeFace
   DisableAutoOpenWizard: 1
   ShowSettings: 1

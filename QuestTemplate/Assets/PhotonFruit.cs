@@ -45,6 +45,15 @@ public class PhotonFruit : MonoBehaviour
 
         if (inWater && isHeld == false && transform.parent == null)
             transform.Translate(rm.riverVelocity + rm.boatRightVelocity, Space.World);
+
+        
+        // delete after 20m behind boat
+        var behindBoatZ = (rm.boat.transform.position.z - 20f);
+        
+        if (transform.position.z < behindBoatZ)
+        {
+            actor.DisableChildObject(false);
+        }
     }
 
     private void OnTriggerExit(Collider other) 
@@ -59,7 +68,15 @@ public class PhotonFruit : MonoBehaviour
         if (!view.IsMine) 
             return;
 
-        if (!rigidBody.useGravity && transform.parent.GetComponent<FruitTree>() && !other.CompareTag("Player")) // Only fall if on tree branch
+        bool isHung = false;
+
+        if (transform.parent != null)
+        {
+            if (transform.parent.GetComponent<FruitTree>() != null)
+            isHung = true;
+        }
+
+        if (!rigidBody.useGravity && isHung && !other.CompareTag("Player")) // Only fall if on tree branch
         {
             PhotonView otherView;
             int id = 0;
@@ -69,7 +86,7 @@ public class PhotonFruit : MonoBehaviour
             {
                 id = otherView.ViewID;
                 view.TransferOwnership(id);
-                view.RPC("RPC_ActivateFruit", RpcTarget.AllBuffered);
+                ActivateFruit();
             }
         }
 
@@ -107,6 +124,11 @@ public class PhotonFruit : MonoBehaviour
         }
         */
     }
+    public void ActivateFruit()
+    {
+        view.RPC("RPC_ActivateFruit", RpcTarget.AllBuffered);
+    }
+
 
     public void UnlockFromParent()
     {

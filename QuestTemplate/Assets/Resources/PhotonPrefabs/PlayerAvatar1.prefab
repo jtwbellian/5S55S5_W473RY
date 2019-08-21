@@ -51,6 +51,7 @@ MonoBehaviour:
   LHand: {fileID: 5389564844357035615}
   scarfRed: {fileID: 4891931574912112497}
   scarfBlue: {fileID: 8347828907267944476}
+  headRenderer: {fileID: 3423377023055053275}
 --- !u!114 &1629184045287178369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +654,12 @@ PrefabInstance:
 --- !u!4 &136735918419248916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 743346a5bab0b7d4c881fc968ae128c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4944807639263685646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3423377023055053275 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 743346a5bab0b7d4c881fc968ae128c0,
     type: 3}
   m_PrefabInstance: {fileID: 4944807639263685646}
   m_PrefabAsset: {fileID: 0}

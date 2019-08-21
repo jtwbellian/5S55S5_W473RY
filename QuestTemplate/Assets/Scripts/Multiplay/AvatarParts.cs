@@ -8,6 +8,7 @@ public class AvatarParts : MonoBehaviour
 {
     public Transform Head, RHand, LHand;
     public GameObject scarfRed, scarfBlue;
+    public Renderer headRenderer;
 
     /* public void SetScarf(string scarf)
     {

@@ -84,3 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myAvatar: {fileID: 0}
   avController: {fileID: 0}
+  faceMats:
+  - {fileID: 2100000, guid: 28d77bc6ae794e84aa45cb86483a01bb, type: 2}
+  - {fileID: 2100000, guid: ca3ff530f61ef3943a394a49369dd5ee, type: 2}
+  - {fileID: 2100000, guid: 98226c486875dfe48b0729c7391cda2d, type: 2}

@@ -11,7 +11,11 @@ public class PhotonPlayer : MonoBehaviour
     PhotonView PV;
     public GameObject myAvatar;
     public AvatarController avController;
+
+    public Material [] faceMats;
     private AvatarParts parts;
+    private Renderer headRenderer;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,17 +25,17 @@ public class PhotonPlayer : MonoBehaviour
 
         if (PV.IsMine)
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient) // Player 1
             {
-            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar1"),
-                                                Vector3.zero, 
-                                                Quaternion.identity, 0);
+                myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar1"),
+                                                    Vector3.zero, 
+                                                    Quaternion.identity, 0);
             }
-            else
+            else // Player 2
             {
-                myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar2"),
-                                    Vector3.zero, 
-                                    Quaternion.identity, 0);
+                    myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar2"),
+                                        Vector3.zero, 
+                                        Quaternion.identity, 0);
             }
             
             GameObject obj = Resources.Load<GameObject>("PhotonPrefabs/OVRPlayerController");
@@ -39,8 +43,14 @@ public class PhotonPlayer : MonoBehaviour
             var player = Instantiate(obj);
 
             parts = myAvatar.GetComponent<AvatarParts>();
-
             avController = player.GetComponent<AvatarController>();
+
+            PandaController panda = player.GetComponent<PandaController>();
+            
+            if (parts)
+            {
+                headRenderer = parts.headRenderer;
+            }
             
             parts.Head.SetParent(avController.headTarget.transform);
             parts.Head.localRotation = Quaternion.identity;
@@ -53,6 +63,36 @@ public class PhotonPlayer : MonoBehaviour
             parts.LHand.SetParent(avController.lhandTarget.transform);
             parts.LHand.localRotation = Quaternion.identity;
             parts.LHand.localPosition = Vector3.zero;
+        }
+    }
+
+    private void Update() 
+    {
+        // Facial Gestures
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            PV.RPC("RPC_ChangeFace", RpcTarget.AllBuffered, 1);
+        }
+        else if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            PV.RPC("RPC_ChangeFace", RpcTarget.AllBuffered, 2);
+        }
+    }
+
+    public void RevertFace()
+    {
+        PV.RPC("RPC_ChangeFace", RpcTarget.AllBuffered, 0);
+    }
+
+    [PunRPC]
+    public void RPC_ChangeFace(int face)
+    {
+        headRenderer.material = faceMats[face];
+
+        if (face != 0)
+        {
+            CancelInvoke("RevertFace");
+            Invoke("RevertFace", 3f);
         }
     }
 }
