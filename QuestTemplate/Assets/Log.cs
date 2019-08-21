@@ -32,9 +32,11 @@ public class Log : MonoBehaviour
     [PunRPC]
     public void RPC_Destroy()
     {
-        fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
-        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
-        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
+        fx.Burst(FXManager.FX.LogSplit, transform.position, 5);
+        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * 1.1f, 2);
+        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * -1.1f, 2);
+        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.3f, 2);
+        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.3f, 2);
         fx.Burst(FXManager.FX.Spray, transform.position, 2);
         fx.Burst(FXManager.FX.Ripple, transform.position, 1);
 
