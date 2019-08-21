@@ -6,6 +6,8 @@ using TMPro;
 using Photon.Pun;
 using System.IO;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class RiverManager : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class RiverManager : MonoBehaviour
 
     #region RiverGeneration
 
-    private const int POOL_SIZE = 5;
+    private const int POOL_SIZE = 6;
     private List<GameObject> riverPool = new List<GameObject>();
     public GameObject [] riverTypes;
     public int numSegments = 5;
@@ -62,7 +64,8 @@ public class RiverManager : MonoBehaviour
     public Transform oarSpawnA, oarSpawnB;
     public bool gameOver = false;
 
-    public GameObject startButton, waitMessage, startCanvas;
+    public GameObject startButton, waitMessage, startCanvas, gameEndMenu, scoreBoard;
+    public Transform finalScoreBoardSpot;
 
     #region singleton implementation
 
@@ -88,6 +91,8 @@ public class RiverManager : MonoBehaviour
 
         riverMove = false;
         photonView = GetComponent<PhotonView>();
+
+        Physics.IgnoreLayerCollision(10, 10);
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -190,6 +195,20 @@ public class RiverManager : MonoBehaviour
         boat.rudder += amt;
     }
 
+    [PunRPC]
+    void RPC_ReturnToMenu()
+    {
+        PhotonNetwork.DestroyAll();
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel(0);
+        //SceneManager.LoadScene("Launcher");
+    }
+
+    public void ReturnToMenu()
+    {
+        photonView.RPC("RPC_ReturnToMenu", RpcTarget.AllBuffered);
+    }
+
     public void MoveRudder(float amt)
     {
         photonView.RPC("RPC_MoveRudder", RpcTarget.AllBuffered, amt);
@@ -263,6 +282,38 @@ public class RiverManager : MonoBehaviour
         return p;
     }
     
+    public int GetScore(int player, int type)
+    {
+        Vector3 score = playerScores[player];
+        return (int)score[type];
+    }
+    // Overloaded method for total score
+    public int GetScore(int player)
+    {
+        Vector3 score = playerScores[player];
+        return (int)(score[0] + score[1] + score[2]);
+    }
+
+    // Local ONLY, does not change online score.
+    // Used during end tally up to save performance
+    public void AddToScoreLocal(int player, int type, int amt)
+    {
+        Vector3 score = playerScores[player];
+        score[type] = score[type] + amt;
+        playerScores[player] = score;
+
+        switch(player)
+        {
+            case 0:
+                scoreUIP1[type].text = (score[type]).ToString();
+                break;
+
+            case 1:
+                scoreUIP2[type].text = (score[type]).ToString();
+                break;
+        }
+    }
+
     /*public void AddRiver()
     {
         // Shuffle the pool to mix it up
@@ -309,6 +360,10 @@ public class RiverManager : MonoBehaviour
     //[PunRPC]
     public void AddSeg()
     {
+        if (currentSegment > POOL_SIZE)
+            return;
+
+        
         riverPool[currentSegment].transform.SetPositionAndRotation(lastRiverSegment.endPoint.transform.position, lastRiverSegment.endPoint.transform.rotation);
 
         RiverSegment rs = riverPool[currentSegment].GetComponent<RiverSegment>();
@@ -323,7 +378,7 @@ public class RiverManager : MonoBehaviour
 
         lastRiverSegment = rs;
 
-        if (currentSegment < riverPool.Count - 1)
+        if (currentSegment < riverPool.Count)
             currentSegment ++;
     }
 
@@ -391,5 +446,28 @@ public class RiverManager : MonoBehaviour
             riverPool[i] = riverPool[randomIndex];
             riverPool[randomIndex] = temp;
         }
+    }
+
+    public void GameOver()
+    {
+        ResultsController rc = finalScoreBoardSpot.GetComponent<ResultsController>();
+
+        if (rc)
+        {
+            rc.ShowMultipliers();
+        }
+
+        Invoke("GameEndMenu", 15f);
+        scoreBoard.transform.position = finalScoreBoardSpot.position;
+        scoreBoard.transform.rotation = finalScoreBoardSpot.rotation;
+        scoreBoard.transform.localScale *= 5f;
+        FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.right * 1.5f, 15); 
+        FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.left * 1.5f, 15); 
+        FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position, 15); 
+    }
+
+    public void GameEndMenu()
+    {
+        gameEndMenu.SetActive(true);
     }
 }

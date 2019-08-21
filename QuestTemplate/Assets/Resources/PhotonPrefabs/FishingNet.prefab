@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 1930501700150098238}
   - component: {fileID: 4752641682957808781}
   - component: {fileID: 3998816970013470796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FishingNet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4325775838579271395}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RimBounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2193303416532786117}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NetBounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3461123707989812552}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HandPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4094242393675976125}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NetPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

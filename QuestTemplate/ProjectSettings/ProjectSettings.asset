@@ -414,6 +414,10 @@ PlayerSettings:
     m_Devices:
     - OpenVR
     - Oculus
+  - m_BuildTarget: PS4
+    m_Enabled: 1
+    m_Devices:
+    - PlayStationVR
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 1
   openGLRequireES31AEP: 0

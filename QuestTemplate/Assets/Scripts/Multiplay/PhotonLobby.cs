@@ -62,7 +62,7 @@ private void Awake() {
 
 #endregion
 
-    public void OnPlayButtonPressed()
+    public void OnMultiPlayPressed()
     {
         if (gameStarting)
             return;
@@ -72,16 +72,23 @@ private void Awake() {
         gameStarting = true;
     }
 
-public void OnCancelButtonPressed()
-{
-    CancelButton.SetActive(false);
-    PlayButton.SetActive(true);
-    PhotonNetwork.LeaveRoom();
-}
+    public void OnSoloPlayPressed()
+    {
+        if (gameStarting)
+            return;
+        //PlayButton.SetActive(false);
+        //CancelButton.SetActive(true);
+        CreateRoom();
+        gameStarting = true;
+    }
+
+    public void OnCancelButtonPressed()
+    {
+        CancelButton.SetActive(false);
+        PlayButton.SetActive(true);
+        PhotonNetwork.LeaveRoom();
+    }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //void Update(){}
 }

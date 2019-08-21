@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Log : MonoBehaviour
 {
@@ -28,11 +29,30 @@ public class Log : MonoBehaviour
             Debug.Log("River Manager not found.");
     }
 
-private void OnTriggerEnter(Collider other) 
+    [PunRPC]
+    public void RPC_Destroy()
     {
+        fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
+        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
+        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
+        fx.Burst(FXManager.FX.Spray, transform.position, 2);
+        fx.Burst(FXManager.FX.Ripple, transform.position, 1);
 
-        if (!rm.isHost)
-            return; 
+        //Play Random Sound From list
+        int randomIndex = Random.Range(0, clips.Length - 1);
+        sm.PlaySingle(clips[randomIndex], transform.position);
+    }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.tag == "Boat")
+        {
+            if (!rm.isHost)
+                return; 
+
+            pa.view.RPC("RPC_Destroy", RpcTarget.AllBuffered);
+            pa.DisableChildObject(false);
+        }
 
         // Reach end
         if (other.transform.CompareTag("Finish"))
@@ -41,20 +61,6 @@ private void OnTriggerEnter(Collider other)
             {
                 pa.DisableChildObject(false);
             }
-        }
-
-        if (other.gameObject.tag=="Boat")
-        {
-            fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
-            fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
-            fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
-            fx.Burst(FXManager.FX.Spray, transform.position, 2);
-            fx.Burst(FXManager.FX.Ripple, transform.position, 1);
-
-            //Play Random Sound From list
-            int randomIndex = Random.Range(0, clips.Length);
-            sm.PlaySingle(clips[randomIndex], transform.position);
-            pa.DisableChildObject(false);
         }
     }
 

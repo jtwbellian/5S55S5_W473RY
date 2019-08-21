@@ -21,15 +21,25 @@ public class PhotonPlayer : MonoBehaviour
 
         if (PV.IsMine)
         {
-            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
+            if (PhotonNetwork.IsMasterClient)
+            {
+            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar1"),
                                                 Vector3.zero, 
                                                 Quaternion.identity, 0);
+            }
+            else
+            {
+                myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar2"),
+                                    Vector3.zero, 
+                                    Quaternion.identity, 0);
+            }
             
             GameObject obj = Resources.Load<GameObject>("PhotonPrefabs/OVRPlayerController");
+
             var player = Instantiate(obj);
-            //player.transform.position =  GameSetup.GS.spawnPoints[GameSetup.GS.currentSpawn].position;
 
             parts = myAvatar.GetComponent<AvatarParts>();
+
             avController = player.GetComponent<AvatarController>();
             
             parts.Head.SetParent(avController.headTarget.transform);
@@ -43,21 +53,6 @@ public class PhotonPlayer : MonoBehaviour
             parts.LHand.SetParent(avController.lhandTarget.transform);
             parts.LHand.localRotation = Quaternion.identity;
             parts.LHand.localPosition = Vector3.zero;
-
-            if (PhotonNetwork.IsMasterClient)
-            {
-                parts.scarfBlue.SetActive(false);
-            }
-            else
-            {
-                parts.scarfRed.SetActive(false);
-            }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -6,6 +6,8 @@ public class TriggerAnimate : MonoBehaviour
     public bool invertActivation;
     public string animgraphBoolName;
     private Animator animator;
+
+    private bool isPlaying = false;
     
     void Start()
     {
@@ -14,6 +16,9 @@ public class TriggerAnimate : MonoBehaviour
 
     void OnTriggerEnter(Collider Other)
     {
+        if (isPlaying)
+            return;
+        
         if (Other.gameObject.transform.root.tag == "Player")
         {
             if (invertActivation == false)
@@ -23,6 +28,7 @@ public class TriggerAnimate : MonoBehaviour
                 animator.SetBool(animgraphBoolName, false);
 
             Invoke("Disable", 1.3f);
+            isPlaying = true;
         }
     }
 

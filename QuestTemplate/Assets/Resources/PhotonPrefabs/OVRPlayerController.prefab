@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1667240244960299109}
   - component: {fileID: 1667240244960299123}
   - component: {fileID: 1636175432800280021}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OVRCameraRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667240244970512819}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ForwardDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 1667240244960467303}
   - component: {fileID: 875733329739659779}
   - component: {fileID: 8195965932331667206}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OVRPlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667240244970512827}
   - component: {fileID: 1685682514117139663}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftEyeAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 1667240244960548611}
   - component: {fileID: 627253408199473569}
   - component: {fileID: 4705060574451157348}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -465,8 +465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8e1d778abf442e4bec449c360e9e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 2
-  fadeColor: {r: 1, g: 1, b: 1, a: 1}
+  fadeTime: 1.5
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeOnStart: 1
   renderQueue: 5000
 --- !u!135 &627253408199473569
@@ -508,7 +508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667240244970512831}
   - component: {fileID: 1687691841242640417}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightEyeAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667240244970452931}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrackingSpace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667240244970452933}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrackerAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +852,7 @@ GameObject:
   - component: {fileID: 2548623518897917668}
   - component: {fileID: 1421396690292418724}
   - component: {fileID: 2765627257118466389}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Teleportation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -990,6 +990,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 158226, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1033,6 +1037,14 @@ PrefabInstance:
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1231602751420816, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098047352992398, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11437430, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
       propertyPath: Monochrome_SurfaceShader

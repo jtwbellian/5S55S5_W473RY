@@ -9,6 +9,8 @@ public class VRButton : MonoBehaviour
     private bool active = false;
     public AudioClip vibrationClip;
 
+    private bool hasBeenPressed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,9 @@ public class VRButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+        if (hasBeenPressed)
+            return;
+
         if (other.gameObject.CompareTag("Player"))
         {
             OVRGrabber hand = other.GetComponent<OVRGrabber>();
@@ -32,10 +37,7 @@ public class VRButton : MonoBehaviour
             }
 
             OnClick.Invoke();
+            hasBeenPressed = true;
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

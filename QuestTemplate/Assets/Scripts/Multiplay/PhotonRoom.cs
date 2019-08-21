@@ -24,6 +24,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     private void Awake() 
     {
+        PV = GetComponent<PhotonView>();
+
         if (PhotonRoom.room == null)
         {
             PhotonRoom.room = this;
@@ -32,12 +34,11 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             if (PhotonRoom.room != this)
             {
-                Destroy(PhotonRoom.room.gameObject);
+                PhotonNetwork.Destroy(PhotonRoom.room.GetComponent<PhotonView>());
                 PhotonRoom.room = this;
             }
         }
         DontDestroyOnLoad(this.gameObject);
-        PV = GetComponent<PhotonView>();
     } 
 
     public override void OnEnable() 

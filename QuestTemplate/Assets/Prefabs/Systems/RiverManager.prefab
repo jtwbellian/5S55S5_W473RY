@@ -48,7 +48,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4203738474764408635}
@@ -106,6 +106,10 @@ MonoBehaviour:
   gameOver: 0
   startButton: {fileID: 0}
   waitMessage: {fileID: 0}
+  startCanvas: {fileID: 0}
+  gameEndMenu: {fileID: 0}
+  scoreBoard: {fileID: 0}
+  finalScoreBoardSpot: {fileID: 0}
 --- !u!114 &4203738474764408635
 MonoBehaviour:
   m_ObjectHideFlags: 0

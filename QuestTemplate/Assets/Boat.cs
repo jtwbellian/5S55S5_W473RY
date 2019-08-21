@@ -6,14 +6,18 @@ public class Boat : MonoBehaviour
 {
     private const float TOL = 2f;
     public Vector3 positionOffset = Vector3.zero;
-    public float speed = 3f;
-    private SoundManager sm;
+    public float speed = 3.5f;
     public AudioClip clip;
 
     [Range(-10, 10)]
     public float rudder = 0f;
+    private RiverManager riverManager;
+
     // Start is called before the first frame update
-    void Start(){}
+    void Start()
+    {
+        riverManager = RiverManager.instance;
+    }
     
     void OnTriggerStay(Collider other) 
     {
@@ -42,12 +46,18 @@ public class Boat : MonoBehaviour
     void OnTriggerEnter(Collider other) 
     {
 
-        if (other.transform.CompareTag("Left") || other.transform.CompareTag("Right"))
+        if (other.transform.CompareTag("FinishLine"))
         {
-            sm.RandomizeSFX(clip);
+            riverManager.levelSpeed = 0f;
+            riverManager.GameOver();
         }
 
-        if (!RiverManager.instance.isHost) 
+        if (other.transform.CompareTag("Left") || other.transform.CompareTag("Right"))
+        {
+            SoundManager.instance.RandomizeSFX(clip);
+        }
+
+        if (!riverManager.isHost) 
         {
             return;
         }
@@ -56,14 +66,14 @@ public class Boat : MonoBehaviour
 
        if (rs != null)
        {
-           RiverManager.instance.rotationOffset += rs.myAngle;
-           RiverManager.instance.targetSegment = rs;
+           riverManager.rotationOffset += rs.myAngle;
+           riverManager.targetSegment = rs;
        }
     }
 
     void Update() 
     {
-        if (!RiverManager.instance.isHost) 
+        if (!riverManager.isHost) 
         {
             return;
         }
