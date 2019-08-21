@@ -6,6 +6,8 @@ using TMPro;
 using Photon.Pun;
 using System.IO;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class RiverManager : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class RiverManager : MonoBehaviour
 
     #region RiverGeneration
 
-    private const int POOL_SIZE = 5;
+    private const int POOL_SIZE = 6;
     private List<GameObject> riverPool = new List<GameObject>();
     public GameObject [] riverTypes;
     public int numSegments = 5;
@@ -62,7 +64,9 @@ public class RiverManager : MonoBehaviour
     public Transform oarSpawnA, oarSpawnB;
     public bool gameOver = false;
 
-    public GameObject startButton, waitMessage, startCanvas;
+    public GameObject startButton, waitMessage, startCanvas, gameEndMenu, scoreBoard;
+    public Transform finalScoreBoardSpot;
+
 
     #region singleton implementation
 
@@ -88,6 +92,8 @@ public class RiverManager : MonoBehaviour
 
         riverMove = false;
         photonView = GetComponent<PhotonView>();
+
+        Physics.IgnoreLayerCollision(10, 10);
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -188,6 +194,20 @@ public class RiverManager : MonoBehaviour
     void RPC_MoveRudder(float amt)
     {
         boat.rudder += amt;
+    }
+
+    [PunRPC]
+    void RPC_ReturnToMenu()
+    {
+        PhotonNetwork.DestroyAll();
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel(0);
+        //SceneManager.LoadScene("Launcher");
+    }
+
+    public void ReturnToMenu()
+    {
+        photonView.RPC("RPC_ReturnToMenu", RpcTarget.AllBuffered);
     }
 
     public void MoveRudder(float amt)
@@ -309,8 +329,7 @@ public class RiverManager : MonoBehaviour
     //[PunRPC]
     public void AddSeg()
     {
-
-        if (currentSegment >= POOL_SIZE - 1)
+        if (currentSegment > POOL_SIZE)
             return;
 
         
@@ -328,7 +347,7 @@ public class RiverManager : MonoBehaviour
 
         lastRiverSegment = rs;
 
-        if (currentSegment < riverPool.Count - 1)
+        if (currentSegment < riverPool.Count)
             currentSegment ++;
     }
 
@@ -396,5 +415,22 @@ public class RiverManager : MonoBehaviour
             riverPool[i] = riverPool[randomIndex];
             riverPool[randomIndex] = temp;
         }
+    }
+
+    public void GameOver()
+    {
+        Invoke("GameEndMenu", 15f);
+        scoreBoard.transform.position = finalScoreBoardSpot.position;
+        scoreBoard.transform.rotation = finalScoreBoardSpot.rotation;
+        scoreBoard.transform.localScale *= 5f;
+
+        FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.right * 1.5f, 15); 
+        FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.left * 1.5f, 15); 
+        FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position, 15); 
+    }
+
+    public void GameEndMenu()
+    {
+        gameEndMenu.SetActive(true);
     }
 }

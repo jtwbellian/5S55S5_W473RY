@@ -11,7 +11,7 @@ public class SoundOnImpact : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    sm = SoundManager.instance;
+        sm = SoundManager.instance;
     }
 
     // Update is called once per frame
@@ -21,7 +21,8 @@ public class SoundOnImpact : MonoBehaviour
         {
 
             int randomIndex = Random.Range(0, clips.Length);
-            sm.PlaySingle(clips[randomIndex], transform.position);
+            if (sm)
+                sm.PlaySingle(clips[randomIndex], transform.position);
         
         }
     }

@@ -43,7 +43,6 @@ public class PhotonSpawner : MonoBehaviour
         {
             Mesh gizmoMesh = staticRenderer.sharedMesh;
             Gizmos.DrawWireMesh(gizmoMesh, 0, transform.position, transform.rotation, staticRenderer.transform.localScale  * gizmoScale);
-
         }
         else
         {
@@ -87,9 +86,10 @@ public class PhotonSpawner : MonoBehaviour
                             Quaternion.identity, 0);
 
             objPool.Add(block);
-                            
+
             // Change this part to be a universal "Photon Disableable Class" as soon as we think of a better name
             var pa = block.GetComponent<PhotonActor>();
+
             if (!pa)
                 Debug.Log("No Photon Actor Script found");
 
@@ -124,10 +124,15 @@ public class PhotonSpawner : MonoBehaviour
 
                 if (pf) // If it is a fish
                 {
-                    pf.rigidBody.useGravity = true;
-                    pf.rigidBody.isKinematic = false;
-                    pf.isHeld = false;
-                    pf.collider.isTrigger = false;
+                    pf.ResetSpawnSettings();
+                }
+
+                FruitTree ft = pa.gameObject.GetComponent<FruitTree>();
+                
+                if (ft)
+                {
+                    Debug.Log("Tree spawned");
+                    ft.Invoke("ChildToRiver", 0.25f);
                 }
 
                 return;

@@ -52,5 +52,13 @@ MonoBehaviour:
   - ChildTo
   - ForcesTo
   - RPC_MoveRudder
+  - ResetToSpawn
+  - RPC_ReturnToMenu
+  - RPC_ChildToRiver
+  - RPC_ActivateFruit
+  - RPC_ChildTo
+  - RPC_ResetToSpawn
+  - RPC_SetScarf
+  - RPC_Destroy
   DisableAutoOpenWizard: 1
   ShowSettings: 1

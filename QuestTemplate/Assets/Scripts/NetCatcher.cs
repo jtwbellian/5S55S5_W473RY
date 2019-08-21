@@ -51,7 +51,7 @@ public class NetCatcher : MonoBehaviour
 
         if (!rm)
         {
-            Debug.Log("No River Manager found, danger Will Robinson");
+            Debug.Log("No River Manager found");
         }
     }
 
@@ -75,19 +75,29 @@ public class NetCatcher : MonoBehaviour
                 fx.Burst(FXManager.FX.Ripple,splashPos, 1); 
 
                 //play sound effects
-                int randomIndex = Random.Range(0, enterClips.Length);
+                int randomIndex = Random.Range(0, enterClips.Length - 1);
 
                 sm.PlaySingle(enterClips[randomIndex], transform.position);
-                HapticsManager.Vibrate(enterClips[randomIndex], grabbable.grabbedBy.m_controller);
+                
+                if (grabbable.grabbedBy)
+                    HapticsManager.Vibrate(enterClips[randomIndex], grabbable.grabbedBy.m_controller);
             }
         }
 
-        if (!view.IsMine) // Only do this next part if the view is mine
+        if (!view || !view.IsMine) // Only do this next part if the view is mine
             return;
 
         if (other.gameObject.tag == "Collectable")
         {
-            if (caughtItem != null || other.transform.parent != null)
+            // Janky ass code to allow me to catch fruit from trees
+            var canCatch = true;
+
+            if (caughtItem != null || (other.transform.parent != null && !other.transform.parent.GetComponent<FruitTree>()))
+            {
+                canCatch = false;
+            }
+
+            if (!canCatch)
                 return;
 
             caughtItem = other.gameObject;
@@ -95,7 +105,7 @@ public class NetCatcher : MonoBehaviour
             var item = caughtItem.GetComponent<Item>();
 
             var fish = caughtItem.GetComponent<PhotonFish>();
-            var fruit = caughtItem.GetComponent<PhotonFish>();
+            var fruit = caughtItem.GetComponent<PhotonFruit>();
 
             // Catch Fish
             if (fish)
@@ -107,6 +117,7 @@ public class NetCatcher : MonoBehaviour
                     HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
                 }
             }
+
             // Catch Fruits (these should really be children of a parent class, but whatever)
             if (fruit)
             {
@@ -147,9 +158,35 @@ public class NetCatcher : MonoBehaviour
 
     private void Update() 
     {
-        if (!view.IsMine)
+        if (!view.IsMine || caughtItem == null)
             return;
 
+        if (caughtItem != null && caughtItem.transform.parent == null)
+        {
+            caughtItem = null;
+        }
+
+        // fall out of net
+        if (rimBound.position.y - netBound.position.y < linearLimit)
+        {
+            var fish = caughtItem.GetComponent<PhotonFish>();
+
+            if (fish)
+            {
+                fish.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
+            }
+
+            var fruit = caughtItem.GetComponent<PhotonFruit>();
+
+            if (fruit)
+            {
+                fruit.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
+            }
+            
+            caughtItem = null;
+            //Debug.Log("Fish: " + fish.ToString() + ", Fruit: " + fruit.ToString());
+        }
+/*
         if (caughtItem != null)
         {
             if (!caughtItem.gameObject.activeSelf) // If still holding and object disabled
@@ -164,27 +201,7 @@ public class NetCatcher : MonoBehaviour
                 caughtItem.transform.parent = transform;
                 caughtItem.transform.localPosition = target.localPosition;
             }
-
-            // fall out of net
-            if (rimBound.position.y - netBound.position.y < linearLimit)
-            {
-                var fish = caughtItem.GetComponent<PhotonFish>();
-
-                if (fish)
-                {
-                    fish.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
-                }
-
-                var fruit = caughtItem.GetComponent<PhotonFruit>();
-
-                if (fruit)
-                {
-                    fruit.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
-                }
-                
-                caughtItem = null;
-            }
-        }
+        }*/
     }
 
 

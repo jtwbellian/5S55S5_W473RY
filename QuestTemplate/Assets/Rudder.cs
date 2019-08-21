@@ -58,7 +58,8 @@ public class Rudder : POVRGrabbable
             if (rudderAngle < -180)
                 rudderAngle += 360;
 
-            RiverManager.instance.MoveRudder(-Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 500f);  
+            if (Mathf.Abs(rudderAngle) > 5f)
+                RiverManager.instance.MoveRudder(-Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 700f);  
         }
     }
 

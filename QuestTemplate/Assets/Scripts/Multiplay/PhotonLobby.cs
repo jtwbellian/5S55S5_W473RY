@@ -62,13 +62,23 @@ private void Awake() {
 
 #endregion
 
-    public void OnPlayButtonPressed()
+    public void OnMultiPlayPressed()
     {
         if (gameStarting)
             return;
         //PlayButton.SetActive(false);
         CancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
+        gameStarting = true;
+    }
+
+    public void OnSoloPlayPressed()
+    {
+        if (gameStarting)
+            return;
+        //PlayButton.SetActive(false);
+        //CancelButton.SetActive(true);
+        CreateRoom();
         gameStarting = true;
     }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FXManager : MonoBehaviour
 {
-
     public enum FX
     {
         Splash, Spray, Ripple, Confetti2, Confetti1, LogSplit, Mist
@@ -49,6 +48,15 @@ public class FXManager : MonoBehaviour
         emitter.position = pos;
         emitter.applyShapeToPosition = true;
         part_systems[(int)type].Emit(emitter, amt);
+    }
+
+    // burst from position (directionless)
+    public void SynchronizedBurst(int type, Vector3 pos, int amt)
+    {
+        var emitter = new ParticleSystem.EmitParams(); 
+        emitter.position = pos;
+        emitter.applyShapeToPosition = true;
+        part_systems[type].Emit(emitter, amt);
     }
 
     // burst from position (directionless)
