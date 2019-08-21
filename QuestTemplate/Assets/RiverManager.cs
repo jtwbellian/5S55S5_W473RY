@@ -67,7 +67,6 @@ public class RiverManager : MonoBehaviour
     public GameObject startButton, waitMessage, startCanvas, gameEndMenu, scoreBoard;
     public Transform finalScoreBoardSpot;
 
-
     #region singleton implementation
 
     public static RiverManager instance;   
@@ -283,6 +282,38 @@ public class RiverManager : MonoBehaviour
         return p;
     }
     
+    public int GetScore(int player, int type)
+    {
+        Vector3 score = playerScores[player];
+        return (int)score[type];
+    }
+    // Overloaded method for total score
+    public int GetScore(int player)
+    {
+        Vector3 score = playerScores[player];
+        return (int)(score[0] + score[1] + score[2]);
+    }
+
+    // Local ONLY, does not change online score.
+    // Used during end tally up to save performance
+    public void AddToScoreLocal(int player, int type, int amt)
+    {
+        Vector3 score = playerScores[player];
+        score[type] = score[type] + amt;
+        playerScores[player] = score;
+
+        switch(player)
+        {
+            case 0:
+                scoreUIP1[type].text = (score[type]).ToString();
+                break;
+
+            case 1:
+                scoreUIP2[type].text = (score[type]).ToString();
+                break;
+        }
+    }
+
     /*public void AddRiver()
     {
         // Shuffle the pool to mix it up
@@ -419,11 +450,17 @@ public class RiverManager : MonoBehaviour
 
     public void GameOver()
     {
+        ResultsController rc = finalScoreBoardSpot.GetComponent<ResultsController>();
+
+        if (rc)
+        {
+            rc.ShowMultipliers();
+        }
+
         Invoke("GameEndMenu", 15f);
         scoreBoard.transform.position = finalScoreBoardSpot.position;
         scoreBoard.transform.rotation = finalScoreBoardSpot.rotation;
         scoreBoard.transform.localScale *= 5f;
-
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.right * 1.5f, 15); 
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.left * 1.5f, 15); 
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position, 15); 

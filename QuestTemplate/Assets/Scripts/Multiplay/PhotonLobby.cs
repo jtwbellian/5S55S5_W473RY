@@ -82,16 +82,13 @@ private void Awake() {
         gameStarting = true;
     }
 
-public void OnCancelButtonPressed()
-{
-    CancelButton.SetActive(false);
-    PlayButton.SetActive(true);
-    PhotonNetwork.LeaveRoom();
-}
+    public void OnCancelButtonPressed()
+    {
+        CancelButton.SetActive(false);
+        PlayButton.SetActive(true);
+        PhotonNetwork.LeaveRoom();
+    }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //void Update(){}
 }
