@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -372,6 +372,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   vibrationClip: {fileID: 0}
+  touchToActivate: 0
 --- !u!4 &269559231
 Transform:
   m_ObjectHideFlags: 0
@@ -2247,6 +2248,7 @@ MonoBehaviour:
   persistAfterDeparture: 1
   invertActivation: 0
   animgraphBoolName: BeenHit
+  vrButton: {fileID: 6906639610345699346}
 --- !u!4 &1509725021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 73663b0e89d1df84aa10485a7f688a9f,
@@ -3058,6 +3060,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   vibrationClip: {fileID: 8300000, guid: 0d1c592fd11196848aa69fc91bca521e, type: 3}
+  touchToActivate: 0
 --- !u!114 &1958705259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3073,6 +3076,7 @@ MonoBehaviour:
   persistAfterDeparture: 1
   invertActivation: 0
   animgraphBoolName: BeenHit
+  vrButton: {fileID: 1958705258}
 --- !u!95 &1958705260
 Animator:
   serializedVersion: 3
@@ -3697,6 +3701,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   vibrationClip: {fileID: 8300000, guid: 0d1c592fd11196848aa69fc91bca521e, type: 3}
+  touchToActivate: 0
 --- !u!54 &6906639610345699347
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3915,6 +3920,11 @@ PrefabInstance:
       propertyPath: m_grabVolumes.Array.data[0]
       value: 
       objectReference: {fileID: 8862664385169516715}
+    - target: {fileID: 2393893468839453405, guid: 28e3cc7294cae974fa4781fb421d0bf8,
+        type: 3}
+      propertyPath: m_controller
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 653184642888143693, guid: 28e3cc7294cae974fa4781fb421d0bf8,
         type: 3}
       propertyPath: m_grabVolumes.Array.size
@@ -3925,6 +3935,11 @@ PrefabInstance:
       propertyPath: m_grabVolumes.Array.data[0]
       value: 
       objectReference: {fileID: 8862664385169516714}
+    - target: {fileID: 653184642888143693, guid: 28e3cc7294cae974fa4781fb421d0bf8,
+        type: 3}
+      propertyPath: m_controller
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28e3cc7294cae974fa4781fb421d0bf8, type: 3}
 --- !u!135 &8862664385169516714 stripped

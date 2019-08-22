@@ -61,5 +61,7 @@ MonoBehaviour:
   - RPC_SetScarf
   - RPC_Destroy
   - RPC_ChangeFace
+  - RPC_Burst
+  - RPC_GameOver
   DisableAutoOpenWizard: 1
   ShowSettings: 1

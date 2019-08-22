@@ -112,7 +112,7 @@ public class NetCatcher : MonoBehaviour
             {
                 if(!fish.isHeld)
                 {
-                    fish.view.TransferOwnership(view.ViewID);
+                    fish.view.RequestOwnership();
                     fish.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
                     HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
                 }
@@ -123,7 +123,8 @@ public class NetCatcher : MonoBehaviour
             {
                 if(!fruit.isHeld)
                 {
-                    fruit.view.TransferOwnership(view.ViewID);
+                    fruit.view.RequestOwnership();
+                    //fruit.view.TransferOwnership(view.ViewID);
                     fruit.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
                     HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
                 }
@@ -172,7 +173,7 @@ public class NetCatcher : MonoBehaviour
             var fish = caughtItem.GetComponent<PhotonFish>();
 
             if (fish)
-            {
+            {   //fish.pv.RequestOwnership();
                 fish.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
             }
 

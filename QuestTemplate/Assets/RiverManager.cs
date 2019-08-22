@@ -23,7 +23,7 @@ public class RiverManager : MonoBehaviour
 
     #region RiverGeneration
 
-    private const int POOL_SIZE = 6;
+    private const int POOL_SIZE = 5;
     private List<GameObject> riverPool = new List<GameObject>();
     public GameObject [] riverTypes;
     public int numSegments = 5;
@@ -360,7 +360,7 @@ public class RiverManager : MonoBehaviour
     //[PunRPC]
     public void AddSeg()
     {
-        if (currentSegment > POOL_SIZE)
+        if (currentSegment > POOL_SIZE - 1)
             return;
 
         
@@ -450,6 +450,12 @@ public class RiverManager : MonoBehaviour
 
     public void GameOver()
     {
+        photonView.RPC("RPC_GameOver", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void RPC_GameOver()
+    {
         ResultsController rc = finalScoreBoardSpot.GetComponent<ResultsController>();
 
         if (rc)
@@ -457,7 +463,7 @@ public class RiverManager : MonoBehaviour
             rc.ShowMultipliers();
         }
 
-        Invoke("GameEndMenu", 15f);
+        Invoke("GameEndMenu", 10f);
         scoreBoard.transform.position = finalScoreBoardSpot.position;
         scoreBoard.transform.rotation = finalScoreBoardSpot.rotation;
         scoreBoard.transform.localScale *= 5f;

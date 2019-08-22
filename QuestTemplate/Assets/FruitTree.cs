@@ -68,10 +68,12 @@ public class FruitTree : MonoBehaviour
     [PunRPC]
     public void RPC_Destroy()
     {
-        fx.Burst(FXManager.FX.LogSplit, transform.position, 4);
-        fx.Burst(FXManager.FX.LogSplit, transform.position + Vector3.up * 1.8f, 5);
+        fx.Burst(FXManager.FX.TreeSplit, transform.position, 2);
+        fx.Burst(FXManager.FX.TreeSplit, transform.position + Vector3.up * 1.8f, 2);
         fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
         fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
+        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * 1.1f, 2);
+        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * -1.1f, 2);
         fx.Burst(FXManager.FX.Spray, transform.position, 2);
         fx.Burst(FXManager.FX.Ripple, transform.position, 1);
         //Play  Sound
