@@ -93,7 +93,9 @@ public class POVRGrabbable : OVRGrabbable
         if (pv != null)
         {
             //pv.TransferOwnership(pv.ViewID);
-            pv.RequestOwnership();
+            if (!pv.IsMine)
+                pv.RequestOwnership();
+
             pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
             //isHeld = true;
             //rb.isKinematic = true;
@@ -105,17 +107,5 @@ public class POVRGrabbable : OVRGrabbable
     {
         rb.isKinematic = active;
         isHeld = active;
-    }
-    
-    [PunRPC]
-    public void Take()
-    {
-        m_grabbedBy.ForceRelease(this);
-        //transform.SetParent(null);
-
-        if (pv.IsMine && PhotonNetwork.IsMasterClient)
-            pv.TransferOwnership(1);
-        else
-            pv.TransferOwnership(0);
     }
 }

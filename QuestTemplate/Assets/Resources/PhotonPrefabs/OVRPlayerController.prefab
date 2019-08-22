@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingPoint: {fileID: 1667240244970512829}
   speed: 1
+  riverManager: {fileID: 0}
 --- !u!1 &1667240244970552731
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +584,7 @@ GameObject:
   - component: {fileID: 1667240244970437843}
   - component: {fileID: 1667240244456638459}
   - component: {fileID: 3645550120817839413}
-  - component: {fileID: 3731026310917789844}
+  - component: {fileID: 3231284645854500699}
   m_Layer: 0
   m_Name: LeftHandAnchor
   m_TagString: Player
@@ -635,7 +636,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3731026310917789844
+--- !u!114 &3231284645854500699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -644,17 +645,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1667240244970745651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd425c2d06f39bf4899d07c05d0f10eb, type: 3}
+  m_Script: {fileID: 11500000, guid: d1d852121abcb394bb47da89b88b3f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabBegin: 0.55
   grabEnd: 0.35
   m_parentHeldObject: 1
   m_gripTransform: {fileID: 1670232369838489653}
-  m_grabVolumes:
-  - {fileID: 1667240244456638459}
+  m_grabVolumes: []
   m_controller: 1
-  m_parentTransform: {fileID: 1667240244970437843}
+  m_parentTransform: {fileID: 1670232369838489653}
   m_grabbedObj: {fileID: 0}
 --- !u!1 &1667240244970750499
 GameObject:
@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 1667240244970433725}
   - component: {fileID: 1667240244831791441}
   - component: {fileID: 8879397646174182442}
-  - component: {fileID: 4489302108242750366}
+  - component: {fileID: 5505294519551908976}
   m_Layer: 0
   m_Name: RightHandAnchor
   m_TagString: Player
@@ -786,7 +786,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4489302108242750366
+--- !u!114 &5505294519551908976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,17 +795,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1667240244970780363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd425c2d06f39bf4899d07c05d0f10eb, type: 3}
+  m_Script: {fileID: 11500000, guid: d1d852121abcb394bb47da89b88b3f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabBegin: 0.55
   grabEnd: 0.35
   m_parentHeldObject: 1
   m_gripTransform: {fileID: 1669947897138720379}
-  m_grabVolumes:
-  - {fileID: 1667240244831791441}
+  m_grabVolumes: []
   m_controller: 2
-  m_parentTransform: {fileID: 1667240244970433725}
+  m_parentTransform: {fileID: 1669947897138720379}
   m_grabbedObj: {fileID: 0}
 --- !u!1 &1668263034755325391
 GameObject:

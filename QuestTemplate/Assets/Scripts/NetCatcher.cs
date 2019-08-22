@@ -57,6 +57,7 @@ public class NetCatcher : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
+
         // Prepare to invoke reset when dropped in water
         if (other.gameObject.tag == "Water")
         {
@@ -84,7 +85,7 @@ public class NetCatcher : MonoBehaviour
             }
         }
 
-        if (!view || !view.IsMine) // Only do this next part if the view is mine
+        if (!view || !view.IsMine || !grabbable.grabbedBy) // Only do this next part if the view is mine
             return;
 
         if (other.gameObject.tag == "Collectable")
@@ -92,10 +93,17 @@ public class NetCatcher : MonoBehaviour
             // Janky ass code to allow me to catch fruit from trees
             var canCatch = true;
 
+            // Do not catch if item already caught or if childed to a non-fruit tree object
             if (caughtItem != null || (other.transform.parent != null && !other.transform.parent.GetComponent<FruitTree>()))
             {
                 canCatch = false;
             }
+
+            // Do not catch if net upside down
+            /* if (rimBound.position.y - netBound.position.y > linearLimit)
+            {
+                canCatch = false;
+            }*/
 
             if (!canCatch)
                 return;

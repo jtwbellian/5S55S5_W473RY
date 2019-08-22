@@ -248,7 +248,6 @@ GameObject:
   - component: {fileID: 5088865873088359086}
   - component: {fileID: 322271837139439781}
   - component: {fileID: 2158511259907614180}
-  - component: {fileID: 4163101648936315713}
   - component: {fileID: 4460993141835539900}
   - component: {fileID: 5390011709736263403}
   m_Layer: 0
@@ -430,28 +429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: -1
   type: 2
---- !u!114 &4163101648936315713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8243442818982576313}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50bdeaa7e37ef304992d0c06c7a78b60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 1
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints:
-  - {fileID: 3811505920914456771}
-  pv: {fileID: 483407616508376555}
-  rb: {fileID: 7499877477978006370}
-  isHeld: 0
-  hidesHands: 0
 --- !u!114 &4460993141835539900
 MonoBehaviour:
   m_ObjectHideFlags: 0

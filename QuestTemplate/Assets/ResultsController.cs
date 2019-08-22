@@ -12,9 +12,12 @@ public class ResultsController : MonoBehaviour
     public GameObject multipliers;
 
     public GameObject p1Crown, p2Crown;
+    public AudioSource audio;
+    public AudioClip clipPoints;
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         rm = RiverManager.instance;
     }
 
@@ -46,7 +49,11 @@ public class ResultsController : MonoBehaviour
                 // Increment final score time multiplier for category i
                 score += MULTIPLIER[i];
                 // Update UI
-                finalScore.text = "Score: " + score.ToString();
+                finalScore.text = "Total Score: " + score.ToString();
+                audio.PlayOneShot(clipPoints);
+                
+                if (audio.pitch < 2f)
+                    audio.pitch += 0.05f;
 
                 yield return new WaitForSeconds(0.2f);
             }

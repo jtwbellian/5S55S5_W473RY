@@ -245,10 +245,7 @@ public class OVRGrabber : MonoBehaviour
         // Disable grab volumes to prevent overlaps
         GrabVolumeEnable(false);
 
-        var closestRigidbody = closestGrabbable.GetComponent<Rigidbody>();
-        var isKinematic = closestRigidbody.isKinematic;
-
-        if (closestGrabbable != null && !isKinematic)
+        if (closestGrabbable != null)
         {
             if (closestGrabbable.isGrabbed)
             {
