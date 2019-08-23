@@ -32,7 +32,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4972369552139476615}
+  - {fileID: 2051874547051938587}
   - {fileID: 6373208486630377236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 4f830b0a28ed4a0418cfcf5fe3afac1d, type: 3}
   apples:
-  - {fileID: 4972369552139476629}
+  - {fileID: 3587981006923100301}
   isClamHole: 1
 --- !u!114 &1175578304191808451
 MonoBehaviour:
@@ -278,13 +278,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f1042425c267214cb35c94bff41824f, type: 3}
---- !u!4 &4972369552139476615 stripped
+--- !u!4 &2051874547051938587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6447147800840871313, guid: 1f1042425c267214cb35c94bff41824f,
     type: 3}
   m_PrefabInstance: {fileID: 4972369552139476618}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4972369552139476629 stripped
+--- !u!114 &3587981006923100301 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8415669094505917959, guid: 1f1042425c267214cb35c94bff41824f,
     type: 3}

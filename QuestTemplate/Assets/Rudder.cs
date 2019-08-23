@@ -71,10 +71,12 @@ public class Rudder : POVRGrabbable
         // right hand
         if (hand.m_controller == OVRInput.Controller.RTouch)
         {   
+            rightHand.GetComponent<MeshRenderer>().sharedMaterial = hand.transform.GetChild(1).GetChild(0).GetChild(1).gameObject.GetComponent<SkinnedMeshRenderer>().material;
             rightHand.SetActive(true);
         }
         else // left hand
         {
+            leftHand.GetComponent<MeshRenderer>().sharedMaterial = hand.transform.GetChild(1).GetChild(0).GetChild(1).gameObject.GetComponent<SkinnedMeshRenderer>().material;
             leftHand.SetActive(true);
         }
 
