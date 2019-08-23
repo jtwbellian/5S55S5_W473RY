@@ -11,7 +11,9 @@ public class PhotonPlayer : MonoBehaviour
     PhotonView PV;
     public GameObject myAvatar;
     public AvatarController avController;
+
     private AvatarParts parts;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,17 +23,17 @@ public class PhotonPlayer : MonoBehaviour
 
         if (PV.IsMine)
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient) // Player 1
             {
-            myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar1"),
-                                                Vector3.zero, 
-                                                Quaternion.identity, 0);
+                myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar1"),
+                                                    Vector3.zero, 
+                                                    Quaternion.identity, 0);
             }
-            else
+            else // Player 2
             {
-                myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar2"),
-                                    Vector3.zero, 
-                                    Quaternion.identity, 0);
+                    myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar2"),
+                                        Vector3.zero, 
+                                        Quaternion.identity, 0);
             }
             
             GameObject obj = Resources.Load<GameObject>("PhotonPrefabs/OVRPlayerController");
@@ -39,8 +41,9 @@ public class PhotonPlayer : MonoBehaviour
             var player = Instantiate(obj);
 
             parts = myAvatar.GetComponent<AvatarParts>();
-
             avController = player.GetComponent<AvatarController>();
+
+            //PandaController panda = player.GetComponent<PandaController>();
             
             parts.Head.SetParent(avController.headTarget.transform);
             parts.Head.localRotation = Quaternion.identity;

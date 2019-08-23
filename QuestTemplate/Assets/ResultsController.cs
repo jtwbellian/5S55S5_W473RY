@@ -31,7 +31,7 @@ public class ResultsController : MonoBehaviour
         float totalP2Score = rm.GetScore(1);
 
         // Loop through all item categories 
-        for(int i = 0; i < 2; i ++)
+        for(int i = 0; i < 3; i ++)
         {
             // While there are still points in category for either player
             while (rm.GetScore(0, i) + rm.GetScore(1, i) > 0)
@@ -48,37 +48,34 @@ public class ResultsController : MonoBehaviour
                 // Update UI
                 finalScore.text = "Score: " + score.ToString();
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.2f);
             }
-
-            // Give Crown when done
-            if (totalP1Score > totalP2Score)
-            {
-                p1Crown.SetActive(true);
-                FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p1Crown.transform.position, 10);
-            }
-            else if (totalP1Score < totalP2Score)
-            {
-                p2Crown.SetActive(true);
-                FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p2Crown.transform.position, 10);
-            }
-            else
-            {
-                p1Crown.SetActive(true);
-                p2Crown.SetActive(true);
-                FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p1Crown.transform.position, 15);
-                FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p2Crown.transform.position, 15);
-            }
-            
-            multipliers.SetActive(false);
-
-            yield return null;
         }
+    
+        // Give Crown when done
+        if (totalP1Score > totalP2Score)
+        {
+            p1Crown.SetActive(true);
+            FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p1Crown.transform.position, 10);
+        }
+        else if (totalP1Score < totalP2Score)
+        {
+            p2Crown.SetActive(true);
+            FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p2Crown.transform.position, 10);
+        }
+        else
+        {
+            p1Crown.SetActive(true);
+            p2Crown.SetActive(true);
+            FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p1Crown.transform.position, 15);
+            FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p2Crown.transform.position, 15);
+        }
+        
+        multipliers.SetActive(false);
+
+        yield return null;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update(){}
 }

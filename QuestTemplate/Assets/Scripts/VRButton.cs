@@ -10,11 +10,10 @@ public class VRButton : MonoBehaviour
     public AudioClip vibrationClip;
 
     private bool hasBeenPressed = false;
+    public bool touchToActivate = false;
 
     // Start is called before the first frame update
-    void Start()
-    {
-    }
+    void Start(){}
 
     [ContextMenu("Click")]
     public void Click()
@@ -27,7 +26,8 @@ public class VRButton : MonoBehaviour
         if (hasBeenPressed)
             return;
 
-        if (other.gameObject.CompareTag("Player"))
+
+        if (other.gameObject.CompareTag("Player") && touchToActivate)
         {
             OVRGrabber hand = other.GetComponent<OVRGrabber>();
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PandaController : MonoBehaviour//OVRPlayerController
 {
-    public const float MAX_DIST_FROM_BOAT = 5f;
+    public const float MAX_DIST_FROM_BOAT = 5.5f;
     public Transform trackingPoint;
     public float speed = 0.4f;
     
@@ -31,14 +31,12 @@ public class PandaController : MonoBehaviour//OVRPlayerController
     // Update is called once per frame
     void Update()
     {
-
-
         character.enabled = false;
         character.height = trackingPoint.localPosition.y;
         character.center = trackingPoint.transform.localPosition - (Vector3.up * character.height) / 2f;
         character.enabled = true;
 
-        if (OVRInput.GetDown(OVRInput.Button.Three) || OVRInput.GetDown(OVRInput.Button.One) || 
+        if (OVRInput.GetDown(OVRInput.Button.Three) || OVRInput.GetDown(OVRInput.Button.Four) || 
             Vector3.Distance(transform.position, riverManager.boat.transform.position) > MAX_DIST_FROM_BOAT)
         {
             Debug.Log("Teleport Home");

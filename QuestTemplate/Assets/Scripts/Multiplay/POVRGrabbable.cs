@@ -46,19 +46,21 @@ public class POVRGrabbable : OVRGrabbable
             //isHeld = false;
         }
         
-        var fruit = GetComponent<PhotonFruit>();
+        /* var fruit = GetComponent<PhotonFruit>();
 
         if (fruit)
         {
             fruit.rigidBody.isKinematic = false;
             fruit.rigidBody.useGravity = true;
             fruit.isHeld = false;
-        }
+        }*/
 
         var item = GetComponentInChildren<Item>();
 
-        if (item)
-            item.transform.SetParent(null);
+        // TOOK THIS OUT BECAUSE IT BREAKS SYNCH
+
+        /* if (item)
+            item.transform.SetParent(null);*/
     }
 
     public override void OnGrab()
@@ -93,7 +95,6 @@ public class POVRGrabbable : OVRGrabbable
             //pv.TransferOwnership(pv.ViewID);
             pv.RequestOwnership();
             pv.RPC("SetHeld", RpcTarget.AllBuffered, true);
-
             //isHeld = true;
             //rb.isKinematic = true;
         }

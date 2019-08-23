@@ -8,32 +8,50 @@ public class TriggerAnimate : MonoBehaviour
     private Animator animator;
 
     private bool isPlaying = false;
+
+    public VRButton vrButton;
+    private AudioClip vibrationClip;
     
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (vrButton == null)
+            vrButton = GetComponent<VRButton>();
+        //vibrationClip = vrButton.vibrationClip;
     }
 
-    void OnTriggerEnter(Collider Other)
+    void OnTriggerEnter(Collider other)
     {
         if (isPlaying)
             return;
-        
-        if (Other.gameObject.transform.root.tag == "Player")
+
+        if (other.gameObject.CompareTag("Player"))
         {
+            OVRGrabber hand = other.GetComponent<OVRGrabber>();
+            Debug.Log("hand: " + hand);
+            
+            if (hand && vrButton.vibrationClip)
+            {
+                HapticsManager.Vibrate(vrButton.vibrationClip, hand.m_controller);
+            }
+
             if (invertActivation == false)
                 animator.SetBool(animgraphBoolName, true);
 
             if (invertActivation == true)
                 animator.SetBool(animgraphBoolName, false);
 
-            Invoke("Disable", 1.3f);
+            Invoke("Disable", 1f);
             isPlaying = true;
         }
     }
 
     void Disable()
     {
+        if (vrButton != null)
+            vrButton.Click();
+            
         transform.parent.gameObject.SetActive(false);
     }
 

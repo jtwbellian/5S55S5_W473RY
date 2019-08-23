@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class SoundManager : MonoBehaviour
 {
@@ -19,12 +20,12 @@ public class SoundManager : MonoBehaviour
         if (instance == null)
             instance = this;
         else if (instance != this)
-            Destroy (gameObject);
+            Destroy(gameObject);
 
-        DontDestroyOnLoad (gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
-    public void PlaySingle (AudioClip clip,  Vector3 pos) 
+    public void PlaySingle(AudioClip clip,  Vector3 pos) 
     {
         AudioSource.PlayClipAtPoint(clip, pos);
     }

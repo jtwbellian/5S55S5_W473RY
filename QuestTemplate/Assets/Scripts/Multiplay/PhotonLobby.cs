@@ -11,7 +11,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public static PhotonLobby lobby;
     private bool gameStarting = false;
 
-    public GameObject PlayButton;
+    public GameObject [] playButtons;
 
     public GameObject CancelButton;
     public TextMeshProUGUI messageField;
@@ -36,7 +36,11 @@ private void Awake() {
         Debug.Log("Connected to the Photon Master Server.");
         messageField.text = "Connected.";
         PhotonNetwork.AutomaticallySyncScene = true;
-        PlayButton.SetActive(true);
+
+        foreach (var button in playButtons)
+        {
+            button.SetActive(true);
+        }
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -85,7 +89,12 @@ private void Awake() {
     public void OnCancelButtonPressed()
     {
         CancelButton.SetActive(false);
-        PlayButton.SetActive(true);
+
+        foreach (var button in playButtons)
+        {
+            button.SetActive(true);
+        }
+        
         PhotonNetwork.LeaveRoom();
     }
 

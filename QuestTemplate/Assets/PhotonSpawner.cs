@@ -20,6 +20,7 @@ public class PhotonSpawner : MonoBehaviour
     public GameObject spawnObj;
     [ReadOnly]
     public bool active = false;
+    public float range = 5.2f;
 
     void OnDrawGizmos()
     {
@@ -131,7 +132,6 @@ public class PhotonSpawner : MonoBehaviour
                 
                 if (ft)
                 {
-                    Debug.Log("Tree spawned");
                     ft.Invoke("ChildToRiver", 0.25f);
                 }
 
@@ -144,7 +144,7 @@ public class PhotonSpawner : MonoBehaviour
     {
         while (true)
         {
-            Vector3 ranPos = new Vector3(Random.Range(-6, 6), transform.position.y, transform.position.z);
+            Vector3 ranPos = new Vector3(Random.Range(-range, range), transform.position.y, transform.position.z);
             AddObj(ranPos);
 
             if (!active) // Break coroutine if not active

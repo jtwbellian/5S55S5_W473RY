@@ -5,17 +5,24 @@ using Photon.Pun;
 
 public class FruitTree : MonoBehaviour
 {
+    public AudioClip clip;
     RiverManager rm;
+    SoundManager sm;
+    FXManager fx;
     PhotonActor pa;
 
     [SerializeField]
     PhotonFruit [] apples;
     Vector3 [] startPositions;
 
+    public GameObject bumper;
+
     // Start is called before the first frame update
     void Awake()
     {
         rm = RiverManager.instance;
+        fx = FXManager.GetInstance();
+        sm = SoundManager.instance;
         pa = GetComponent<PhotonActor>();
         Debug.Log("Apples on tree: " + apples.Length + ", " + apples);
         startPositions = new Vector3[apples.Length];
@@ -58,6 +65,26 @@ public class FruitTree : MonoBehaviour
             }
     }
 
+    [PunRPC]
+    public void RPC_Destroy()
+    {
+        fx.Burst(FXManager.FX.TreeSplit, transform.position, 2);
+        fx.Burst(FXManager.FX.TreeSplit, transform.position + Vector3.up * 1.8f, 2);
+        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
+        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
+        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * 1.1f, 2);
+        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * -1.1f, 2);
+        fx.Burst(FXManager.FX.Spray, transform.position, 2);
+        fx.Burst(FXManager.FX.Ripple, transform.position, 1);
+        //Play  Sound
+        sm.PlaySingle(clip, transform.position);
+
+        foreach (var apple in apples)
+        {
+            apple.ActivateFruit();
+        }
+    }
+
     public void ChildToRiver()
     {
         GetComponent<PhotonView>().RPC("RPC_ChildToRiver", RpcTarget.AllBuffered);
@@ -65,13 +92,21 @@ public class FruitTree : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+        if (other.transform.CompareTag("Boat"))
+        {
+            pa.DisableChildObject(false);
+            pa.view.RPC("RPC_Destroy", RpcTarget.AllBuffered);
+        }
+
         if (other.transform.CompareTag("Finish"))
         {
-            if (pa)
-            {
-                pa.DisableChildObject(false);
-            }
+            pa.DisableChildObject(false);
         }
+    }
+
+    public void SetBumperDirection(string tag)
+    {
+        bumper.tag = tag;
     }
 
     private void Update() 

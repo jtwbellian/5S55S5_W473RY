@@ -51,6 +51,7 @@ MonoBehaviour:
   LHand: {fileID: 5389564844357035615}
   scarfRed: {fileID: 4891931574912112497}
   scarfBlue: {fileID: 8347828907267944476}
+  headRenderer: {fileID: 3423377023055053275}
 --- !u!114 &1629184045287178369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +207,7 @@ GameObject:
   - component: {fileID: 7134424827530731018}
   - component: {fileID: 2310644305197303863}
   - component: {fileID: 1847311057474979844}
+  - component: {fileID: 400114872328328831}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -267,6 +269,24 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &400114872328328831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013788343356564574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddfab41c99874043ae49f6306731622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headRenderer: {fileID: 3423377023055053275}
+  avatarParts: {fileID: 7528851834654047878}
+  faceMats:
+  - {fileID: 2100000, guid: 28d77bc6ae794e84aa45cb86483a01bb, type: 2}
+  - {fileID: 2100000, guid: ca3ff530f61ef3943a394a49369dd5ee, type: 2}
+  - {fileID: 2100000, guid: 98226c486875dfe48b0729c7391cda2d, type: 2}
 --- !u!1001 &1376021014849352270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,6 +673,12 @@ PrefabInstance:
 --- !u!4 &136735918419248916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 743346a5bab0b7d4c881fc968ae128c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4944807639263685646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3423377023055053275 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 743346a5bab0b7d4c881fc968ae128c0,
     type: 3}
   m_PrefabInstance: {fileID: 4944807639263685646}
   m_PrefabAsset: {fileID: 0}

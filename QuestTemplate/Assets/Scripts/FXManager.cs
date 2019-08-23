@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class FXManager : MonoBehaviour
 {
+    PhotonView view;
+
     public enum FX
     {
         Splash, Spray, Ripple, Confetti2, Confetti1, LogSplit, Mist, TreeSplit, Dust
@@ -29,6 +32,8 @@ public class FXManager : MonoBehaviour
             part_systems = GetComponentsInChildren<ParticleSystem>();
         }
 
+        view = GetComponent<PhotonView>();
+        
         foreach (ParticleSystem ps in part_systems)
         {
             var main = ps.main;
@@ -52,6 +57,12 @@ public class FXManager : MonoBehaviour
 
     // burst from position (directionless)
     public void SynchronizedBurst(int type, Vector3 pos, int amt)
+    {
+        view.RPC("RPC_Burst", RpcTarget.AllBuffered, type, pos, amt);
+    }
+
+    [PunRPC]
+    public void RPC_Burst(int type, Vector3 pos, int amt)
     {
         var emitter = new ParticleSystem.EmitParams(); 
         emitter.position = pos;
