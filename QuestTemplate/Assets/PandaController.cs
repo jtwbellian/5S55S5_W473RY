@@ -36,12 +36,13 @@ public class PandaController : MonoBehaviour//OVRPlayerController
         character.center = trackingPoint.transform.localPosition - (Vector3.up * character.height) / 2f;
         character.enabled = true;
 
-        if (OVRInput.GetDown(OVRInput.Button.Three) || OVRInput.GetDown(OVRInput.Button.Four) || 
-            Vector3.Distance(transform.position, riverManager.boat.transform.position) > MAX_DIST_FROM_BOAT)
-        {
-            Debug.Log("Teleport Home");
-            GoHome();
-        }
+        if (riverManager != null)
+            if (OVRInput.GetDown(OVRInput.Button.Three) || OVRInput.GetDown(OVRInput.Button.Four) || 
+                Vector3.Distance(transform.position, riverManager.boat.transform.position) > MAX_DIST_FROM_BOAT)
+            {
+                Debug.Log("Teleport Home");
+                GoHome();
+            }
         
         // Walk
         Vector2 stickInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
@@ -83,6 +84,8 @@ public class PandaController : MonoBehaviour//OVRPlayerController
 
     public void GoHome()
     {
+        if (riverManager == null)
+            return;
         fade.FadeIn();
         //character.center = trackingPoint.transform.position;
         character.enabled = false;

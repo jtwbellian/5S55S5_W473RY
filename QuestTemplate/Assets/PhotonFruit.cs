@@ -19,6 +19,11 @@ public class PhotonFruit : MonoBehaviour
     private RiverManager rm;
     private POVRGrabbable grabbable;
 
+    private Vector3 properLocalOffset;
+    private const float TOL = 0.002f; // distance fruit can 'lag' before it is reset locally
+
+    public bool isClam = false; // As disgusted as you are, I'm more disgusted with myself. Had to get it done :\
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +43,15 @@ public class PhotonFruit : MonoBehaviour
         if (!view.IsMine)
             return;
 
-        if (isHeld && transform.parent == null)
+        if (isHeld)
         {
-            UnlockFromParent();
+            if (transform.parent == null) // if somehow ends up not held, reset flag
+                UnlockFromParent();
+
+            if (Vector3.Distance(transform.localPosition, properLocalOffset) > TOL)
+                transform.localPosition = properLocalOffset;
         }
+
 
         if (inWater && isHeld == false && transform.parent == null)
             transform.Translate(rm.riverVelocity + rm.boatRightVelocity, Space.World);
@@ -63,6 +73,7 @@ public class PhotonFruit : MonoBehaviour
             inWater = false;
         }
     }
+
     private void OnTriggerEnter(Collider other) 
     {
         if (!view.IsMine) 
@@ -86,7 +97,9 @@ public class PhotonFruit : MonoBehaviour
             {
                 id = otherView.ViewID;
                 view.TransferOwnership(id);
-                ActivateFruit();
+
+                if (!isClam)
+                    ActivateFruit();
             }
         }
 
@@ -124,6 +137,8 @@ public class PhotonFruit : MonoBehaviour
         }
         */
     }
+    
+    
     public void ActivateFruit()
     {
         view.RPC("RPC_ActivateFruit", RpcTarget.AllBuffered);
@@ -144,6 +159,7 @@ public class PhotonFruit : MonoBehaviour
     {
         transform.SetParent(target);
         transform.localPosition = positionOffset;
+        properLocalOffset = positionOffset;
         transform.localRotation = angleOffset;
         rigidBody.isKinematic = true;
         rigidBody.useGravity = false;
@@ -173,6 +189,7 @@ public class PhotonFruit : MonoBehaviour
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         collider.isTrigger = false;
+        isHeld = false;
     }
 
     [PunRPC]

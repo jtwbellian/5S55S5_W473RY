@@ -15,6 +15,8 @@ public class PhotonFish : MonoBehaviour
     private FXManager fx;
     private float speed;
     public bool canSwim = true;
+    private const float TOL = 0.002f; // distance fish can 'lag' before it is reset locally
+    private Vector3 properLocalOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +37,13 @@ public class PhotonFish : MonoBehaviour
         if (!view.IsMine)
             return;
 
-        if (isHeld && transform.parent == null)
+        if (isHeld)
         {
-            UnlockFromParent();
+            if (transform.parent == null) // if somehow ends up not held, reset flag
+                UnlockFromParent();
+
+            if (Vector3.Distance(transform.localPosition, properLocalOffset) > TOL)
+                transform.localPosition = properLocalOffset;
         }
 
         if (!isHeld && canSwim)
@@ -143,6 +149,8 @@ public class PhotonFish : MonoBehaviour
         collider.isTrigger = true;
         isHeld = true;
         canSwim = false;
+
+        properLocalOffset = positionOffset;
     }
 
     #endregion

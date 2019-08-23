@@ -23,7 +23,7 @@ public class RiverManager : MonoBehaviour
 
     #region RiverGeneration
 
-    private const int POOL_SIZE = 5;
+    private const int POOL_SIZE = 7;
     private List<GameObject> riverPool = new List<GameObject>();
     public GameObject [] riverTypes;
     public int numSegments = 5;
@@ -466,7 +466,7 @@ public class RiverManager : MonoBehaviour
         Invoke("GameEndMenu", 10f);
         scoreBoard.transform.position = finalScoreBoardSpot.position;
         scoreBoard.transform.rotation = finalScoreBoardSpot.rotation;
-        scoreBoard.transform.localScale *= 5f;
+        scoreBoard.transform.localScale = new Vector3(9f, 5f, 5f);
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.right * 1.5f, 15); 
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position + Vector3.left * 1.5f, 15); 
         FXManager.GetInstance().Burst(FXManager.FX.Confetti2, finalScoreBoardSpot.position, 15); 
