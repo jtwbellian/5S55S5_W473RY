@@ -71,7 +71,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _density: 76.67
+    - _density: 400
     - _direction: 0
     - _gsize: 52.12
     - _rslim: 7.57

@@ -287,12 +287,6 @@ public class RiverManager : MonoBehaviour
         Vector3 score = playerScores[player];
         return (int)score[type];
     }
-    // Overloaded method for total score
-    public int GetScore(int player)
-    {
-        Vector3 score = playerScores[player];
-        return (int)(score[0] + score[1] + score[2]);
-    }
 
     // Local ONLY, does not change online score.
     // Used during end tally up to save performance

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3043384029471406445}
   - component: {fileID: 7836705442865911855}
   - component: {fileID: -1447419723998775516}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: r_straitB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 143064850535599795}
   - component: {fileID: 8205147636342109084}
   - component: {fileID: 4432035774218456634}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitB_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 3301864425637676566}
   - component: {fileID: 5482316956255897868}
   - component: {fileID: 4381262316043690442}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitB_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4909360519752106798}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 7289931411271303065}
   - component: {fileID: 7252231023919028866}
   - component: {fileID: 2492881898683896097}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitB_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,6 +368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftBank
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
@@ -454,6 +459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bamboo
       objectReference: {fileID: 0}
+    - target: {fileID: 5618469816266221624, guid: 018ac5a3bc68d704db933aa1dd141c69,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8909115530130725419, guid: 018ac5a3bc68d704db933aa1dd141c69,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -519,6 +529,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
+    - target: {fileID: 145768371464484149, guid: 018ac5a3bc68d704db933aa1dd141c69,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 307287365920201120, guid: 018ac5a3bc68d704db933aa1dd141c69,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449115236007155153, guid: 018ac5a3bc68d704db933aa1dd141c69,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 018ac5a3bc68d704db933aa1dd141c69, type: 3}
 --- !u!4 &5465323019876182520 stripped
@@ -538,6 +563,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}

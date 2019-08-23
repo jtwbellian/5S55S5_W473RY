@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2845360277713967450}
   - component: {fileID: 1126986991490957939}
   - component: {fileID: 8051512702678790330}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: curveC_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8191255450433642294}
   - component: {fileID: 2154201613244671461}
   - component: {fileID: 6210214107123441573}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: curveC_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 61261893245569804}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 2974004383794513739}
   - component: {fileID: 595883839616910786}
   - component: {fileID: 2429684963067221671}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: curveC_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 5817882871523533869}
   - component: {fileID: 9173372201598306829}
   - component: {fileID: 7835718633698668923}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: r_30C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,6 +370,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBank2
       objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -460,6 +465,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBank
       objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -544,6 +554,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
@@ -634,6 +649,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}

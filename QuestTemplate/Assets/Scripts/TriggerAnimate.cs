@@ -11,6 +11,8 @@ public class TriggerAnimate : MonoBehaviour
 
     public VRButton vrButton;
     private AudioClip vibrationClip;
+
+    public AudioClip[] clips;
     
     void Start()
     {
@@ -30,6 +32,9 @@ public class TriggerAnimate : MonoBehaviour
         {
             OVRGrabber hand = other.GetComponent<OVRGrabber>();
             Debug.Log("hand: " + hand);
+            
+            if (clips[0] != null)
+            SoundManager.instance.PlaySingle(clips[0], transform.position);
             
             if (hand && vrButton.vibrationClip)
             {

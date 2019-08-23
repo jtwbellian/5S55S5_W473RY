@@ -1,31 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &3976859312217308512
+--- !u!65 &5162429470625478180
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4525423203934890762}
+  m_GameObject: {fileID: 1711934202559402113}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1174866, y: 0.8492257, z: 0.23116392}
-  m_Center: {x: 0.60466796, y: 0.15732016, z: -0.38441995}
---- !u!65 &53662555860050282
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4525423203934890762}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7078303, y: 1, z: 0.32503614}
-  m_Center: {x: 1.1348187, y: 0, z: -0.53589636}
+  m_Size: {x: 0.9328543, y: 1, z: 0.2680494}
+  m_Center: {x: -0.6306004, y: 0, z: -0.59528816}
 --- !u!1 &3873063715028435474
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,7 +25,7 @@ GameObject:
   - component: {fileID: 835177638667839173}
   - component: {fileID: 4120980949243128950}
   - component: {fileID: -1800742199258463395}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: r_island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +129,7 @@ GameObject:
   - component: {fileID: 1426586127351578093}
   - component: {fileID: 1591940882885700531}
   - component: {fileID: 2691265509382702421}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: river_island_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,6 +195,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &53662555860050282
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525423203934890762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7078303, y: 1, z: 0.32503614}
+  m_Center: {x: 1.1348187, y: 0, z: -0.53589636}
+--- !u!65 &3976859312217308512
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525423203934890762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1174866, y: 0.8492257, z: 0.23116392}
+  m_Center: {x: 0.60466796, y: 0.15732016, z: -0.38441995}
 --- !u!1 &4893269577879941706
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2941313952392166709}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +262,7 @@ GameObject:
   - component: {fileID: 3214765475324584336}
   - component: {fileID: 20441435516249443}
   - component: {fileID: 3517830442098954616}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: river_island_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,19 +328,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5162429470625478180
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711934202559402113}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.9328543, y: 1, z: 0.2680494}
-  m_Center: {x: -0.6306004, y: 0, z: -0.59528816}
 --- !u!1 &7008970902212511830
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 4361843206231808784}
   - component: {fileID: 447655795522728445}
   - component: {fileID: 8421110849280969735}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: river_island_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,6 +416,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
@@ -518,6 +523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Log
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c8da9604c306bd9498306fed6deea507,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c8da9604c306bd9498306fed6deea507,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -607,6 +617,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
@@ -703,6 +718,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightBank (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -798,6 +818,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: FruitTree
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 422f696edd2a7534e975a6143eb0a072,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495927967447073191, guid: 422f696edd2a7534e975a6143eb0a072,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3418204727575690591, guid: 422f696edd2a7534e975a6143eb0a072,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615411249983495779, guid: 422f696edd2a7534e975a6143eb0a072,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 422f696edd2a7534e975a6143eb0a072,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -872,6 +912,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Log (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c8da9604c306bd9498306fed6deea507,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c8da9604c306bd9498306fed6deea507,
         type: 3}
@@ -962,6 +1007,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftBank (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
@@ -1058,6 +1108,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBank
       objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1143,6 +1198,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBank (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1227,6 +1287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftBank (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
@@ -1329,6 +1394,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightBank (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1423,6 +1493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Log (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c8da9604c306bd9498306fed6deea507,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c8da9604c306bd9498306fed6deea507,
         type: 3}

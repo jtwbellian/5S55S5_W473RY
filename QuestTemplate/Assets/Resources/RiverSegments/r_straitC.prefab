@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6589209072719374593}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 3404604416509082332}
   - component: {fileID: 2107208769733200957}
   - component: {fileID: 7921201046399851180}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitC_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3499806446534912576}
   - component: {fileID: 5302979832732052669}
   - component: {fileID: 6702032708363529426}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitC_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 7557357799911907185}
   - component: {fileID: 5093431977369430647}
   - component: {fileID: 3601903888352941297}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: r_straitC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 2157011805073025132}
   - component: {fileID: 6733033247639954190}
   - component: {fileID: 340873996550014689}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitC_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,6 +368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBank
       objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -442,6 +447,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}

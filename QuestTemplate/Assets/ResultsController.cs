@@ -7,7 +7,7 @@ public class ResultsController : MonoBehaviour
 {
     private readonly int [] MULTIPLIER = {2, 10, 5};
     RiverManager rm;
-    public TextMeshProUGUI finalScore;
+    public TextMeshProUGUI finalScore1, finalScore2;
     public float score; 
     public GameObject multipliers;
 
@@ -30,7 +30,8 @@ public class ResultsController : MonoBehaviour
         playerAvatars = FindObjectsOfType<AvatarParts>();
 
         multipliers.SetActive(true);
-        finalScore.gameObject.SetActive(true);
+        finalScore1.gameObject.SetActive(true);
+        finalScore2.gameObject.SetActive(true);
         Invoke("StartScoreAdder", 1.5f);
     }
 
@@ -41,33 +42,44 @@ public class ResultsController : MonoBehaviour
 
     private IEnumerator AddUpScores()
     {
-        float totalP1Score = rm.GetScore(0);
-        float totalP2Score = rm.GetScore(1);
+        float totalP1Score = 0;
+        float totalP2Score = 0;
 
-        // Loop through all item categories 
-        for(int i = 0; i < 3; i ++)
+        // For both players 
+        for(int p = 0; p < 2; p ++)
         {
-            audio.pitch = 0.5f;
-            // While there are still points in category for either player
-            while (rm.GetScore(0, i) + rm.GetScore(1, i) > 0)
-            {   
-                // Player 1 decrement
-                if (rm.GetScore(0, i) > 0)
-                    rm.AddToScoreLocal(0, i, -1);
-                // Player 2 decrement
-                if (rm.GetScore(1, i) > 0)
-                    rm.AddToScoreLocal(1, i, -1);
-                
-                // Increment final score time multiplier for category i
-                score += MULTIPLIER[i];
-                // Update UI
-                finalScore.text = "Total Score: " + score.ToString();
-                audio.PlayOneShot(clipPoints);
-                
-                if (audio.pitch < 2f)
-                    audio.pitch += 0.05f;
+            // Loop through all item categories 
+            for(int i = 0; i < 3; i ++)
+            {
+                audio.pitch = 0.7f;
 
-                yield return new WaitForSeconds(0.25f);
+                // While there are still points in category
+                while (rm.GetScore(p, i) > 0)
+                {   
+                    // Player p decrement
+                    rm.AddToScoreLocal(p, i, -1);
+                    
+                    // Increment final score time multiplier for category i
+                    if (p == 0)
+                    {
+                        totalP1Score += MULTIPLIER[i];
+                        // Update UI
+                        finalScore1.text = "Total Score: " + totalP1Score.ToString();
+                    }
+                    else if (p == 1)
+                    {
+                        totalP2Score += MULTIPLIER[i];
+                        // Update UI
+                        finalScore2.text = "Total Score: " + totalP1Score.ToString();
+                    }
+                    
+                    audio.PlayOneShot(clipPoints);
+                    
+                    if (audio.pitch < 3f)
+                        audio.pitch += 0.05f;
+
+                    yield return new WaitForSeconds(0.25f);
+                }
             }
         }
     

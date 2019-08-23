@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8694356023770978021}
   - component: {fileID: 128033898532392291}
   - component: {fileID: 5100495081739100366}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: river_gorge_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6750223782036835716}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 2534670922033949045}
   - component: {fileID: 8860945822850699315}
   - component: {fileID: -4253528322269244726}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: r_turtle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 267277057317390529}
   - component: {fileID: 9148466033587125957}
   - component: {fileID: 767574966200097060}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: river_gorge_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 6521406460125675576}
   - component: {fileID: 534842028039267566}
   - component: {fileID: 8926623460859136186}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 3626876463344260459}
   - component: {fileID: 8596338371507430998}
   - component: {fileID: 6103370374889758930}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: river_gorge_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,6 +463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
@@ -553,6 +558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
@@ -649,6 +659,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBank (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -738,6 +753,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightBank (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332969415828330603, guid: a148d86811591944f8e76b7de375e47b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4399019539904971266, guid: a148d86811591944f8e76b7de375e47b,
         type: 3}
@@ -829,6 +849,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBank
       objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -903,6 +928,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftBank (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230777528513847755, guid: e7d8f725ffe76694c931350778f330f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6154065329975882836, guid: e7d8f725ffe76694c931350778f330f0,
         type: 3}
