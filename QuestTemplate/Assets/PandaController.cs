@@ -89,7 +89,7 @@ public class PandaController : MonoBehaviour//OVRPlayerController
         fade.FadeIn();
         //character.center = trackingPoint.transform.position;
         character.enabled = false;
-        transform.position = riverManager.boat.transform.position + Vector3.up * 1f;//(RiverManager.instance.boat.transform.position - trackingPoint.position);// + trackingPoint.localPosition);// + (Vector3.up * 3f);
+        transform.position = riverManager.boat.transform.position + Vector3.up * 0.7f;//(RiverManager.instance.boat.transform.position - trackingPoint.position);// + trackingPoint.localPosition);// + (Vector3.up * 3f);
         character.enabled = true;
     }
 }

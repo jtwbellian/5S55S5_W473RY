@@ -12,11 +12,13 @@ public class PhotonSpawner : MonoBehaviour
 
     [SerializeField]
     private int poolSize = 45;
-
+    private float originalDelay;
     private int numActive = 0;
     [ReadOnly]
     public List<GameObject> objPool;
     public float spawnDelay = 100f;
+    [Range(0f,100f)]
+    public float randomness = 0f;
     public GameObject spawnObj;
     [ReadOnly]
     public bool active = false;
@@ -55,6 +57,8 @@ public class PhotonSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originalDelay = spawnDelay;
+
         if (PhotonNetwork.IsMasterClient)
         {
             CreateObjPool();
@@ -146,6 +150,9 @@ public class PhotonSpawner : MonoBehaviour
         {
             Vector3 ranPos = new Vector3(Random.Range(-range, range), transform.position.y, transform.position.z);
             AddObj(ranPos);
+
+            // At 100 randomness, delay is between be one second or double the original time
+            spawnDelay = Mathf.Max(1, originalDelay + Random.Range(-originalDelay * (randomness/100f), originalDelay * (randomness/100f)));
 
             if (!active) // Break coroutine if not active
             {
