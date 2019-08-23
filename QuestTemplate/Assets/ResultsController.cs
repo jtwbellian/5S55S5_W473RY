@@ -57,21 +57,20 @@ public class ResultsController : MonoBehaviour
                 while (rm.GetScore(p, i) > 0)
                 {   
                     // Player p decrement
-                    if (rm.GetScore(p, i) > 0)
-                        rm.AddToScoreLocal(0, p, -1);
+                    rm.AddToScoreLocal(p, i, -1);
                     
                     // Increment final score time multiplier for category i
                     if (p == 0)
                     {
                         totalP1Score += MULTIPLIER[i];
                         // Update UI
-                        finalScore1.text = "Final Score: " + score.ToString();
+                        finalScore1.text = "Total Score: " + totalP1Score.ToString();
                     }
                     else if (p == 1)
                     {
                         totalP2Score += MULTIPLIER[i];
                         // Update UI
-                        finalScore2.text = "Final Score: " + score.ToString();
+                        finalScore2.text = "Total Score: " + totalP1Score.ToString();
                     }
                     
                     audio.PlayOneShot(clipPoints);

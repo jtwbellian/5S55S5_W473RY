@@ -42,9 +42,10 @@ public class Rudder : POVRGrabbable
            //Debug.Log("Rudder Euler: " + targetObject.transform.rotation.eulerAngles);
             //RiverManager.instance.AddForceToRudder(Mathf.Clamp(rudderAngle, minAngle, maxAngle) / 10f);
         }
-        else if (targetObject.transform.rotation != Quaternion.identity)
-        {
-            targetObject.transform.rotation = Quaternion.Lerp(targetObject.transform.rotation, Quaternion.identity, Time.time * returnSpeed);       
+        else if (transform.position != startPos)//(targetObject.transform.rotation != Quaternion.identity)
+        {   
+            transform.position = startPos;
+            targetObject.transform.rotation = Quaternion.identity;//Quaternion.Lerp(targetObject.transform.rotation, Quaternion.identity, Time.time * returnSpeed);       
         }
 
         // Only modify boat on one client
@@ -87,13 +88,12 @@ public class Rudder : POVRGrabbable
 
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
-        transform.position = startPos;
-
         base.GrabEnd(Vector3.zero, Vector3.zero);  
+        //transform.position = startPos;
 
-        transform.SetParent(targetObject);
-        transform.localPosition = localStartPos;
-        transform.localRotation = localStartRot;
+        //transform.SetParent(targetObject);
+        //transform.localPosition = localStartPos;
+        //transform.localRotation = localStartRot;
 
         leftHand.SetActive(false);
         rightHand.SetActive(false);

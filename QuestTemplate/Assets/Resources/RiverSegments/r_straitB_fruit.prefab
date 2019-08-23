@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3043384029471406445}
   - component: {fileID: 7836705442865911855}
   - component: {fileID: -5150758836076875756}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: r_straitB_fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 143064850535599795}
   - component: {fileID: 8205147636342109084}
   - component: {fileID: 4432035774218456634}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitB_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 3301864425637676566}
   - component: {fileID: 5482316956255897868}
   - component: {fileID: 4381262316043690442}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitB_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4909360519752106798}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 7289931411271303065}
   - component: {fileID: 7252231023919028866}
   - component: {fileID: 2492881898683896097}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: straitB_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,6 +368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fruit
       objectReference: {fileID: 0}
+    - target: {fileID: 8243442818982576313, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4917313183638975146, guid: bae5058d56074a5419775f2bf0689eea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -423,6 +428,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6947089380002682269, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750314662852322929, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057050399124652018, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae5058d56074a5419775f2bf0689eea, type: 3}
 --- !u!4 &8151569224605663020 stripped
@@ -442,6 +462,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fruit (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243442818982576313, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4917313183638975146, guid: bae5058d56074a5419775f2bf0689eea,
         type: 3}
@@ -497,6 +522,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947089380002682269, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750314662852322929, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057050399124652018, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae5058d56074a5419775f2bf0689eea, type: 3}

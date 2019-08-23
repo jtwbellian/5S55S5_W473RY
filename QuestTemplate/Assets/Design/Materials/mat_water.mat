@@ -78,7 +78,7 @@ Material:
     - _flowdirection: 0
     - _flowspeed: -0.0137
     - _offset: 1.265
-    - _rdensity: 109.4
+    - _rdensity: 40
     - _rslim: 4.52
     - _rspeed: 3.7
     - _shine: 15.9
