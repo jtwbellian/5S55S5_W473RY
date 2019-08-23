@@ -14,6 +14,10 @@ public class ResultsController : MonoBehaviour
     public GameObject p1Crown, p2Crown;
     public AudioSource audio;
     public AudioClip clipPoints;
+    public AudioClip clipCrown;
+
+    private AvatarParts [] playerAvatars = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +27,15 @@ public class ResultsController : MonoBehaviour
 
     public void ShowMultipliers()
     {
+        playerAvatars = FindObjectsOfType<AvatarParts>();
+
         multipliers.SetActive(true);
         finalScore.gameObject.SetActive(true);
+        Invoke("StartScoreAdder", 1.5f);
+    }
+
+    public void StartScoreAdder()
+    {
         StartCoroutine(AddUpScores());
     }
 
@@ -36,6 +47,7 @@ public class ResultsController : MonoBehaviour
         // Loop through all item categories 
         for(int i = 0; i < 3; i ++)
         {
+            audio.pitch = 0.5f;
             // While there are still points in category for either player
             while (rm.GetScore(0, i) + rm.GetScore(1, i) > 0)
             {   
@@ -55,7 +67,7 @@ public class ResultsController : MonoBehaviour
                 if (audio.pitch < 2f)
                     audio.pitch += 0.05f;
 
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.25f);
             }
         }
     
@@ -77,7 +89,23 @@ public class ResultsController : MonoBehaviour
             FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p1Crown.transform.position, 15);
             FXManager.GetInstance().Burst(FXManager.FX.Confetti2, p2Crown.transform.position, 15);
         }
-        
+
+        if (playerAvatars.Length > 1)
+        {
+            if ((playerAvatars[0].scarfRed.activeSelf && p1Crown.activeSelf)
+                || (playerAvatars[0].scarfBlue.activeSelf && p2Crown.activeSelf))
+            {
+                playerAvatars[0].crown.SetActive(true);
+            }
+
+            if ((playerAvatars[1].scarfRed.activeSelf && p1Crown.activeSelf)
+                || (playerAvatars[1].scarfBlue.activeSelf && p2Crown.activeSelf))
+            {
+                playerAvatars[1].crown.SetActive(true);
+            }
+        }
+
+        audio.PlayOneShot(clipCrown);
         multipliers.SetActive(false);
 
         yield return null;

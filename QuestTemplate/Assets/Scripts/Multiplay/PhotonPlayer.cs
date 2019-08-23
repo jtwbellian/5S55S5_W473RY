@@ -11,7 +11,6 @@ public class PhotonPlayer : MonoBehaviour
     PhotonView PV;
     public GameObject myAvatar;
     public AvatarController avController;
-
     private AvatarParts parts;
     
 

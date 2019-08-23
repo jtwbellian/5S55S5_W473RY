@@ -8,5 +8,6 @@ public class AvatarParts : MonoBehaviour
 {
     public Transform Head, RHand, LHand;
     public GameObject scarfRed, scarfBlue;
+    public GameObject crown;
     public Renderer headRenderer;
 }

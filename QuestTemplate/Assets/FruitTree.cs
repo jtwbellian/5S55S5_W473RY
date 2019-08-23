@@ -15,7 +15,7 @@ public class FruitTree : MonoBehaviour
     PhotonFruit [] apples;
     Vector3 [] startPositions;
 
-    public GameObject bumper;
+    public bool isClamHole = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,7 +24,7 @@ public class FruitTree : MonoBehaviour
         fx = FXManager.GetInstance();
         sm = SoundManager.instance;
         pa = GetComponent<PhotonActor>();
-        Debug.Log("Apples on tree: " + apples.Length + ", " + apples);
+        //Debug.Log("Apples on tree: " + apples.Length + ", " + apples);
         startPositions = new Vector3[apples.Length];
 
         for ( var i = 0; i < apples.Length - 1; i ++)
@@ -49,10 +49,11 @@ public class FruitTree : MonoBehaviour
         if (rm)
         {
             transform.SetParent(rm.riverMaster);
-            Debug.Log("Childed to River");
+            //Debug.Log("Childed to River");
         }
         
         var i = 0;
+
         if (startPositions.Length == apples.Length)
             foreach (var apple in apples)
             {
@@ -61,6 +62,7 @@ public class FruitTree : MonoBehaviour
 
                 apple.actor.DisableChildObject(true);
                 apple.ChildToPhotonTransform(transform, startPositions[i], Quaternion.identity * Quaternion.Euler(90, 0, 0));
+                Debug.Log("Adding element " + apple + " to clamHole/fruitTree");
                 i ++;
             }
     }
@@ -68,20 +70,24 @@ public class FruitTree : MonoBehaviour
     [PunRPC]
     public void RPC_Destroy()
     {
-        fx.Burst(FXManager.FX.TreeSplit, transform.position, 2);
-        fx.Burst(FXManager.FX.TreeSplit, transform.position + Vector3.up * 1.8f, 2);
-        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
-        fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
-        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * 1.1f, 2);
-        fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * -1.1f, 2);
-        fx.Burst(FXManager.FX.Spray, transform.position, 2);
-        fx.Burst(FXManager.FX.Ripple, transform.position, 1);
-        //Play  Sound
-        sm.PlaySingle(clip, transform.position);
+        if (!isClamHole)
+        {        
+            fx.Burst(FXManager.FX.TreeSplit, transform.position, 2);
+            fx.Burst(FXManager.FX.TreeSplit, transform.position + Vector3.up * 1.8f, 2);
+            fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * 1.2f, 2);
+            fx.Burst(FXManager.FX.Mist, transform.position + Vector3.forward * -1.2f, 2);
+            fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * 1.1f, 2);
+            fx.Burst(FXManager.FX.Dust, transform.position + Vector3.forward * -1.1f, 2);
+            fx.Burst(FXManager.FX.Spray, transform.position, 2);
+            fx.Burst(FXManager.FX.Ripple, transform.position, 1);
 
-        foreach (var apple in apples)
-        {
-            apple.ActivateFruit();
+            //Play  Sound
+            sm.PlaySingle(clip, transform.position);
+
+            foreach (var apple in apples)
+            {
+                apple.ActivateFruit();
+            }
         }
     }
 
@@ -104,14 +110,14 @@ public class FruitTree : MonoBehaviour
         }
     }
 
-    public void SetBumperDirection(string tag)
+    /*public void SetBumperDirection(string tag)
     {
         bumper.tag = tag;
-    }
+    }*/
 
     private void Update() 
     {
-                // delete after 20m behind boat
+        // delete after 20m behind boat
         var behindBoatZ = (rm.boat.transform.position.z - 20f);
         
         if (transform.position.z < behindBoatZ)

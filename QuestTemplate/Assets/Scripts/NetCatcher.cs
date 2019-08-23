@@ -57,7 +57,6 @@ public class NetCatcher : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-
         // Prepare to invoke reset when dropped in water
         if (other.gameObject.tag == "Water")
         {
@@ -85,7 +84,7 @@ public class NetCatcher : MonoBehaviour
             }
         }
 
-        if (!view || !view.IsMine || !grabbable.grabbedBy) // Only do this next part if the view is mine
+        if (!view || !view.IsMine || grabbable.grabbedBy == null) // Only do this next part if the view is mine
             return;
 
         if (other.gameObject.tag == "Collectable")
@@ -120,9 +119,12 @@ public class NetCatcher : MonoBehaviour
             {
                 if(!fish.isHeld)
                 {
-                    fish.view.RequestOwnership();
+                    if (!fish.view.IsMine)
+                        fish.view.RequestOwnership();
+                    //fish.view.TransferOwnership(view.ViewID);
                     fish.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
                     HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
+                    fish.isHeld = true;
                 }
             }
 
@@ -131,10 +133,12 @@ public class NetCatcher : MonoBehaviour
             {
                 if(!fruit.isHeld)
                 {
-                    fruit.view.RequestOwnership();
+                    if (!fruit.view.IsMine)
+                        fruit.view.RequestOwnership();
                     //fruit.view.TransferOwnership(view.ViewID);
                     fruit.ChildToPhotonTransform(transform, target.localPosition, Quaternion.identity);
                     HapticsManager.Vibrate(catchClip, grabbable.grabbedBy.m_controller);
+                    fruit.isHeld = true;
                 }
             }
 
@@ -181,7 +185,7 @@ public class NetCatcher : MonoBehaviour
             var fish = caughtItem.GetComponent<PhotonFish>();
 
             if (fish)
-            {   //fish.pv.RequestOwnership();
+            {   
                 fish.ChildToPhotonTransform(null, Vector3.zero, Quaternion.identity);
             }
 
