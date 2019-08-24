@@ -91,7 +91,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _aclip: 1
+    - _aclip: 0.11
     - _distance: 0.193
     - _floorlevel: -3.73
     - _globaldither: 1

@@ -70,7 +70,7 @@ public class ResultsController : MonoBehaviour
                     {
                         totalP2Score += MULTIPLIER[i];
                         // Update UI
-                        finalScore2.text = "Total Score: " + totalP1Score.ToString();
+                        finalScore2.text = "Total Score: " + totalP2Score.ToString();
                     }
                     
                     audio.PlayOneShot(clipPoints);
