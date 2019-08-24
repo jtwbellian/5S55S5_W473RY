@@ -8,7 +8,6 @@ using System.IO;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
 public class RiverManager : MonoBehaviour
 {
     private const float TOL = 1f;
@@ -66,6 +65,7 @@ public class RiverManager : MonoBehaviour
 
     public GameObject startButton, waitMessage, startCanvas, gameEndMenu, scoreBoard;
     public Transform finalScoreBoardSpot;
+    public PhotonSpawner [] spawners;
 
     #region singleton implementation
 
@@ -265,10 +265,14 @@ public class RiverManager : MonoBehaviour
 
     public void GenerateRiverList()
     {
+        var ranStart = Random.Range(0, 100);
+
         for(int i = 0; i < POOL_SIZE; i ++)
         {
-            riverSegList[i] = riverTypes[Random.Range(0, riverTypes.Length)].name;
-            Debug.Log("Setting element " + i.ToString() + " = " + riverSegList[i].ToString());
+            var indx = (ranStart + i) % (riverTypes.Length - 1);
+            riverSegList[i] = riverTypes[indx].name;
+            ranStart = Random.Range(0, 100);
+            //Debug.Log("Setting element " + i.ToString() + " = " + riverSegList[i].ToString());
         }
 
         Debug.Log("Generated River: " + riverSegList.ToString());
@@ -427,20 +431,28 @@ public class RiverManager : MonoBehaviour
         riverMove = true;
 
         if (PhotonNetwork.IsMasterClient)
+        {
+            foreach (PhotonSpawner s in spawners)
+            {
+                s.StartSpawning();
+            }
+            
             photonView.RPC("SendMessage", RpcTarget.AllBuffered, " ");
+        }
         //GetComponent<PhotonView>().RPC("ShowMessage", RpcTarget.AllBuffered, false);
     }
 
+/*
     public void RandomizePool()
     {
         for (int i = 0; i < riverPool.Count; i++)
         {
             GameObject temp = riverPool[i];
-            int randomIndex = Random.Range(i, riverPool.Count);
+            int randomIndex = UnityEngine.Random.Range(i, riverPool.Count);
             riverPool[i] = riverPool[randomIndex];
             riverPool[randomIndex] = temp;
         }
-    }
+    }*/
 
     public void GameOver()
     {

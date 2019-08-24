@@ -499,6 +499,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: viewIdField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7499877477978006370, guid: bae5058d56074a5419775f2bf0689eea,
         type: 3}
       propertyPath: m_UseGravity
@@ -513,16 +523,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CollisionDetection
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae5058d56074a5419775f2bf0689eea, type: 3}
@@ -611,6 +611,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: viewIdField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7499877477978006370, guid: bae5058d56074a5419775f2bf0689eea,
         type: 3}
       propertyPath: m_UseGravity
@@ -625,16 +635,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CollisionDetection
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae5058d56074a5419775f2bf0689eea, type: 3}
@@ -723,16 +723,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7499877477978006370, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7499877477978006370, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
         type: 3}
       propertyPath: viewIdField
@@ -742,6 +732,16 @@ PrefabInstance:
         type: 3}
       propertyPath: InstantiationId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499877477978006370, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499877477978006370, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae5058d56074a5419775f2bf0689eea, type: 3}
@@ -830,6 +830,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: viewIdField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7499877477978006370, guid: bae5058d56074a5419775f2bf0689eea,
         type: 3}
       propertyPath: m_UseGravity
@@ -844,16 +854,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CollisionDetection
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 483407616508376555, guid: bae5058d56074a5419775f2bf0689eea,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae5058d56074a5419775f2bf0689eea, type: 3}
