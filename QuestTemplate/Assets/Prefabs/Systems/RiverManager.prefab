@@ -48,7 +48,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 1
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4203738474764408635}
@@ -78,22 +78,24 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   riverTypes:
-  - {fileID: 2729183508499274713, guid: 1682e8296ef9e5f4bbafcad8306662d0, type: 3}
+  - {fileID: 5301161689053719799, guid: c3b6551c8d1c65c43ae5a5cfda2a7715, type: 3}
   - {fileID: 7394456831468478502, guid: c99cb9df8928f0048872288d136ea963, type: 3}
   - {fileID: 3873063715028435474, guid: dff21aab29d397642a5ee13db8c5f6d3, type: 3}
-  - {fileID: 7968419062309028090, guid: e7ad8d4dece8db5449e1542595b8f445, type: 3}
-  - {fileID: 7760438079864609825, guid: cc774f6d0d344c945a38810dd2db3dba, type: 3}
-  - {fileID: 5301161689053719799, guid: c3b6551c8d1c65c43ae5a5cfda2a7715, type: 3}
-  - {fileID: 1446925317332639162, guid: 6deb7a16b0b905d44b17d021096c2f6b, type: 3}
   - {fileID: 6253784293766216614, guid: 2befc50941a5b114cbb66c49ae8eca82, type: 3}
+  - {fileID: 7760438079864609825, guid: cc774f6d0d344c945a38810dd2db3dba, type: 3}
+  - {fileID: 2729183508499274713, guid: 1682e8296ef9e5f4bbafcad8306662d0, type: 3}
+  - {fileID: 1446925317332639162, guid: 6deb7a16b0b905d44b17d021096c2f6b, type: 3}
+  - {fileID: 7968419062309028090, guid: e7ad8d4dece8db5449e1542595b8f445, type: 3}
   - {fileID: 4293027960253061524, guid: 40f4525e2164c80439603b79ac5c78db, type: 3}
   - {fileID: 2090851689820360098, guid: 78351f4ed059a864188351faac11ace0, type: 3}
-  numSegments: 6
+  - {fileID: 2729183508499274713, guid: 1682e8296ef9e5f4bbafcad8306662d0, type: 3}
+  - {fileID: 7394456831468478502, guid: c99cb9df8928f0048872288d136ea963, type: 3}
+  numSegments: 4
   riverVelocity: {x: 0, y: 0, z: 0}
   boatRightVelocity: {x: 0, y: 0, z: 0}
   rotationOffset: 0
   riverMove: 1
-  levelSpeed: 1
+  levelSpeed: 0.9
   lastRiverSegment: {fileID: 0}
   riverMaster: {fileID: 0}
   targetSegment: {fileID: 0}
@@ -110,6 +112,11 @@ MonoBehaviour:
   gameEndMenu: {fileID: 0}
   scoreBoard: {fileID: 0}
   finalScoreBoardSpot: {fileID: 0}
+  spawners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &4203738474764408635
 MonoBehaviour:
   m_ObjectHideFlags: 0
