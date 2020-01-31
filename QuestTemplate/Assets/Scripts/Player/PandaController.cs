@@ -17,6 +17,8 @@ public class PandaController : MonoBehaviour//OVRPlayerController
     private Vector3 lastPos; 
     public RiverManager riverManager;
 
+    public bool isSharedSpace = false;
+
     #endregion
 
     // Start is called before the first frame update
@@ -31,6 +33,9 @@ public class PandaController : MonoBehaviour//OVRPlayerController
     // Update is called once per frame
     void Update()
     {
+        if (isSharedSpace)
+            return;
+
         character.enabled = false;
         character.height = trackingPoint.localPosition.y;
         character.center = trackingPoint.transform.localPosition - (Vector3.up * character.height) / 2f;
