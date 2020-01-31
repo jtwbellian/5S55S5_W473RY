@@ -70,6 +70,7 @@ private void Awake() {
     {
         if (gameStarting)
             return;
+            
         //PlayButton.SetActive(false);
         CancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
