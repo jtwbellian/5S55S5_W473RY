@@ -43,7 +43,7 @@ private void Awake() {
         }
     }
 
-    public override void OnJoinRandomFailed(short returnCode, string message)
+    public override void OnJoinRoomFailed(short returnCode, string message)
     {
         base.OnJoinRandomFailed(returnCode, message);
         Debug.Log("No games found.");
@@ -59,9 +59,9 @@ private void Awake() {
     void CreateRoom()
     {
         int ranRoom = Random.Range(0, 1000);
-        Debug.Log("Trying to create new Room " + ranRoom);
+        Debug.Log("Trying to create new Room ");// + ranRoom);
         RoomOptions roomOps = new RoomOptions(){IsVisible = true, IsOpen = true, MaxPlayers = (byte)maxPlayers};
-        PhotonNetwork.CreateRoom("Room" + ranRoom, roomOps);
+        PhotonNetwork.CreateRoom("SharedSpace", roomOps);
     }
 
 #endregion
@@ -70,10 +70,11 @@ private void Awake() {
     {
         if (gameStarting)
             return;
-            
+
         //PlayButton.SetActive(false);
         CancelButton.SetActive(true);
-        PhotonNetwork.JoinRandomRoom();
+        //PhotonNetwork.JoinRandomRoom();
+        PhotonNetwork.JoinRoom("SharedSpace");
         gameStarting = true;
     }
 
