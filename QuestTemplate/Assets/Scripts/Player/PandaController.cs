@@ -46,8 +46,12 @@ public class PandaController : MonoBehaviour//OVRPlayerController
         
         // Walk
         Vector2 stickInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-
         character.SimpleMove((trackingPoint.forward  * stickInput.y * speed) + (trackingPoint.right * stickInput.x * speed));
+
+        // Oculus Go support 
+        Vector2 touchInput = OVRInput.Get(OVRInput.Axis2D.PrimaryTouchpad);
+        character.SimpleMove((trackingPoint.forward * touchInput.y * speed) + (trackingPoint.right * touchInput.x * speed));
+
 
         // Turn View Left
         if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))

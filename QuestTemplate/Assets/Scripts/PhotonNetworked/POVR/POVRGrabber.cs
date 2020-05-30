@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class POVRGrabber : OVRGrabber
 {
+    public override void Start()
+    {
+        base.Start();
+
+    }
+
 
     protected override void OffhandGrabbed(OVRGrabbable grabbable)
     {

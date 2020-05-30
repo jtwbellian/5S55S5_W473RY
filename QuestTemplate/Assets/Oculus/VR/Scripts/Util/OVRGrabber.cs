@@ -106,7 +106,7 @@ public class OVRGrabber : MonoBehaviour
 		}
     }
 
-    protected virtual void Start()
+    public virtual void Start()
     {
         m_lastPos = transform.position;
         m_lastRot = transform.rotation;
